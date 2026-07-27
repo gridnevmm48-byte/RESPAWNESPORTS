@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>RESPAWN — The Esports Residence of Limassol</title>
+  <meta name="description" content="Premium esports and PlayStation residence in the heart of Limassol. RTX rigs, a 130-inch private cinema, a VIP room and a lounge." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@300;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-lang="en">
+
+<!-- ░░░ PRELOADER ░░░ -->
+<div class="pl" id="pl" aria-hidden="true">
+  <div class="pl__belts">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="pl__center">
+    <div class="pl__mark">
+      <span class="pl__corner pl__corner--tl"></span>
+      <span class="pl__corner pl__corner--tr"></span>
+      <span class="pl__corner pl__corner--bl"></span>
+      <span class="pl__corner pl__corner--br"></span>
+      <svg class="pl__glyph" width="112" height="112" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <path class="pl__p" d="M60 106 L14 60 L60 14 L84 38" />
+        <path class="pl__p" d="M95 49 L106 60 L95 71" />
+        <path class="pl__p pl__p--in" d="M60 40 L80 60 L60 80 L40 60 Z" />
+      </svg>
+    </div>
+    <div class="pl__tag">
+      <span class="mono">Play</span><i>+</i><span class="mono">Perform</span><i>+</i><span class="mono">Belong</span>
+    </div>
+  </div>
+  <div class="pl__count" data-reels>
+    <span class="reel"><span class="reel__strip">0123456789</span></span>
+    <span class="reel"><span class="reel__strip">0123456789</span></span>
+    <span class="reel"><span class="reel__strip">0123456789</span></span>
+  </div>
+</div>
+
+<!-- ░░░ NAV ░░░ -->
+<header class="nav" id="nav">
+  <div class="nav__row">
+    <a href="#top" class="nav__brand" aria-label="RESPAWN — home">
+      <span class="nav__logo">RESPAWN</span>
+      <span class="nav__logo-sub mono">Esports Residence</span>
+    </a>
+    <div class="nav__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button class="lang__btn is-active mono" data-lang-set="en">EN</button>
+        <span class="lang__sep">/</span>
+        <button class="lang__btn mono" data-lang-set="ru">RU</button>
+      </div>
+      <a href="#book" class="pill pill--solid mono" data-split data-i18n="nav_cta">Reserve</a>
+      <button class="pill pill--ghost mono nav__menu" data-menu-open>
+        <span data-i18n="nav_menu">Menu</span>
+        <span class="burger"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ░░░ MENU OVERLAY ░░░ -->
+<div class="menu" id="menu" hidden>
+  <div class="menu__panel">
+    <button class="menu__close mono" data-menu-close aria-label="Close menu">Close ×</button>
+    <nav class="menu__links" aria-label="Primary">
+      <a href="#spaces" data-menu-close data-split data-i18n="nav_spaces">Spaces</a>
+      <a href="#rigs" data-menu-close data-split data-i18n="nav_rigs">Rigs</a>
+      <a href="#pricing" data-menu-close data-split data-i18n="nav_pricing">Pricing</a>
+      <a href="#visit" data-menu-close data-split data-i18n="nav_visit">Visit</a>
+    </nav>
+    <div class="menu__foot">
+      <span class="mono menu__label" data-i18n="menu_find">Find us</span>
+      <p class="menu__line"><span class="mono">A.</span><a href="https://maps.app.goo.gl/?q=Agiou+Andreou+160+Limassol" target="_blank" rel="noopener">Agiou Andreou 160, Limassol 3036</a></p>
+      <p class="menu__line"><span class="mono">P.</span><a href="tel:+35797762727">+357 97 762727</a></p>
+      <p class="menu__line"><span class="mono">H.</span><span data-i18n="menu_hours">Daily 13:00 — 03:00</span></p>
+      <p class="menu__line"><span class="mono">S.</span><a href="https://instagram.com/respawn.cy" target="_blank" rel="noopener">@respawn.cy</a></p>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ░░░ 1 · HERO ░░░ -->
+  <section class="hero" id="hero">
+    <canvas class="hero__field" data-field aria-hidden="true"></canvas>
+    <!-- the brand mark, not footage: it drifts and catches an amber edge -->
+    <div class="hero__mark" aria-hidden="true">
+      <span class="hero__mark-glow"></span>
+      <svg viewBox="0 0 120 120" fill="none">
+        <path class="hm hm--1" d="M60 106 L14 60 L60 14 L84 38" />
+        <path class="hm hm--2" d="M95 49 L106 60 L95 71" />
+        <path class="hm hm--3" d="M60 40 L80 60 L60 80 L40 60 Z" />
+      </svg>
+    </div>
+    <div class="grid hero__inner">
+      <h1 class="hero__title col-span-9">
+        <span class="line"><span class="line__in" data-i18n="hero_l1">More than a club.</span></span>
+        <span class="line"><em class="line__in" data-i18n="hero_l2">A residence.</em></span>
+      </h1>
+
+      <div class="hero__cta col-span-4">
+        <a href="#book" class="link-btn mono" data-split data-i18n="hero_cta">Reserve a seat</a>
+      </div>
+
+      <div class="hero__foot">
+        <div class="hero__cue mono">
+          <span class="hero__cue-ico" aria-hidden="true"></span>
+          <span data-i18n="hero_scroll">Scroll</span>
+        </div>
+        <div class="hero__hint mono">
+          <span data-i18n="hero_hint1">Hold to ignite the floor.</span>
+          <span class="dim" data-i18n="hero_hint2">Move to bend the lines.</span>
+        </div>
+        <div class="hero__meta">
+          <div class="factbox">
+            <div class="factbox__l mono">
+              <b>360<i>Hz</i></b>
+              <span data-i18n="hero_fact1">Peak refresh</span>
+            </div>
+            <div class="factbox__r mono" data-i18n="hero_fact2">Flagship rigs<br />in every seat.</div>
+          </div>
+          <p class="hero__sub" data-i18n="hero_sub">Premium esports and PlayStation lounge in the heart of Limassol.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ 2 · MANIFEST ░░░ -->
+  <section class="about" id="about">
+    <div class="grid">
+      <span class="mono eyebrow col-span-1" data-i18n="about_eyebrow">about</span>
+      <h2 class="about__text col-span-11" data-fill>
+        <span data-i18n="about_text">We didn't build another computer club. We built a room worth walking into — where the hardware stays quiet, the doors close behind you, and every detail was chosen the way you would have chosen it.</span>
+      </h2>
+    </div>
+
+    <div class="rule grid">
+      <span class="rule__line"></span>
+      <span class="plus"></span>
+    </div>
+
+    <div class="grid about__sub">
+      <p class="mono col-span-3 col-start-2" data-i18n="about_note">Built for people who notice the details.</p>
+      <div class="col-span-3 col-start-9">
+        <p data-i18n="about_lead">Three build tiers, a VIP room, a 130-inch private cinema and a lounge that makes leaving the hard part.</p>
+        <a href="#spaces" class="link-btn mono" data-split data-i18n="about_cta">See the rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ 3 · MARQUEE + STRIPE WIPE ░░░ -->
+  <section class="creed" id="creed">
+    <div class="creed__inner">
+      <div class="grid">
+        <span class="mono col-span-11 col-start-2 creed__kicker" data-i18n="creed_kicker">Quiet hardware.<br />Loud nights.</span>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__row" data-marquee>
+          <span class="marquee__set">
+            <b data-i18n="creed_1">Play</b><i class="plus-ico"></i><b data-i18n="creed_2">Perform</b><i class="plus-ico"></i><b data-i18n="creed_3">Belong</b><i class="plus-ico"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <span class="mono col-span-12 creed__foot" data-i18n="creed_foot">+ From the door to the last round.</span>
+      </div>
+    </div>
+    <div class="stripes" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i>
+    </div>
+  </section>
+
+  <!-- ░░░ 4 · KEY FACTS (light) ░░░ -->
+  <section class="facts" id="facts">
+    <div class="grid facts__head">
+      <div class="col-span-12">
+        <h2 class="facts__title" data-i18n="facts_title">Key facts</h2>
+        <p class="facts__lead" data-i18n="facts_lead">What the room is actually made of.</p>
+      </div>
+    </div>
+
+    <div class="facts__cards">
+      <article class="card card--media">
+        <video class="card__media" data-still="sp1-pc" muted loop playsinline preload="none" src="../2026-07-26%2019.48.48.mp4#t=12"></video>
+        <div class="card__body">
+          <span class="mono card__label" data-i18n="fact1_label">the floor</span>
+          <div class="card__foot">
+            <p class="card__note" data-i18n="fact1_note">i7 and i9 rigs on high-refresh panels, every seat.</p>
+            <span class="num"><b data-count="360">0</b><i>Hz</i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--paper">
+        <span class="mono card__label" data-i18n="fact2_label">private cinema</span>
+        <div class="card__disc"><span class="num num--dark"><b data-count="130">0</b><i>″</i></span></div>
+        <p class="card__note" data-i18n="fact2_note">Dolby Atmos, six recliners, PS5 Pro. Book the room and the rest disappears.</p>
+      </article>
+
+      <article class="card card--media card--dim">
+        <video class="card__media" data-still="sp3-ps5" muted loop playsinline preload="none" src="../2026-07-26%2019.49.10.mp4#t=10"></video>
+        <div class="card__body">
+          <span class="mono card__label card__label--right" data-i18n="fact3_label">open daily</span>
+          <div class="card__foot">
+            <p class="card__note" data-i18n="fact3_note">Thirteen hundred to three in the morning. Every day.</p>
+            <span class="num"><b>13—03</b></span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="facts__brands">
+      <span class="mono facts__brands-label" data-i18n="facts_brands">On every desk</span>
+      <div class="brandrow">
+        <span>LOGITECH G</span><span>ASUS TUF</span><span>BENQ MOBIUZ</span>
+        <span>ALIENWARE</span><span>SAMSUNG</span><span>PLAYSTATION</span>
+      </div>
+    </div>
+
+    <div class="rule rule--dark grid">
+      <span class="rule__line"></span>
+      <span class="plus"></span>
+    </div>
+  </section>
+
+  <!-- ░░░ 5 · SPACES AS CASES ░░░ -->
+  <section class="cases" id="spaces">
+    <div class="grid cases__head">
+      <span class="mono eyebrow col-span-1" data-i18n="cases_eyebrow">rooms</span>
+      <h2 class="cases__title col-span-11" data-i18n="cases_title">Five rooms.<br /><em>One standard.</em></h2>
+    </div>
+
+    <div class="tiles">
+      <a class="tile" href="#rigs">
+        <video class="tile__media" data-still="sp1-pc" muted loop playsinline preload="none" src="../2026-07-26%2019.48.48.mp4#t=4"></video>
+        <div class="tile__body">
+          <span class="mono tile__idx">01</span>
+          <h3 data-i18n="c1_t">Premium Gaming PC</h3>
+          <p data-i18n="c1_d">Sit down and there is nothing between you and the frame.</p>
+          <div class="chips mono"><span>i7 · i9</span><span>2K · 165Hz</span><span>RTX</span></div>
+        </div>
+      </a>
+
+      <a class="tile" href="#rigs">
+        <video class="tile__media" data-still="sp2-vip" muted loop playsinline preload="none" src="../2026-07-26%2019.49.22.mp4#t=1"></video>
+        <div class="tile__body">
+          <span class="mono tile__idx">02</span>
+          <h3 data-i18n="c2_t">The VIP Room</h3>
+          <p data-i18n="c2_d">Superlight gear, a 260Hz panel, and a door you can close.</p>
+          <div class="chips mono"><span>i9-14900K</span><span>260Hz</span><span data-i18n="c2_chip">Private</span></div>
+        </div>
+      </a>
+
+      <a class="tile" href="#pricing">
+        <video class="tile__media" data-still="sp3-ps5" muted loop playsinline preload="none" src="../2026-07-26%2019.49.10.mp4#t=10"></video>
+        <div class="tile__body">
+          <span class="mono tile__idx">03</span>
+          <h3 data-i18n="c3_t">PlayStation 5 Lounge</h3>
+          <p data-i18n="c3_d">PS5 Pro, recliners, and friends. The couch you wish you had at home.</p>
+          <div class="chips mono"><span>PS5 Pro</span><span data-i18n="c3_chip">6 seats</span><span>4K</span></div>
+        </div>
+      </a>
+
+      <a class="tile" href="#pricing">
+        <video class="tile__media" data-still="sp4-cinema" muted loop playsinline preload="none" src="../2026-07-26%2019.49.10.mp4#t=14"></video>
+        <div class="tile__body">
+          <span class="mono tile__idx">04</span>
+          <h3 data-i18n="c4_t">Private Cinema</h3>
+          <p data-i18n="c4_d">A 130-inch screen, Dolby Atmos, and the lights all the way down.</p>
+          <div class="chips mono"><span>130″</span><span>Dolby Atmos</span><span>BenQ 4K</span></div>
+        </div>
+      </a>
+
+      <a class="tile" href="#book">
+        <video class="tile__media" data-still="sp5-lounge" muted loop playsinline preload="none" src="../2026-07-26%2019.49.16.mp4#t=13"></video>
+        <div class="tile__body">
+          <span class="mono tile__idx">05</span>
+          <h3 data-i18n="c5_t">Lounge &amp; Kitchen</h3>
+          <p data-i18n="c5_d">Hookah between rounds, food to the table from Hook Place.</p>
+          <div class="chips mono"><span data-i18n="c5_chip1">Hookah</span><span data-i18n="c5_chip2">Table service</span><span>03:00</span></div>
+        </div>
+      </a>
+
+      <!-- no photo here on purpose: the library is a number, not a room -->
+      <a class="tile tile--flat" href="#games">
+        <div class="tile__body">
+          <span class="mono tile__idx">06</span>
+          <h3 data-i18n="c6_t">The Games Library</h3>
+          <p data-i18n="c6_d">Every big title already installed and patched. Sit down and press play.</p>
+          <div class="tile__count"><b data-count="120">0</b><i>+</i></div>
+          <div class="chips mono"><span data-i18n="c6_chip1">Steam</span><span data-i18n="c6_chip2">Epic</span><span data-i18n="c6_chip3">Battle.net</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ░░░ 5b · GAMES ░░░ -->
+  <section class="games" id="games">
+    <div class="grid games__head">
+      <span class="mono eyebrow col-span-1" data-i18n="games_eyebrow">library</span>
+      <div class="col-span-11">
+        <h2 class="cases__title" data-i18n="games_title">Nothing to install.<br /><em>Nothing to wait for.</em></h2>
+        <p class="games__lead" data-i18n="games_lead">The launchers are signed in, the shaders are cached, the updates ran overnight.</p>
+      </div>
+    </div>
+    <div class="ticker" data-games aria-label="Games available">
+      <div class="ticker__row">
+        <span class="ticker__set mono">
+          <b>CS2</b><i class="plus-ico"></i><b>Dota 2</b><i class="plus-ico"></i><b>Valorant</b><i class="plus-ico"></i>
+          <b>Fortnite</b><i class="plus-ico"></i><b>Apex Legends</b><i class="plus-ico"></i><b>League of Legends</b><i class="plus-ico"></i>
+          <b>GTA V</b><i class="plus-ico"></i><b>EA FC</b><i class="plus-ico"></i><b>PUBG</b><i class="plus-ico"></i>
+          <b>Rocket League</b><i class="plus-ico"></i><b>Overwatch 2</b><i class="plus-ico"></i><b>Minecraft</b><i class="plus-ico"></i>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ 5c · ZONE COMPARISON ░░░ -->
+  <section class="compare" id="compare">
+    <div class="grid compare__head">
+      <span class="mono eyebrow col-span-1" data-i18n="cmp_eyebrow">compare</span>
+      <div class="col-span-11">
+        <h2 class="cases__title" data-i18n="cmp_title">Which zone<br /><em>is yours?</em></h2>
+      </div>
+    </div>
+
+    <div class="ctable" role="table">
+      <div class="ctable__row ctable__row--head mono" role="row">
+        <span role="columnheader" data-i18n="cmp_zone">Zone</span>
+        <span role="columnheader" data-i18n="cmp_for">Best for</span>
+        <span role="columnheader" data-i18n="cmp_gpu">GPU</span>
+        <span role="columnheader" data-i18n="cmp_screen">Screen</span>
+        <span role="columnheader" data-i18n="cmp_from">From</span>
+      </div>
+      <div class="ctable__row" role="row">
+        <span class="ctable__name" role="cell">COMFORT</span>
+        <span class="mono" role="cell" data-i18n="cmp_r1">Casual sessions, co-op nights</span>
+        <span class="mono" role="cell">RTX 5060</span>
+        <span class="mono" role="cell">27″ 2K · 165Hz</span>
+        <span class="ctable__price" role="cell">€3<i class="mono">/h</i></span>
+      </div>
+      <div class="ctable__row" role="row">
+        <span class="ctable__name" role="cell">BOOTCAMP</span>
+        <span class="mono" role="cell" data-i18n="cmp_r2">Ranked, scrims, five-stacks</span>
+        <span class="mono" role="cell">RTX 5070 Ti</span>
+        <span class="mono" role="cell">27″ · 360Hz</span>
+        <span class="ctable__price" role="cell">€4<i class="mono">/h</i></span>
+      </div>
+      <div class="ctable__row ctable__row--vip" role="row">
+        <span class="ctable__name" role="cell">VIP</span>
+        <span class="mono" role="cell" data-i18n="cmp_r3">A closed door and the best gear</span>
+        <span class="mono" role="cell">RTX 5070</span>
+        <span class="mono" role="cell">27″ 2K · 260Hz</span>
+        <span class="ctable__price" role="cell">€8<i class="mono">/h</i></span>
+      </div>
+      <div class="ctable__row" role="row">
+        <span class="ctable__name" role="cell">PS5 PREMIUM</span>
+        <span class="mono" role="cell" data-i18n="cmp_r4">Birthdays, film nights, six friends</span>
+        <span class="mono" role="cell">PS5 Pro</span>
+        <span class="mono" role="cell">130″ · Dolby Atmos</span>
+        <span class="ctable__price" role="cell">€15<i class="mono">/h</i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ 6 · RIGS ░░░ -->
+  <section class="rigs" id="rigs">
+    <div class="grid rigs__head">
+      <span class="mono eyebrow col-span-1" data-i18n="rigs_eyebrow">machines</span>
+      <h2 class="rigs__title col-span-11" data-i18n="rigs_title">Spec it like<br /><em>you mean it.</em></h2>
+    </div>
+
+    <div class="rigs__grid">
+      <article class="rig">
+        <div class="rig__top"><span class="rig__name">COMFORT</span><span class="mono rig__tag" data-i18n="rig_c">the everyday flagship</span></div>
+        <ul class="rig__specs mono">
+          <li><i data-i18n="s_cpu">CPU</i><b>i7-14700K</b></li>
+          <li><i data-i18n="s_gpu">GPU</i><b>RTX 5060</b></li>
+          <li><i data-i18n="s_mon">Monitor</i><b>BenQ 27″ 2K · 165Hz</b></li>
+          <li><i data-i18n="s_mouse">Mouse</i><b>ASUS TUF M4 Air</b></li>
+          <li><i data-i18n="s_kb">Keyboard</i><b>Logitech G213</b></li>
+          <li><i data-i18n="s_hs">Headset</i><b>Logitech G432</b></li>
+        </ul>
+        <div class="rig__foot"><span class="rig__price"><em class="mono" data-i18n="from">from</em>€3<i class="mono">/h</i></span></div>
+      </article>
+
+      <article class="rig">
+        <div class="rig__top"><span class="rig__name">BOOTCAMP</span><span class="mono rig__tag" data-i18n="rig_b">built for the ranked grind</span></div>
+        <ul class="rig__specs mono">
+          <li><i data-i18n="s_cpu">CPU</i><b>i7-14700K</b></li>
+          <li><i data-i18n="s_gpu">GPU</i><b>RTX 5070 Ti</b></li>
+          <li><i data-i18n="s_mon">Monitor</i><b>Alienware 27″ · 360Hz</b></li>
+          <li><i data-i18n="s_mouse">Mouse</i><b>Logitech G403 HERO</b></li>
+          <li><i data-i18n="s_kb">Keyboard</i><b>Logitech Pro X TKL</b></li>
+          <li><i data-i18n="s_hs">Headset</i><b>Logitech G Pro X</b></li>
+        </ul>
+        <div class="rig__foot"><span class="rig__price"><em class="mono" data-i18n="from">from</em>€4<i class="mono">/h</i></span></div>
+      </article>
+
+      <article class="rig rig--vip">
+        <div class="rig__top"><span class="rig__name">VIP</span><span class="mono rig__tag" data-i18n="rig_v">everything, uncompromised</span></div>
+        <ul class="rig__specs mono">
+          <li><i data-i18n="s_cpu">CPU</i><b>i9-14900K</b></li>
+          <li><i data-i18n="s_gpu">GPU</i><b>RTX 5070</b></li>
+          <li><i data-i18n="s_mon">Monitor</i><b>ASUS TUF 27″ 2K · 260Hz</b></li>
+          <li><i data-i18n="s_mouse">Mouse</i><b>G Pro X Superlight</b></li>
+          <li><i data-i18n="s_kb">Keyboard</i><b>G915 X Lightspeed</b></li>
+          <li><i data-i18n="s_hs">Headset</i><b>G Pro X Lightspeed</b></li>
+        </ul>
+        <div class="rig__foot"><span class="rig__price"><em class="mono" data-i18n="from">from</em>€8<i class="mono">/h</i></span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ░░░ 7 · PRICING ░░░ -->
+  <section class="pricing" id="pricing">
+    <div class="grid pricing__head">
+      <span class="mono eyebrow col-span-1" data-i18n="pr_eyebrow">rates</span>
+      <div class="col-span-11">
+        <h2 class="pricing__title" data-i18n="pr_title">Clear rates.<br /><em>No drama.</em></h2>
+        <div class="toggle mono" role="group" aria-label="Rate period">
+          <button class="toggle__btn is-active" data-rate="peak" data-i18n="pr_peak">Peak</button>
+          <button class="toggle__btn" data-rate="off" data-i18n="pr_off">Off-Peak</button>
+          <span class="toggle__pill" data-pill></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing__grid">
+      <div class="ptable mono">
+        <div class="ptable__row ptable__row--head">
+          <span data-i18n="pr_tier">Tier</span><span data-i18n="pr_1h">1 hour</span><span data-i18n="pr_3h">3 hours</span>
+        </div>
+        <div class="ptable__row" data-tier="comfort">
+          <span class="ptable__name">COMFORT</span><span class="ptable__val" data-p1>—</span><span class="ptable__val" data-p3>—</span>
+        </div>
+        <div class="ptable__row" data-tier="bootcamp">
+          <span class="ptable__name">BOOTCAMP</span><span class="ptable__val" data-p1>—</span><span class="ptable__val" data-p3>—</span>
+        </div>
+        <div class="ptable__row ptable__row--vip" data-tier="vip">
+          <span class="ptable__name">VIP</span><span class="ptable__val" data-p1>—</span><span class="ptable__val" data-p3>—</span>
+        </div>
+      </div>
+
+      <div class="ps5">
+        <div class="ps5__top">
+          <span class="mono ps5__label" data-i18n="pr_ps5">PS5 Premium</span>
+          <span class="mono ps5__sub" data-i18n="pr_ps5_sub">private cinema · per hour</span>
+        </div>
+        <div class="ps5__people">
+          <button class="ps5__step" data-step="-1" aria-label="Fewer players">–</button>
+          <div class="ps5__count"><b data-people>2</b><span class="mono" data-i18n="pr_players">players</span></div>
+          <button class="ps5__step" data-step="1" aria-label="More players">+</button>
+        </div>
+        <div class="ps5__price"><span class="ps5__cur">€</span><span class="ps5__amt" data-ps5-amt>25</span></div>
+        <div class="ps5__dots" data-dots></div>
+      </div>
+    </div>
+
+    <div class="pricing__foot">
+      <div class="sched mono">
+        <div class="sched__row"><b data-i18n="pr_peak">Peak</b><span>Mo–Fr 18:00–03:00 · Sa–Su 13:00–03:00</span></div>
+        <div class="sched__row"><b data-i18n="pr_off">Off-Peak</b><span>Mo–Fr 13:00–18:00</span></div>
+        <div class="sched__now" data-status><span class="dot"></span><span data-status-txt>—</span></div>
+      </div>
+      <div class="bonus">
+        <p class="mono bonus__title" data-i18n="pr_bonus">Top up &amp; get bonus</p>
+        <ul class="bonus__list mono">
+          <li><span>€14–24</span><b>+€1</b></li><li><span>€25–39</span><b>+€2</b></li>
+          <li><span>€40–59</span><b>+€3</b></li><li><span>€60–99</span><b>+€5</b></li>
+          <li><span>€100+</span><b>+€10</b></li><li><span>€200+</span><b>+€25</b></li>
+        </ul>
+        <p class="mono bonus__note" data-i18n="pr_bonus_note">Added instantly · in-club use only.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ 8 · BOOK ░░░ -->
+  <section class="book" id="book">
+    <video class="book__bg" data-still="cinema-bg" muted loop playsinline preload="none" src="../2026-07-26%2019.49.10.mp4#t=2"></video>
+    <div class="book__scrim"></div>
+    <div class="grid book__inner">
+      <h2 class="book__title col-span-12">
+        <span class="line"><span class="line__in" data-i18n="book_t1">Your seat</span></span>
+        <span class="line"><em class="line__in" data-i18n="book_t2">is waiting.</em></span>
+      </h2>
+      <p class="book__sub col-span-4 col-start-9" data-i18n="book_sub">Message us on Instagram to hold a rig, the VIP room or the cinema.</p>
+      <div class="col-span-12 book__cta">
+        <a href="https://instagram.com/respawn.cy" target="_blank" rel="noopener" class="link-btn link-btn--lg mono" data-split data-i18n="book_cta">Reserve on Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer class="foot" id="visit">
+  <div class="grid foot__grid">
+    <div class="col-span-4 foot__col">
+      <span class="mono foot__label" data-i18n="foot_where">Where</span>
+      <p><a href="https://maps.app.goo.gl/?q=Agiou+Andreou+160+Limassol" target="_blank" rel="noopener" data-split>Agiou Andreou 160</a></p>
+      <p class="foot__dim">Limassol 3036, Cyprus</p>
+      <p class="mono foot__dim" data-i18n="menu_hours">Daily 13:00 — 03:00</p>
+    </div>
+    <div class="col-span-3 col-start-6 foot__col">
+      <span class="mono foot__label" data-i18n="foot_contact">Contact</span>
+      <p><a href="tel:+35797762727" data-split>+357 97 762727</a></p>
+      <p><a href="https://instagram.com/respawn.cy" target="_blank" rel="noopener" data-split>@respawn.cy</a></p>
+    </div>
+    <div class="col-span-3 col-start-10 foot__col">
+      <span class="mono foot__label" data-i18n="foot_go">Go</span>
+      <p><a href="#spaces" data-split data-i18n="nav_spaces">Spaces</a></p>
+      <p><a href="#pricing" data-split data-i18n="nav_pricing">Pricing</a></p>
+      <p><a href="#book" data-split data-i18n="nav_cta">Reserve</a></p>
+    </div>
+  </div>
+  <!-- the wordmark, drawn as rules rather than solid type -->
+  <div class="foot__mark" aria-hidden="true">RESPAWN</div>
+  <div class="grid">
+    <p class="mono foot__copy col-span-12">© <span data-year>2026</span> RESPAWN Esports · Limassol</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
