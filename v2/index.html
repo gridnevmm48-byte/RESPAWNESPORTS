@@ -53,7 +53,7 @@
         <span class="lang__sep">/</span>
         <button class="lang__btn mono" data-lang-set="ru">RU</button>
       </div>
-      <a href="#book" class="pill pill--solid mono" data-split data-i18n="nav_cta">Reserve</a>
+      <a href="https://wa.me/35797762727" target="_blank" rel="noopener" class="pill pill--solid mono" data-split data-i18n="nav_cta">Write to us</a>
       <button class="pill pill--ghost mono nav__menu" data-menu-open>
         <span data-i18n="nav_menu">Menu</span>
         <span class="burger"><i></i><i></i></span>
@@ -86,24 +86,25 @@
 
   <!-- ░░░ 1 · HERO ░░░ -->
   <section class="hero" id="hero">
-    <canvas class="hero__field" data-field aria-hidden="true"></canvas>
-    <!-- the brand mark, not footage: it drifts and catches an amber edge -->
-    <div class="hero__mark" aria-hidden="true">
-      <span class="hero__mark-glow"></span>
-      <svg viewBox="0 0 120 120" fill="none">
-        <path class="hm hm--1" d="M60 106 L14 60 L60 14 L84 38" />
-        <path class="hm hm--2" d="M95 49 L106 60 L95 71" />
-        <path class="hm hm--3" d="M60 40 L80 60 L60 80 L40 60 Z" />
-      </svg>
+    <!-- a headset and a gamepad, wireframed: says "computer club" before a word is read -->
+    <div class="hero__object" aria-hidden="true">
+      <span class="hero__glow"></span>
+      <canvas data-object></canvas>
     </div>
+
     <div class="grid hero__inner">
-      <h1 class="hero__title col-span-9">
+      <h1 class="hero__title col-span-8">
         <span class="line"><span class="line__in" data-i18n="hero_l1">More than a club.</span></span>
         <span class="line"><em class="line__in" data-i18n="hero_l2">A residence.</em></span>
       </h1>
 
-      <div class="hero__cta col-span-4">
-        <a href="#book" class="link-btn mono" data-split data-i18n="hero_cta">Reserve a seat</a>
+      <div class="hero__cta col-span-8">
+        <div class="contacts">
+          <a class="btn btn--solid mono" href="https://wa.me/35797762727" target="_blank" rel="noopener" data-split>WhatsApp</a>
+          <a class="btn mono" href="https://t.me/respawnesportscy" target="_blank" rel="noopener" data-split>Telegram</a>
+          <a class="btn mono" href="tel:+35797762727" data-split data-i18n="c_call">Call us</a>
+        </div>
+        <p class="contacts__note mono" data-i18n="c_note">Answered on the floor, 13:00 — 03:00.</p>
       </div>
 
       <div class="hero__foot">
@@ -111,9 +112,8 @@
           <span class="hero__cue-ico" aria-hidden="true"></span>
           <span data-i18n="hero_scroll">Scroll</span>
         </div>
-        <div class="hero__hint mono">
-          <span data-i18n="hero_hint1">Hold to ignite the floor.</span>
-          <span class="dim" data-i18n="hero_hint2">Move to bend the lines.</span>
+        <div class="hero__status mono" data-status>
+          <span class="dot"></span><span data-status-txt>—</span>
         </div>
         <div class="hero__meta">
           <div class="factbox">
@@ -176,42 +176,45 @@
     </div>
   </section>
 
-  <!-- ░░░ 4 · KEY FACTS (light) ░░░ -->
+  <!-- ░░░ 4 · THREE THINGS YOU CAN DO HERE (light) ░░░ -->
   <section class="facts" id="facts">
     <div class="grid facts__head">
       <div class="col-span-12">
-        <h2 class="facts__title" data-i18n="facts_title">Key facts</h2>
-        <p class="facts__lead" data-i18n="facts_lead">What the room is actually made of.</p>
+        <h2 class="facts__title" data-i18n="facts_title">Three reasons<br />to walk in.</h2>
+        <p class="facts__lead" data-i18n="facts_lead">Not only for the ones who play.</p>
       </div>
     </div>
 
-    <div class="facts__cards">
-      <article class="card card--media">
-        <video class="card__media" data-still="sp1-pc" muted loop playsinline preload="none" src="../2026-07-26%2019.48.48.mp4#t=12"></video>
-        <div class="card__body">
-          <span class="mono card__label" data-i18n="fact1_label">the floor</span>
-          <div class="card__foot">
-            <p class="card__note" data-i18n="fact1_note">i7 and i9 rigs on high-refresh panels, every seat.</p>
-            <span class="num"><b data-count="360">0</b><i>Hz</i></span>
-          </div>
+    <!-- no photography here on purpose: type, numbers and motion carry it -->
+    <div class="trio">
+      <article class="plate">
+        <span class="mono plate__label" data-i18n="t1_label">play</span>
+        <h3 class="plate__t" data-i18n="t1_t">Sit down and go</h3>
+        <div class="plate__num"><b data-count="360">0</b><i>Hz</i></div>
+        <p class="plate__d" data-i18n="t1_d">PC zones on i7 and i9, PlayStation 5 Pro in the lounge. Every launcher already signed in.</p>
+        <div class="chips mono"><span>i7 · i9</span><span>165—360Hz</span><span>PS5 Pro</span></div>
+      </article>
+
+      <article class="plate plate--accent">
+        <span class="mono plate__label" data-i18n="t2_label">watch</span>
+        <h3 class="plate__t" data-i18n="t2_t">The big screen<br />is bookable</h3>
+        <div class="plate__num"><b data-count="130">0</b><i>″</i></div>
+        <p class="plate__d" data-i18n="t2_d">Football and big matches, finals, film nights. A 130-inch projection and Dolby Atmos you feel more than hear.</p>
+        <div class="occasions" data-occ aria-hidden="true">
+          <span class="occasions__row">
+            <span class="occasions__set mono">
+              <b data-i18n="occ1">Football</b><i class="plus-ico"></i><b data-i18n="occ2">Champions League</b><i class="plus-ico"></i><b data-i18n="occ3">Finals</b><i class="plus-ico"></i><b data-i18n="occ4">Film nights</b><i class="plus-ico"></i>
+            </span>
+          </span>
         </div>
       </article>
 
-      <article class="card card--paper">
-        <span class="mono card__label" data-i18n="fact2_label">private cinema</span>
-        <div class="card__disc"><span class="num num--dark"><b data-count="130">0</b><i>″</i></span></div>
-        <p class="card__note" data-i18n="fact2_note">Dolby Atmos, six recliners, PS5 Pro. Book the room and the rest disappears.</p>
-      </article>
-
-      <article class="card card--media card--dim">
-        <video class="card__media" data-still="sp3-ps5" muted loop playsinline preload="none" src="../2026-07-26%2019.49.10.mp4#t=10"></video>
-        <div class="card__body">
-          <span class="mono card__label card__label--right" data-i18n="fact3_label">open daily</span>
-          <div class="card__foot">
-            <p class="card__note" data-i18n="fact3_note">Thirteen hundred to three in the morning. Every day.</p>
-            <span class="num"><b>13—03</b></span>
-          </div>
-        </div>
+      <article class="plate">
+        <span class="mono plate__label" data-i18n="t3_label">celebrate</span>
+        <h3 class="plate__t" data-i18n="t3_t">Take the room</h3>
+        <div class="plate__num"><b data-count="6">0</b><i data-i18n="t3_unit">seats</i></div>
+        <p class="plate__d" data-i18n="t3_d">Birthdays, company nights, in-house tournaments. Close the door on the VIP room or take the whole floor.</p>
+        <a class="link-btn mono" href="https://wa.me/35797762727" target="_blank" rel="noopener" data-split data-i18n="t3_cta">Ask about a date</a>
       </article>
     </div>
 
@@ -233,7 +236,7 @@
   <section class="cases" id="spaces">
     <div class="grid cases__head">
       <span class="mono eyebrow col-span-1" data-i18n="cases_eyebrow">rooms</span>
-      <h2 class="cases__title col-span-11" data-i18n="cases_title">Five rooms.<br /><em>One standard.</em></h2>
+      <h2 class="cases__title col-span-11" data-i18n="cases_title">Six rooms.<br /><em>One standard.</em></h2>
     </div>
 
     <div class="tiles">
@@ -277,7 +280,7 @@
         </div>
       </a>
 
-      <a class="tile" href="#book">
+      <a class="tile" href="#visit">
         <video class="tile__media" data-still="sp5-lounge" muted loop playsinline preload="none" src="../2026-07-26%2019.49.16.mp4#t=13"></video>
         <div class="tile__body">
           <span class="mono tile__idx">05</span>
@@ -481,25 +484,64 @@
     </div>
   </section>
 
-  <!-- ░░░ 8 · BOOK ░░░ -->
-  <section class="book" id="book">
-    <video class="book__bg" data-still="cinema-bg" muted loop playsinline preload="none" src="../2026-07-26%2019.49.10.mp4#t=2"></video>
-    <div class="book__scrim"></div>
-    <div class="grid book__inner">
-      <h2 class="book__title col-span-12">
-        <span class="line"><span class="line__in" data-i18n="book_t1">Your seat</span></span>
-        <span class="line"><em class="line__in" data-i18n="book_t2">is waiting.</em></span>
-      </h2>
-      <p class="book__sub col-span-4 col-start-9" data-i18n="book_sub">Message us on Instagram to hold a rig, the VIP room or the cinema.</p>
-      <div class="col-span-12 book__cta">
-        <a href="https://instagram.com/respawn.cy" target="_blank" rel="noopener" class="link-btn link-btn--lg mono" data-split data-i18n="book_cta">Reserve on Instagram</a>
+  <!-- ░░░ 8 · INSTAGRAM ░░░ -->
+  <section class="insta" id="insta">
+    <div class="grid insta__grid">
+      <span class="mono eyebrow col-span-1" data-i18n="ig_eyebrow">daily</span>
+      <div class="col-span-11 insta__body">
+        <h2 class="cases__title" data-i18n="ig_title">The club posts<br /><em>every night.</em></h2>
+        <p class="insta__lead" data-i18n="ig_lead">Tournaments, new builds, who took the cinema this weekend. The feed is the fastest way to see what a normal evening here looks like.</p>
+        <a class="handle" href="https://instagram.com/respawn.cy" target="_blank" rel="noopener">
+          <span class="handle__at">@</span><span class="handle__name">respawn.cy</span>
+          <span class="handle__go mono" data-split data-i18n="ig_cta">Follow</span>
+        </a>
+        <!-- INSTAGRAM EMBED GOES HERE once the site moves to normal hosting:
+             the official widget loads an external script, which the artifact CSP blocks. -->
       </div>
+    </div>
+  </section>
+
+  <!-- ░░░ 9 · VISIT + CONTACT ░░░ -->
+  <section class="visit" id="visit">
+    <span class="visit__glow" aria-hidden="true"></span>
+    <div class="grid visit__grid">
+      <h2 class="visit__title col-span-12" id="book">
+        <span class="line"><span class="line__in" data-i18n="v_t1">Write to us.</span></span>
+        <span class="line"><em class="line__in" data-i18n="v_t2">Or just drop in.</em></span>
+      </h2>
+
+      <div class="col-span-5 visit__col">
+        <p class="visit__lead" data-i18n="v_lead">Ask about a free seat, the VIP room or the cinema — we answer from the floor.</p>
+        <div class="contacts contacts--lg">
+          <a class="btn btn--solid mono" href="https://wa.me/35797762727" target="_blank" rel="noopener" data-split>WhatsApp</a>
+          <a class="btn mono" href="https://t.me/respawnesportscy" target="_blank" rel="noopener" data-split>Telegram</a>
+          <a class="btn mono" href="tel:+35797762727" data-split data-i18n="c_call">Call us</a>
+        </div>
+        <dl class="facts-list mono">
+          <div><dt data-i18n="v_addr">Address</dt><dd>Agiou Andreou 160, Limassol 3036</dd></div>
+          <div><dt data-i18n="v_hours">Hours</dt><dd data-i18n="menu_hours">Daily 13:00 — 03:00</dd></div>
+          <div><dt data-i18n="v_phone">Phone</dt><dd><a href="tel:+35797762727">+357 97 762727</a></dd></div>
+        </dl>
+        <div class="visit__status mono" data-status><span class="dot"></span><span data-status-txt>—</span></div>
+      </div>
+
+      <!-- a live Maps iframe is blocked by the artifact CSP; the whole plate is the link -->
+      <a class="map col-span-6 col-start-7" href="https://maps.app.goo.gl/wj9MvFQksBnJhiSk8" target="_blank" rel="noopener" aria-label="Open RESPAWN on Google Maps">
+        <span class="map__grid" aria-hidden="true"></span>
+        <span class="map__road map__road--a" aria-hidden="true"></span>
+        <span class="map__road map__road--b" aria-hidden="true"></span>
+        <span class="map__pin" aria-hidden="true"></span>
+        <span class="map__label mono">
+          <b>Agiou Andreou 160</b>
+          <span data-i18n="v_map">Open in Google Maps →</span>
+        </span>
+      </a>
     </div>
   </section>
 </main>
 
 <!-- ░░░ FOOTER ░░░ -->
-<footer class="foot" id="visit">
+<footer class="foot">
   <div class="grid foot__grid">
     <div class="col-span-4 foot__col">
       <span class="mono foot__label" data-i18n="foot_where">Where</span>
@@ -516,7 +558,7 @@
       <span class="mono foot__label" data-i18n="foot_go">Go</span>
       <p><a href="#spaces" data-split data-i18n="nav_spaces">Spaces</a></p>
       <p><a href="#pricing" data-split data-i18n="nav_pricing">Pricing</a></p>
-      <p><a href="#book" data-split data-i18n="nav_cta">Reserve</a></p>
+      <p><a href="#visit" data-split data-i18n="nav_visit">Visit</a></p>
     </div>
   </div>
   <!-- the wordmark, drawn as rules rather than solid type -->

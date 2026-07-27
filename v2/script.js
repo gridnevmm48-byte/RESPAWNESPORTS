@@ -27,7 +27,7 @@
 
   /* ---------- i18n ---------- */
   var DICT = {
-    nav_cta:['Reserve','Забронировать'], nav_menu:['Menu','Меню'],
+    nav_cta:['Write to us','Написать'], nav_menu:['Menu','Меню'],
     nav_spaces:['Spaces','Пространства'], nav_rigs:['Rigs','Сборки'],
     nav_pricing:['Pricing','Цены'], nav_visit:['Visit','Контакты'],
     menu_find:['Find us','Как найти'], menu_addr:['Limassol, Cyprus','Лимасол, Кипр'],
@@ -35,10 +35,9 @@
 
     hero_l1:['More than a club.','Больше, чем клуб.'],
     hero_l2:['A residence.','Резиденция.'],
-    hero_cta:['Reserve a seat','Забронировать место'],
     hero_scroll:['Scroll','Листай'],
-    hero_hint1:['Hold to ignite the floor.','Зажми — зал вспыхнет.'],
-    hero_hint2:['Move to bend the lines.','Веди курсор — линии гнутся.'],
+    c_call:['Call us','Позвонить'],
+    c_note:['Answered on the floor, 13:00 — 03:00.','Отвечаем прямо из зала, 13:00 — 03:00.'],
     hero_fact1:['Peak refresh','Частота'],
     hero_fact2:['Flagship rigs<br />in every seat.','Флагманские сборки<br />на каждом месте.'],
     hero_sub:['Premium esports and PlayStation lounge in the heart of Limassol.','Премиальный киберспорт и PlayStation-лаундж в сердце Лимасола.'],
@@ -53,18 +52,25 @@
     creed_1:['Play','Играй'], creed_2:['Perform','Побеждай'], creed_3:['Belong','Оставайся'],
     creed_foot:['+ From the door to the last round.','+ От двери до последнего раунда.'],
 
-    facts_title:['Key facts','Коротко о главном'],
-    facts_lead:['What the room is actually made of.','Из чего на самом деле сделан клуб.'],
-    fact1_label:['the floor','основной зал'],
-    fact1_note:['i7 and i9 rigs on high-refresh panels, every seat.','Сборки на i7 и i9 и высокогерцовые мониторы на каждом месте.'],
-    fact2_label:['private cinema','приватный кинозал'],
-    fact2_note:['Dolby Atmos, six recliners, PS5 Pro. Book the room and the rest disappears.','Dolby Atmos, шесть реклайнеров, PS5 Pro. Бронируешь зал — и всё остальное исчезает.'],
-    fact3_label:['open daily','работаем каждый день'],
-    fact3_note:['Thirteen hundred to three in the morning. Every day.','С часу дня до трёх ночи. Без выходных.'],
+    facts_title:['Three reasons<br />to walk in.','Три причины<br />зайти.'],
+    facts_lead:['Not only for the ones who play.','И не только для тех, кто играет.'],
+    t1_label:['play','играть'],
+    t1_t:['Sit down and go','Сел и играешь'],
+    t1_d:['PC zones on i7 and i9, PlayStation 5 Pro in the lounge. Every launcher already signed in.','ПК-зоны на i7 и i9, PlayStation 5 Pro в лаундже. Лаунчеры уже залогинены.'],
+    t2_label:['watch','смотреть'],
+    t2_t:['The big screen<br />is bookable','Большой экран<br />можно забрать себе'],
+    t2_d:['Football and big matches, finals, film nights. A 130-inch projection and Dolby Atmos you feel more than hear.','Футбол и крупные матчи, финалы, вечера кино. Проекция 130 дюймов и Dolby Atmos, который скорее чувствуешь, чем слышишь.'],
+    occ1:['Football','Футбол'], occ2:['Champions League','Лига чемпионов'],
+    occ3:['Finals','Финалы'], occ4:['Film nights','Вечера кино'],
+    t3_label:['celebrate','отмечать'],
+    t3_t:['Take the room','Забери зал'],
+    t3_unit:['seats','мест'],
+    t3_d:['Birthdays, company nights, in-house tournaments. Close the door on the VIP room or take the whole floor.','Дни рождения, вечера компанией, внутриклубные турниры. Закрой дверь VIP-комнаты или займи весь зал.'],
+    t3_cta:['Ask about a date','Спросить про дату'],
     facts_brands:['On every desk','На каждом столе'],
 
     cases_eyebrow:['rooms','залы'],
-    cases_title:['Five rooms.<br /><em>One standard.</em>','Пять залов.<br /><em>Один стандарт.</em>'],
+    cases_title:['Six rooms.<br /><em>One standard.</em>','Шесть залов.<br /><em>Один стандарт.</em>'],
     c1_t:['Premium Gaming PC','Премиальный ПК'],
     c1_d:['Sit down and there is nothing between you and the frame.','Садишься — и между тобой и кадром больше ничего нет.'],
     c2_t:['The VIP Room','VIP-комната'],
@@ -114,9 +120,15 @@
     pr_bonus:['Top up & get bonus','Пополни и получи бонус'],
     pr_bonus_note:['Added instantly · in-club use only.','Начисляется сразу · только внутри клуба.'],
 
-    book_t1:['Your seat','Твоё место'], book_t2:['is waiting.','ждёт.'],
-    book_sub:['Message us on Instagram to hold a rig, the VIP room or the cinema.','Напиши в Instagram, чтобы забронировать сборку, VIP-комнату или кинозал.'],
-    book_cta:['Reserve on Instagram','Забронировать в Instagram'],
+    ig_eyebrow:['daily','каждый день'],
+    ig_title:['The club posts<br /><em>every night.</em>','Клуб выкладывает<br /><em>каждый вечер.</em>'],
+    ig_lead:['Tournaments, new builds, who took the cinema this weekend. The feed is the fastest way to see what a normal evening here looks like.','Турниры, новые сборки, кто занял кинозал в выходные. Лента — самый быстрый способ увидеть, как здесь выглядит обычный вечер.'],
+    ig_cta:['Follow','Подписаться'],
+
+    v_t1:['Write to us.','Напиши нам.'], v_t2:['Or just drop in.','Или просто зайди.'],
+    v_lead:['Ask about a free seat, the VIP room or the cinema — we answer from the floor.','Спроси про свободное место, VIP-комнату или кинозал — отвечаем прямо из зала.'],
+    v_addr:['Address','Адрес'], v_hours:['Hours','Часы'], v_phone:['Phone','Телефон'],
+    v_map:['Open in Google Maps →','Открыть в Google Картах →'],
     foot_where:['Where','Адрес'], foot_contact:['Contact','Связь'], foot_go:['Go','Разделы']
   };
 
@@ -268,7 +280,8 @@
   /* ---------- endless rows (creed marquee + games ticker) ---------- */
   var rows = [
     { el: $('[data-marquee] .marquee__row') || $('[data-marquee]'), speed: 0.035 },
-    { el: $('[data-games] .ticker__row'), speed: 0.022 }
+    { el: $('[data-games] .ticker__row'), speed: 0.022 },
+    { el: $('[data-occ] .occasions__row'), speed: 0.018 }
   ].filter(function (r) { return !!r.el; });
 
   rows.forEach(function (r) { r.html = r.el.innerHTML; r.x = 0; r.w = 0; });
@@ -349,16 +362,117 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', frame);
 
-  /* ---------- hero line field ----------
-     Vertical rules that bend away from the pointer; holding the pointer
-     charges a ring that pushes them further and burns amber. */
-  (function field() {
-    var cv = $('[data-field]');
+  /* ---------- hero object: a wireframe headset and gamepad ----------
+     Real 3D — vertices, edges, a perspective projection — drawn on a 2D
+     canvas. No library, no shaders, so it survives the artifact's CSP and
+     costs nothing to load. Written to be swapped for WebGL later. */
+  (function heroObject() {
+    var cv = $('[data-object]');
     if (!cv) return;
     var ctx = cv.getContext('2d');
-    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var GAP = 38, STEP = 26, R = 190;
-    var px = -9999, py = -9999, charge = 0, holding = false, running = false;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0;
+
+    var V = [];   // vertices: [x, y, z]
+    var E = [];   // edges: [from, to, accent]
+
+    function vtx(x, y, z) { V.push([x, y, z]); return V.length - 1; }
+    function edge(a, b, acc) { E.push([a, b, acc ? 1 : 0]); }
+    function chain(ids, closed, acc) {
+      for (var i = 0; i < ids.length - 1; i++) edge(ids[i], ids[i + 1], acc);
+      if (closed) edge(ids[ids.length - 1], ids[0], acc);
+    }
+    function rungs(a, b, acc) { for (var i = 0; i < a.length; i++) edge(a[i], b[i], acc); }
+    // a circle lying perpendicular to the given axis
+    function ring(cx, cy, cz, r, axis, n) {
+      var ids = [];
+      for (var i = 0; i < n; i++) {
+        var t = i / n * Math.PI * 2, c = Math.cos(t) * r, s = Math.sin(t) * r;
+        if (axis === 'x') ids.push(vtx(cx, cy + c, cz + s));
+        else if (axis === 'y') ids.push(vtx(cx + c, cy, cz + s));
+        else ids.push(vtx(cx + c, cy + s, cz));
+      }
+      return ids;
+    }
+
+    /* ── headset ── */
+    var HS = 0.86, HY = 0.50;
+    function band(z) {
+      var ids = [];
+      for (var i = 0; i <= 18; i++) {
+        var t = Math.PI * (0.055 + 0.89 * (i / 18));
+        ids.push(vtx(Math.cos(t) * HS, Math.sin(t) * 0.92 * HS + HY, z));
+      }
+      return ids;
+    }
+    var bandA = band(-0.11 * HS), bandB = band(0.11 * HS);
+    chain(bandA); chain(bandB); rungs(bandA, bandB);
+
+    var cupY = Math.sin(Math.PI * 0.055) * 0.92 * HS + HY;
+    function cup(side) {
+      var cx = side * Math.cos(Math.PI * 0.055) * HS;
+      var outer = ring(cx, cupY, 0, 0.30 * HS, 'x', 14);
+      var inner = ring(cx - side * 0.22 * HS, cupY, 0, 0.235 * HS, 'x', 14);
+      chain(outer, true); chain(inner, true); rungs(outer, inner);
+      return cx;
+    }
+    cup(1);
+    var leftX = cup(-1);
+
+    // mic boom — one of the few amber runs, so the eye lands on it
+    var mic = [
+      vtx(leftX + 0.04 * HS, cupY - 0.16 * HS, 0.24 * HS),
+      vtx(leftX + 0.26 * HS, cupY - 0.40 * HS, 0.40 * HS),
+      vtx(leftX + 0.56 * HS, cupY - 0.50 * HS, 0.38 * HS)
+    ];
+    chain(mic, false, true);
+    chain(ring(leftX + 0.62 * HS, cupY - 0.51 * HS, 0.38 * HS, 0.05 * HS, 'y', 8), true, true);
+
+    /* ── gamepad ── */
+    var GS = 0.60, GY = -0.86;
+    var shell = [
+      [-1.30, 0.14], [-1.08, 0.40], [-0.64, 0.46], [-0.26, 0.30],
+      [0.26, 0.30], [0.64, 0.46], [1.08, 0.40], [1.30, 0.14],
+      [1.36, -0.22], [1.06, -0.54], [0.70, -0.46], [0.40, -0.18],
+      [-0.40, -0.18], [-0.70, -0.46], [-1.06, -0.54], [-1.36, -0.22]
+    ];
+    function plate(z) {
+      var ids = [];
+      for (var i = 0; i < shell.length; i++) {
+        ids.push(vtx(shell[i][0] * GS, shell[i][1] * GS + GY, z));
+      }
+      return ids;
+    }
+    var padA = plate(-0.14 * GS), padB = plate(0.14 * GS);
+    chain(padA, true); chain(padB, true); rungs(padA, padB);
+
+    // thumbsticks
+    [-0.36, 0.36].forEach(function (sx) {
+      var base = ring(sx * GS, -0.02 * GS + GY, 0.14 * GS, 0.17 * GS, 'z', 10);
+      var top = ring(sx * GS, -0.02 * GS + GY, 0.36 * GS, 0.12 * GS, 'z', 10);
+      chain(base, true, true); chain(top, true, true); rungs(base, top, true);
+    });
+
+    // d-pad
+    (function dpad() {
+      var cx = -0.96 * GS, cy = 0.08 * GS + GY, s = 0.17 * GS, a = s * 0.34;
+      var pts = [[-a, -s], [a, -s], [a, -a], [s, -a], [s, a], [a, a],
+                 [a, s], [-a, s], [-a, a], [-s, a], [-s, -a], [-a, -a]];
+      var ids = [];
+      for (var i = 0; i < pts.length; i++) {
+        ids.push(vtx(cx + pts[i][0], cy + pts[i][1], 0.15 * GS));
+      }
+      chain(ids, true);
+    })();
+
+    // face buttons
+    [[0, 0.20], [0.20, 0], [0, -0.20], [-0.20, 0]].forEach(function (o) {
+      chain(ring(0.96 * GS + o[0] * GS, (0.08 + o[1]) * GS + GY, 0.15 * GS,
+                 0.058 * GS, 'z', 8), true);
+    });
+
+    /* ── render ── */
+    var px = 0, py = 0, yaw = 0.5, pitch = -0.1, running = false, t0 = performance.now();
 
     function size() {
       var r = cv.getBoundingClientRect();
@@ -368,58 +482,56 @@
     }
 
     function draw() {
-      ctx.clearRect(0, 0, w, h);
-      var ring = charge * 340;
-      for (var x = GAP; x < w; x += GAP) {
-        ctx.beginPath();
-        for (var y = 0; y <= h + STEP; y += STEP) {
-          var dx = x - px, dy = y - py;
-          var d = Math.sqrt(dx * dx + dy * dy) || 1;
-          var push = Math.exp(-(d * d) / (2 * R * R)) * 46;
-          if (ring > 0) {
-            // a soft shell at the ring radius, not a hard edge
-            push += Math.exp(-Math.pow(d - ring, 2) / 5200) * 60 * charge;
-          }
-          var ox = (dx / d) * push;
-          var oy = (dy / d) * push * 0.28;
-          if (y === 0) ctx.moveTo(x + ox, y + oy);
-          else ctx.lineTo(x + ox, y + oy);
-        }
-        var near = Math.abs(x - px) < R * 1.4;
-        ctx.strokeStyle = near
-          ? 'rgba(216,214,209,' + (0.10 + charge * 0.20) + ')'
-          : 'rgba(216,214,209,0.055)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
+      var cy = Math.cos(yaw), sy = Math.sin(yaw);
+      var cp = Math.cos(pitch), sp = Math.sin(pitch);
+      var scale = Math.min(w, h) * 0.32, ox = w / 2, oy = h / 2, dist = 4.4;
+      var P = [], i;
+      for (i = 0; i < V.length; i++) {
+        var x = V[i][0], y = V[i][1], z = V[i][2];
+        var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;   // yaw around Y
+        var y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;  // pitch around X
+        var k = dist / (dist + z2);
+        P.push([ox + x1 * k * scale, oy - y2 * k * scale, z2]);
       }
-      if (charge > 0.02) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1;
+      for (i = 0; i < E.length; i++) {
+        var a = P[E[i][0]], b = P[E[i][1]];
+        // nearer edges read solid, far ones fall away — that is the whole depth cue
+        var f = clamp((1.3 - (a[2] + b[2]) / 2) / 2.6, 0, 1);
+        ctx.strokeStyle = E[i][2]
+          ? 'rgba(245,180,87,' + (0.18 + f * 0.62).toFixed(3) + ')'
+          : 'rgba(216,214,209,' + (0.05 + f * 0.34).toFixed(3) + ')';
         ctx.beginPath();
-        ctx.arc(px, py, ring, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(245,180,87,' + (charge * 0.32) + ')';
+        ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
         ctx.stroke();
       }
     }
 
-    function loop() {
-      charge += ((holding ? 1 : 0) - charge) * 0.06;
+    function loop(now) {
+      var el = (now - t0) / 1000;
+      var tYaw = 0.5 + Math.sin(el * 0.17) * 0.55 + px * 0.55;
+      var tPitch = -0.10 + py * 0.4;
+      yaw += (tYaw - yaw) * 0.05;
+      pitch += (tPitch - pitch) * 0.05;
       draw();
       if (running) requestAnimationFrame(loop);
     }
 
     size();
-    window.addEventListener('resize', size);
+    window.addEventListener('resize', function () { size(); draw(); });
 
-    if (reduce || !fine) { draw(); return; }
+    if (reduce) { draw(); return; }
 
-    cv.addEventListener('pointermove', function (e) {
-      var r = cv.getBoundingClientRect();
-      px = e.clientX - r.left; py = e.clientY - r.top;
-    });
-    cv.addEventListener('pointerleave', function () { px = -9999; py = -9999; });
-    cv.addEventListener('pointerdown', function () { holding = true; });
-    window.addEventListener('pointerup', function () { holding = false; });
+    if (fine) {
+      var hero = $('#hero');
+      (hero || window).addEventListener('pointermove', function (e) {
+        px = e.clientX / window.innerWidth - 0.5;
+        py = e.clientY / window.innerHeight - 0.5;
+      });
+    }
 
-    // the loop only runs while the hero is actually on screen
+    // spin only while the hero is on screen
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting && !running) { running = true; requestAnimationFrame(loop); }
@@ -549,13 +661,15 @@
       off:    ['Open now · Off-Peak', 'Открыто · Вне пика'],
       closed: ['Closed now', 'Сейчас закрыто']
     }[p][lang === 'ru' ? 1 : 0];
-    var t = $('[data-status-txt]'), wrap = $('[data-status]');
-    if (t) t.textContent = txt;
-    if (wrap) {
+    $$('[data-status-txt]').forEach(function (t) { t.textContent = txt; });
+    $$('[data-status]').forEach(function (wrap) {
       var dot = wrap.querySelector('.dot');
       wrap.style.color = p === 'closed' ? 'var(--fg-dim)' : 'var(--amber)';
-      if (dot && p === 'closed') { dot.style.background = 'var(--fg-dim)'; dot.style.animation = 'none'; }
-    }
+      if (dot) {
+        dot.style.background = p === 'closed' ? 'var(--fg-dim)' : 'var(--amber)';
+        dot.style.animation = p === 'closed' ? 'none' : '';
+      }
+    });
   }
 
   /* ---------- init ---------- */

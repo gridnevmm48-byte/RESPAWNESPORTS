@@ -4,8 +4,9 @@
     {
       "name": "respawn",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8823"],
-      "port": 8823
+      "runtimeArgs": ["/Users/maksim/Desktop/web respan/serve.py"],
+      "port": 8823,
+      "autoPort": true
     }
   ]
 }

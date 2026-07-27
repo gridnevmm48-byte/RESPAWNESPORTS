@@ -66,33 +66,8 @@ body,:root[data-theme="light"] body{background:var(--ink);color:var(--fg)}
 [data-still="sp5-lounge"]{object-position:50% 42%}
 [data-still="cinema-bg"]{object-position:50% 46%}
 
-/* Stills replace video, so the drift has to come from somewhere. Only where
-   nothing else already animates transform — the case cards scale on hover. */
-.card__media,.book__bg{
-  animation:kb 30s var(--ease) infinite alternate;
-  animation-play-state:paused;transform-origin:50% 50%;will-change:transform;
-}
-.card__media.is-live,.book__bg.is-live{animation-play-state:running}
-@keyframes kb{
-  from{transform:scale(1.03) translate3d(0,0,0)}
-  to{transform:scale(1.14) translate3d(-2%,-2%,0)}
-}
-.card--dim .card__media{animation-direction:alternate-reverse;animation-duration:26s}
-@media (prefers-reduced-motion:reduce){.card__media,.book__bg{animation:none}}
-"""
-
-# The stills never move on their own, so the drift is driven the same way the
-# video playback was: start it when the element is on screen, stop when it goes.
-KB_JS = """
-  /* ---------- artifact: drive the Ken Burns drift ---------- */
-  (function () {
-    var els = $$('.card__media,.book__bg');
-    if (!els.length || reduce) return;
-    var kio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { e.target.classList.toggle('is-live', e.isIntersecting); });
-    }, { threshold: 0.05 });
-    els.forEach(function (el) { kio.observe(el); });
-  })();
+/* Photography now lives only in the rooms grid, where the tile already scales
+   on hover — so the stills need no drift of their own. */
 """
 
 
@@ -124,10 +99,7 @@ def build() -> None:
     body = re.search(r"<body[^>]*>(.*)</body>", html, re.S).group(1)
     body = re.sub(r'\s*<script src="script\.js"></script>', "", body)
 
-    # hang the drift driver on the end of the module, inside its IIFE
-    marker = "\n})();\n"
     require(js.rstrip().endswith("})();"), "script.js does not end in an IIFE")
-    js = js.rstrip()[: -len("})();")] + KB_JS + "})();\n"
 
     OUT.write_text(
         f"<title>{ascii_html(title)}</title>\n"
