@@ -22,6 +22,7 @@ ASSETS = ROOT / "assets-src"
 OUT = ROOT / "respawn-artifact.html"
 
 VIDEO_TAG = re.compile(r"<video\b(?P<attrs>[^>]*)>\s*</video>", re.S)
+SOURCE_TAG = re.compile(r'<source\b[^>]*data-clip="(?P<name>[^"]+)"[^>]*>')
 
 
 def require(cond: bool, msg: str) -> None:
@@ -44,8 +45,8 @@ def ascii_css(s: str) -> str:
     return "".join(c if ord(c) < 128 else f"\\{ord(c):X} " for c in s)
 
 
-def data_uri(path: pathlib.Path) -> str:
-    return "data:image/jpeg;base64," + base64.b64encode(path.read_bytes()).decode()
+def data_uri(path: pathlib.Path, mime: str = "image/jpeg") -> str:
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
 
 
 ARTIFACT_CSS = """
@@ -93,7 +94,20 @@ def build() -> None:
                 f'decoding="async" src="{data_uri(f)}">')
 
     html, n = VIDEO_TAG.subn(to_img, html)
-    require(n > 0, "no <video> tags found in v2/index.html")
+    require(n > 0, "no <video data-still> tags found in v2/index.html")
+
+    # short clips stay real video — they are the animated moments, and at this
+    # length and bitrate they cost less than the stills they sit next to
+    clips = []
+
+    def to_clip(m: re.Match) -> str:
+        name = m.group("name")
+        f = ASSETS / "clips" / f"{name}.mp4"
+        require(f.exists(), f"missing clip {f}")
+        clips.append(name)
+        return f'<source data-clip="{name}" type="video/mp4" src="{data_uri(f, "video/mp4")}">'
+
+    html = SOURCE_TAG.sub(to_clip, html)
 
     title = re.search(r"<title>(.*?)</title>", html, re.S).group(1)
     body = re.search(r"<body[^>]*>(.*)</body>", html, re.S).group(1)
@@ -109,8 +123,10 @@ def build() -> None:
         encoding="ascii")
 
     kb = OUT.stat().st_size / 1024
-    print(f"built {OUT.name} — {kb:.0f} KB, {n} stills "
-          f"({', '.join(sorted(set(used)))}), {fonts.count('@font-face')} font faces")
+    print(f"built {OUT.name} — {kb:.0f} KB\n"
+          f"  stills: {', '.join(sorted(set(used)))}\n"
+          f"  clips:  {', '.join(sorted(set(clips))) or 'none'}\n"
+          f"  fonts:  {fonts.count('@font-face')} faces")
 
 
 if __name__ == "__main__":

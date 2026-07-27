@@ -275,7 +275,7 @@
       else el.pause();
     });
   }, { threshold: 0.1 });
-  $$('[data-still]').forEach(function (el) { mio.observe(el); });
+  $$('[data-still],[data-clip-holder]').forEach(function (el) { mio.observe(el); });
 
   /* ---------- endless rows (creed marquee + games ticker) ---------- */
   var rows = [
@@ -362,10 +362,24 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', frame);
 
+  /* ---------- accent colours, read from CSS so the canvases never drift
+     from the palette tokens ---------- */
+  function cssColor(name) {
+    var hex = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    var n = parseInt(hex.replace('#', ''), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  var ACCENT = cssColor('--amber');   // red
+  var HOT = cssColor('--ember');      // its hotter, orange end
+  var FG_RGB = cssColor('--fg');
+
   /* ---------- hero object: a wireframe headset and gamepad ----------
      Real 3D — vertices, edges, a perspective projection — drawn on a 2D
      canvas. No library, no shaders, so it survives the artifact's CSP and
-     costs nothing to load. Written to be swapped for WebGL later. */
+     costs nothing to load. Modelled after real product photos: a full
+     headband arc, oval cups with a branding disc, a drooping boom mic;
+     a controller with a touchpad, d-pad, diamond of face buttons and
+     shoulder triggers. Written to be swapped for WebGL later. */
   (function heroObject() {
     var cv = $('[data-object]');
     if (!cv) return;
@@ -394,39 +408,62 @@
       }
       return ids;
     }
+    function seg(x1, y1, z1, x2, y2, z2, acc) {
+      edge(vtx(x1, y1, z1), vtx(x2, y2, z2), acc);
+    }
 
     /* ── headset ── */
     var HS = 0.86, HY = 0.50;
     function band(z) {
       var ids = [];
-      for (var i = 0; i <= 18; i++) {
-        var t = Math.PI * (0.055 + 0.89 * (i / 18));
-        ids.push(vtx(Math.cos(t) * HS, Math.sin(t) * 0.92 * HS + HY, z));
+      for (var i = 0; i <= 20; i++) {
+        var t = Math.PI * (0.05 + 0.90 * (i / 20));
+        ids.push(vtx(Math.cos(t) * HS, Math.sin(t) * 0.94 * HS + HY, z));
       }
       return ids;
     }
-    var bandA = band(-0.11 * HS), bandB = band(0.11 * HS);
-    chain(bandA); chain(bandB); rungs(bandA, bandB);
+    var bandOut = band(-0.13 * HS), bandIn = band(0.02 * HS);
+    chain(bandOut); chain(bandIn); rungs(bandOut, bandIn);
+    // hinge clips where the band meets each cup, like the metal yokes in the photos
+    [-1, 1].forEach(function (side) {
+      var t = Math.PI * (side < 0 ? 0.95 : 0.05);
+      var hx = Math.cos(t) * HS, hy = Math.sin(t) * 0.94 * HS + HY;
+      chain(ring(hx, hy, -0.02 * HS, 0.06 * HS, 'y', 8), true);
+    });
 
-    var cupY = Math.sin(Math.PI * 0.055) * 0.92 * HS + HY;
+    var cupY = Math.sin(Math.PI * 0.05) * 0.94 * HS + HY - 0.08 * HS;
     function cup(side) {
-      var cx = side * Math.cos(Math.PI * 0.055) * HS;
-      var outer = ring(cx, cupY, 0, 0.30 * HS, 'x', 14);
-      var inner = ring(cx - side * 0.22 * HS, cupY, 0, 0.235 * HS, 'x', 14);
-      chain(outer, true); chain(inner, true); rungs(outer, inner);
-      return cx;
+      var cx = side * (Math.cos(Math.PI * 0.05) * HS + 0.02);
+      // an oval cup, slightly taller than wide, like a real ear cup
+      var outer = [];
+      for (var i = 0; i < 16; i++) {
+        var t = i / 16 * Math.PI * 2;
+        outer.push(vtx(cx + Math.sin(t) * 0.05 * HS,
+                       cupY + Math.sin(t) * 0.34 * HS,
+                       Math.cos(t) * 0.30 * HS));
+      }
+      chain(outer, true);
+      // the branding disc sits proud of the cup, on the outward face
+      var discZ = side * 0.30 * HS;
+      var disc = ring(cx, cupY, discZ, 0.13 * HS, 'x', 12);
+      chain(disc, true, true);
+      chain(ring(cx, cupY, discZ, 0.05 * HS, 'x', 8), true, true);
+      return { cx: cx, y: cupY };
     }
     cup(1);
-    var leftX = cup(-1);
+    var left = cup(-1);
 
-    // mic boom — one of the few amber runs, so the eye lands on it
-    var mic = [
-      vtx(leftX + 0.04 * HS, cupY - 0.16 * HS, 0.24 * HS),
-      vtx(leftX + 0.26 * HS, cupY - 0.40 * HS, 0.40 * HS),
-      vtx(leftX + 0.56 * HS, cupY - 0.50 * HS, 0.38 * HS)
+    // boom mic: droops down and forward from the left cup, foam tip at the end
+    var micPts = [
+      [left.cx + 0.02 * HS, left.y - 0.10 * HS, 0.20 * HS],
+      [left.cx + 0.20 * HS, left.y + 0.14 * HS, 0.34 * HS],
+      [left.cx + 0.46 * HS, left.y + 0.30 * HS, 0.36 * HS],
+      [left.cx + 0.66 * HS, left.y + 0.34 * HS, 0.30 * HS]
     ];
-    chain(mic, false, true);
-    chain(ring(leftX + 0.62 * HS, cupY - 0.51 * HS, 0.38 * HS, 0.05 * HS, 'y', 8), true, true);
+    var micIds = micPts.map(function (p) { return vtx(p[0], p[1], p[2]); });
+    chain(micIds, false, true);
+    var tip = micPts[micPts.length - 1];
+    chain(ring(tip[0] + 0.04 * HS, tip[1] + 0.02 * HS, tip[2], 0.06 * HS, 'y', 8), true, true);
 
     /* ── gamepad ── */
     var GS = 0.60, GY = -0.86;
@@ -446,16 +483,29 @@
     var padA = plate(-0.14 * GS), padB = plate(0.14 * GS);
     chain(padA, true); chain(padB, true); rungs(padA, padB);
 
+    // shoulder triggers — short ticks rising off the rear-top corners
+    [-1, 1].forEach(function (side) {
+      seg(side * 1.15 * GS, 0.40 * GS + GY, -0.10 * GS,
+          side * 1.06 * GS, 0.58 * GS + GY, -0.16 * GS, true);
+    });
+
     // thumbsticks
     [-0.36, 0.36].forEach(function (sx) {
-      var base = ring(sx * GS, -0.02 * GS + GY, 0.14 * GS, 0.17 * GS, 'z', 10);
-      var top = ring(sx * GS, -0.02 * GS + GY, 0.36 * GS, 0.12 * GS, 'z', 10);
+      var base = ring(sx * GS, -0.04 * GS + GY, 0.14 * GS, 0.17 * GS, 'z', 10);
+      var top = ring(sx * GS, -0.04 * GS + GY, 0.36 * GS, 0.12 * GS, 'z', 10);
       chain(base, true, true); chain(top, true, true); rungs(base, top, true);
     });
 
+    // touchpad, riding between the sticks like a DualSense
+    (function touchpad() {
+      var cx = 0, cy = 0.32 * GS + GY, hw = 0.30 * GS, hh = 0.12 * GS, z = 0.14 * GS;
+      var pts = [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]];
+      chain(pts.map(function (p) { return vtx(cx + p[0], cy + p[1], z); }), true);
+    })();
+
     // d-pad
     (function dpad() {
-      var cx = -0.96 * GS, cy = 0.08 * GS + GY, s = 0.17 * GS, a = s * 0.34;
+      var cx = -0.96 * GS, cy = 0.06 * GS + GY, s = 0.17 * GS, a = s * 0.34;
       var pts = [[-a, -s], [a, -s], [a, -a], [s, -a], [s, a], [a, a],
                  [a, s], [-a, s], [-a, a], [-s, a], [-s, -a], [-a, -a]];
       var ids = [];
@@ -465,11 +515,15 @@
       chain(ids, true);
     })();
 
-    // face buttons
-    [[0, 0.20], [0.20, 0], [0, -0.20], [-0.20, 0]].forEach(function (o) {
-      chain(ring(0.96 * GS + o[0] * GS, (0.08 + o[1]) * GS + GY, 0.15 * GS,
-                 0.058 * GS, 'z', 8), true);
-    });
+    // face buttons, diamond layout — one carries the accent, like a highlighted press
+    [[0, 0.20, false], [0.20, 0, false], [0, -0.20, true], [-0.20, 0, false]]
+      .forEach(function (o) {
+        chain(ring(0.96 * GS + o[0] * GS, (0.04 + o[1]) * GS + GY, 0.15 * GS,
+                   0.058 * GS, 'z', 8), true, o[2]);
+      });
+
+    // home button
+    chain(ring(0, -0.12 * GS + GY, 0.15 * GS, 0.045 * GS, 'z', 8), true);
 
     /* ── render ── */
     var px = 0, py = 0, yaw = 0.5, pitch = -0.1, running = false, t0 = performance.now();
@@ -500,8 +554,8 @@
         // nearer edges read solid, far ones fall away — that is the whole depth cue
         var f = clamp((1.3 - (a[2] + b[2]) / 2) / 2.6, 0, 1);
         ctx.strokeStyle = E[i][2]
-          ? 'rgba(245,180,87,' + (0.18 + f * 0.62).toFixed(3) + ')'
-          : 'rgba(216,214,209,' + (0.05 + f * 0.34).toFixed(3) + ')';
+          ? 'rgba(' + ACCENT.join(',') + ',' + (0.20 + f * 0.68).toFixed(3) + ')'
+          : 'rgba(' + FG_RGB.join(',') + ',' + (0.05 + f * 0.34).toFixed(3) + ')';
         ctx.beginPath();
         ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
         ctx.stroke();
@@ -535,6 +589,80 @@
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting && !running) { running = true; requestAnimationFrame(loop); }
+        else if (!e.isIntersecting) running = false;
+      });
+    }, { threshold: 0.01 }).observe(cv);
+  })();
+
+  /* ---------- embers: sparks drifting off the hero object, like the
+     reference shot of the pad floating over a bed of coals ---------- */
+  (function embers() {
+    var cv = $('[data-embers]');
+    if (!cv || reduce) return;
+    var ctx = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0, running = false;
+    var particles = [], MAX = 70;
+
+    function size() {
+      var r = cv.getBoundingClientRect();
+      w = r.width; h = r.height;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function spawn() {
+      // mostly a bed of embers under the object, with a few drifting anywhere
+      // in frame — reads as ambient rather than a single jet
+      var wide = Math.random() < 0.3;
+      var cx = wide ? w * Math.random() : w * (0.28 + Math.random() * 0.6);
+      var cy = wide ? h * Math.random() : h * (0.55 + Math.random() * 0.4);
+      return {
+        x: cx, y: cy,
+        vx: (Math.random() - 0.5) * 9,
+        vy: -14 - Math.random() * 24,
+        r: 0.7 + Math.random() * 1.9,
+        life: 0, max: 1.5 + Math.random() * 2.0,
+        hot: Math.random() < 0.45
+      };
+    }
+
+    var last = performance.now();
+    function step(now) {
+      var dt = Math.min((now - last) / 1000, 0.05); last = now;
+      last = now;
+      while (particles.length < MAX) particles.push(spawn());
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.life += dt;
+        if (p.life > p.max) { particles[i] = spawn(); continue; }
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        p.vy += dt * 6;                 // sparks lose their lift as they cool
+        p.vx += (Math.random() - 0.5) * 14 * dt;
+        var t = p.life / p.max;
+        var a = Math.sin(t * Math.PI) * (p.hot ? 0.95 : 0.6);
+        var c = p.hot ? HOT : ACCENT;
+        var rr = p.r * (1 - t * 0.4);
+        // a soft halo behind the core makes small dots read as glowing embers
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, rr * 2.6, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + c.join(',') + ',' + (a * 0.18).toFixed(3) + ')';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, rr, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + c.join(',') + ',' + a.toFixed(3) + ')';
+        ctx.fill();
+      }
+      if (running) requestAnimationFrame(step);
+    }
+
+    size();
+    window.addEventListener('resize', size);
+
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting && !running) { running = true; last = performance.now(); requestAnimationFrame(step); }
         else if (!e.isIntersecting) running = false;
       });
     }, { threshold: 0.01 }).observe(cv);
@@ -664,9 +792,9 @@
     $$('[data-status-txt]').forEach(function (t) { t.textContent = txt; });
     $$('[data-status]').forEach(function (wrap) {
       var dot = wrap.querySelector('.dot');
-      wrap.style.color = p === 'closed' ? 'var(--fg-dim)' : 'var(--amber)';
+      wrap.style.color = p === 'closed' ? 'var(--fg-dim)' : 'var(--live)';
       if (dot) {
-        dot.style.background = p === 'closed' ? 'var(--fg-dim)' : 'var(--amber)';
+        dot.style.background = p === 'closed' ? 'var(--fg-dim)' : 'var(--live)';
         dot.style.animation = p === 'closed' ? 'none' : '';
       }
     });

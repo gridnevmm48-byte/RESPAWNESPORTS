@@ -89,6 +89,7 @@
     <!-- a headset and a gamepad, wireframed: says "computer club" before a word is read -->
     <div class="hero__object" aria-hidden="true">
       <span class="hero__glow"></span>
+      <canvas class="hero__embers" data-embers></canvas>
       <canvas data-object></canvas>
     </div>
 
@@ -154,6 +155,10 @@
 
   <!-- ░░░ 3 · MARQUEE + STRIPE WIPE ░░░ -->
   <section class="creed" id="creed">
+    <!-- an ambient loop, not a photo: the floor at low opacity behind the words -->
+    <video class="creed__ambient" data-clip-holder muted loop playsinline preload="none" aria-hidden="true">
+      <source data-clip="floor" type="video/mp4" src="../assets-src/clips/floor.mp4">
+    </video>
     <div class="creed__inner">
       <div class="grid">
         <span class="mono col-span-11 col-start-2 creed__kicker" data-i18n="creed_kicker">Quiet hardware.<br />Loud nights.</span>
@@ -196,6 +201,10 @@
       </article>
 
       <article class="plate plate--accent">
+        <!-- the one real photograph-adjacent moment in this section: the actual screen, playing -->
+        <video class="plate__clip" data-clip-holder muted loop playsinline preload="none" aria-hidden="true">
+          <source data-clip="sp4-cinema" type="video/mp4" src="../assets-src/clips/sp4-cinema.mp4">
+        </video>
         <span class="mono plate__label" data-i18n="t2_label">watch</span>
         <h3 class="plate__t" data-i18n="t2_t">The big screen<br />is bookable</h3>
         <div class="plate__num"><b data-count="130">0</b><i>″</i></div>
