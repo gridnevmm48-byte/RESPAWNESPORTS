@@ -59,11 +59,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);
   width:100%;max-width:1560px;margin-inline:auto;padding-inline:var(--pad);
 }
-.col-span-1{grid-column:span 1}.col-span-3{grid-column:span 3}
-.col-span-4{grid-column:span 4}.col-span-5{grid-column:span 5}
-.col-span-6{grid-column:span 6}.col-span-8{grid-column:span 8}
-.col-span-9{grid-column:span 9}
-.col-span-11{grid-column:span 11}.col-span-12{grid-column:span 12}
+/* grid-column-END only, never the shorthand: "grid-column:span N" actually
+   sets grid-column-START to "span N", so pairing it with a .col-start-M rule
+   (which sets grid-column-start too) makes whichever rule is later in the
+   sheet silently erase the other's span or start — the box collapses to a
+   single track. Setting only the end here means .col-span and .col-start
+   can never fight over the same longhand. */
+.col-span-1{grid-column-end:span 1}.col-span-3{grid-column-end:span 3}
+.col-span-4{grid-column-end:span 4}.col-span-5{grid-column-end:span 5}
+.col-span-6{grid-column-end:span 6}.col-span-8{grid-column-end:span 8}
+.col-span-9{grid-column-end:span 9}
+.col-span-11{grid-column-end:span 11}.col-span-12{grid-column-end:span 12}
 .col-start-2{grid-column-start:2}.col-start-6{grid-column-start:6}
 .col-start-7{grid-column-start:7}
 .col-start-9{grid-column-start:9}.col-start-10{grid-column-start:10}
@@ -648,9 +654,9 @@ a:hover .split--clone .split__c,button:hover .split--clone .split__c{transform:n
    RESPONSIVE
    ============================================================ */
 @media (max-width:1024px){
-  .col-span-9,.col-span-11,.col-span-8,.col-span-4,.col-span-3{grid-column:span 12}
+  .col-span-9,.col-span-11,.col-span-8,.col-span-4,.col-span-3{grid-column-end:span 12}
   .col-start-2,.col-start-6,.col-start-9,.col-start-10{grid-column-start:auto}
-  .eyebrow{grid-column:span 12}
+  .eyebrow{grid-column-end:span 12}
   .hero__meta{align-items:flex-start;text-align:left;max-width:100%}
   .hero__hint{display:none}
   .trio,.rigs__grid{grid-template-columns:1fr}
@@ -658,7 +664,7 @@ a:hover .split--clone .split__c,button:hover .split--clone .split__c{transform:n
   .tiles{grid-template-columns:1fr 1fr}
   .plate{min-height:0}
   .occasions{margin-inline:-24px}
-  .col-span-5,.col-span-6{grid-column:span 12}
+  .col-span-5,.col-span-6{grid-column-end:span 12}
   .col-start-7{grid-column-start:auto}
   .map{aspect-ratio:16/10}
   /* the object stops competing with the headline on narrow screens */

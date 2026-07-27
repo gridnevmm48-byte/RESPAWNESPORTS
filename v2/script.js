@@ -627,12 +627,32 @@
       };
     }
 
+    // a slow scanning band, the one nod to the scan-line + bloom look —
+    // done as a soft additive gradient instead of a real shader pass
+    var t0 = performance.now();
+    function drawScan(now) {
+      var period = 6.5;
+      var p = ((now - t0) / 1000 % period) / period;    // 0..1, loops
+      var y = h * (p * 1.3 - 0.15);                      // sweeps past both edges
+      var band = h * 0.22;
+      var grad = ctx.createLinearGradient(0, y - band, 0, y + band);
+      grad.addColorStop(0, 'rgba(' + ACCENT.join(',') + ',0)');
+      grad.addColorStop(0.5, 'rgba(' + ACCENT.join(',') + ',0.10)');
+      grad.addColorStop(1, 'rgba(' + ACCENT.join(',') + ',0)');
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, y - band, w, band * 2);
+      ctx.restore();
+    }
+
     var last = performance.now();
     function step(now) {
       var dt = Math.min((now - last) / 1000, 0.05); last = now;
       last = now;
       while (particles.length < MAX) particles.push(spawn());
       ctx.clearRect(0, 0, w, h);
+      drawScan(now);
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
         p.life += dt;
