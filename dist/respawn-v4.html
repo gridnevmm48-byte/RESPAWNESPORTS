@@ -244,9 +244,9 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1.05rem;mix
 @media(max-width:1099px){.zcard{width:78vw;max-width:22rem;scroll-snap-align:center;border:1px solid var(--line);border-radius:4px}}
 @media(min-width:1100px){.zcard{flex:1 1 25%;min-width:0}}
 .zlist.in .zcard{opacity:1;transform:none;transition-delay:calc(var(--i)*110ms)}
-.zcard .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34;transform:scale(1.06);transition:opacity .7s ease,transform 1.4s var(--ease);filter:grayscale(.35)}
-.zcard:hover .bg{opacity:.6;transform:scale(1);filter:grayscale(0)}
-.zcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,9,.55),rgba(7,7,9,.2) 40%,rgba(7,7,9,.95))}
+.zcard .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72;transform:scale(1.04);transition:opacity .7s ease,transform 1.4s var(--ease);filter:contrast(1.08) saturate(.9)}
+.zcard:hover .bg{opacity:1;transform:scale(1);filter:contrast(1.12) saturate(1)}
+.zcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,9,.80) 0%,rgba(7,7,9,.18) 26%,rgba(7,7,9,.10) 48%,rgba(7,7,9,.72) 78%,rgba(7,7,9,.95) 100%)}
 .zcard .zin{position:relative;z-index:2;height:100%;padding:1.5rem 1.35rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem}
 .zcard .ztop{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem}
 .zcard h3{font-size:clamp(1.45rem,2.4vw,1.95rem);letter-spacing:-.04em;margin:0;font-weight:600;line-height:1}
@@ -254,6 +254,21 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1.05rem;mix
 .zhz b{font-size:clamp(2.6rem,5.6vw,4.2rem);font-weight:200;letter-spacing:-.06em;line-height:.85;font-variant-numeric:tabular-nums}
 .zbot{display:grid;gap:.7rem}
 .zbot p{font-size:.86rem;line-height:1.4;color:rgba(228,226,221,.72)}
+.seg{display:inline-flex;align-items:center;gap:.35rem;margin-top:1.5rem;flex-wrap:wrap}
+.segb{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;color:var(--smoke);
+  transition:color .3s,border-color .3s,background .3s;
+}
+.segb:hover{color:var(--bone);border-color:var(--bone)}
+.segb[aria-pressed="true"]{background:var(--bone);border-color:var(--bone);color:var(--ink)}
+.segl{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--smoke);padding:.5rem .5rem .5rem .8rem;transition:color .3s;
+}
+.segl:hover{color:var(--hot)}
+.zprice b{transition:color .3s}
+.zcard[data-rate="peak"] .zprice b{color:var(--hot)}
 .zprice{display:flex;align-items:baseline;gap:.4rem;border-top:1px solid var(--line);padding-top:.7rem}
 .zprice b{font-size:1.7rem;font-weight:600;letter-spacing:-.04em}
 .zcard .bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);z-index:3}
@@ -506,6 +521,11 @@ body.hascur.hot #cur{transform:scale(1.5)}
       <div>
         <h2 class="h2" data-en="Four rooms. Compare them." data-ru="&#x427;&#x435;&#x442;&#x44B;&#x440;&#x435; &#x437;&#x430;&#x43B;&#x430;. &#x421;&#x440;&#x430;&#x432;&#x43D;&#x438;.">Four rooms. Compare them.</h2>
         <p style="margin-top:1.1rem" data-en="Same standard everywhere, different ceiling. Pick by refresh rate and by what the hour costs you." data-ru="&#x421;&#x442;&#x430;&#x43D;&#x434;&#x430;&#x440;&#x442; &#x432;&#x435;&#x437;&#x434;&#x435; &#x43E;&#x434;&#x438;&#x43D;, &#x43F;&#x43E;&#x442;&#x43E;&#x43B;&#x43E;&#x43A; &#x440;&#x430;&#x437;&#x43D;&#x44B;&#x439;. &#x412;&#x44B;&#x431;&#x438;&#x440;&#x430;&#x439; &#x43F;&#x43E; &#x433;&#x435;&#x440;&#x446;&#x43E;&#x432;&#x43A;&#x435; &#x438; &#x43F;&#x43E; &#x446;&#x435;&#x43D;&#x435; &#x447;&#x430;&#x441;&#x430;.">Same standard everywhere, different ceiling.</p>
+        <div class="seg" id="rateSeg" role="group" aria-label="Rate">
+          <button class="segb" type="button" data-rate="off" aria-pressed="true" data-en="Off-peak" data-ru="&#x41E;&#x444;&#x43F;&#x438;&#x43A;">Off-peak</button>
+          <button class="segb" type="button" data-rate="peak" aria-pressed="false" data-en="Peak" data-ru="&#x41F;&#x438;&#x43A;">Peak</button>
+          <a class="segl" href="#prices" data-scroll data-en="All rates" data-ru="&#x412;&#x441;&#x435; &#x442;&#x430;&#x440;&#x438;&#x444;&#x44B;">All rates</a>
+        </div>
       </div>
     </div>
   </div>
@@ -520,7 +540,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="165">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5060 &middot; i7-14700K &middot; BenQ 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b>&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -533,7 +553,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="360">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 Ti &middot; i7-14700K &middot; Alienware 27&quot;</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b>&euro;4</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="4" data-peak="6">&euro;4</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -546,7 +566,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="260">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 &middot; i9-14900K &middot; ASUS TUF 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b>&euro;8</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="8" data-peak="10">&euro;8</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -559,7 +579,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="130">0</b><span class="lbl">inch</span></div>
           <div class="zbot">
             <p>PS5 Pro &middot; BenQ X3100i &middot; Dolby Atmos</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b>&euro;7</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="7" data-peak="15">&euro;7</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -832,16 +852,16 @@ var KEY = {
   sze:{en:"Screen",ru:"\u042d\u043a\u0440\u0430\u043d"}, sea:{en:"Seating",ru:"\u041a\u0440\u0435\u0441\u043b\u0430"}
 };
 var ZONES = [
-  {n:"COMFORT", note:{en:"From \u20ac3 / hour off-peak",ru:"\u041e\u0442 3\u20ac / \u0447\u0430\u0441 \u0432 \u043e\u0444\u043f\u0438\u043a"}, rows:[
+  {n:"COMFORT", price:{off:3,peak:5}, rows:[
     ["cpu","Intel i7-14700K"],["gpu","NVIDIA RTX 5060"],["scr","BenQ 27\u2033 2K 165 Hz"],
     ["mou","ASUS TUF M4 Air"],["kbd","Logitech G213"],["aud","Logitech G432"]]},
-  {n:"BOOTCAMP", note:{en:"From \u20ac4 / hour off-peak",ru:"\u041e\u0442 4\u20ac / \u0447\u0430\u0441 \u0432 \u043e\u0444\u043f\u0438\u043a"}, rows:[
+  {n:"BOOTCAMP", price:{off:4,peak:6}, rows:[
     ["cpu","Intel i7-14700K"],["gpu","NVIDIA RTX 5070 Ti"],["scr","Alienware 27\u2033 FullHD 360 Hz"],
     ["mou","Logitech G403 HERO"],["kbd","Logitech Pro X TKL"],["aud","Logitech G Pro X"]]},
-  {n:"VIP", note:{en:"From \u20ac8 / hour off-peak",ru:"\u041e\u0442 8\u20ac / \u0447\u0430\u0441 \u0432 \u043e\u0444\u043f\u0438\u043a"}, rows:[
+  {n:"VIP", price:{off:8,peak:10}, rows:[
     ["cpu","Intel i9-14900K"],["gpu","NVIDIA RTX 5070"],["scr","ASUS TUF 27\u2033 2K 260 Hz"],
     ["mou","Logitech G Pro X Superlight"],["kbd","Logitech G915 X Lightspeed"],["aud","Logitech G Pro X Lightspeed"]]},
-  {n:"PS5 PREMIUM", note:{en:"From \u20ac7 / hour, 1 person",ru:"\u041e\u0442 7\u20ac / \u0447\u0430\u0441, 1 \u0447\u0435\u043b\u043e\u0432\u0435\u043a"}, rows:[
+  {n:"PS5 PREMIUM", price:{off:7,peak:15}, per:{en:", 1 person",ru:", 1 \u0447\u0435\u043b\u043e\u0432\u0435\u043a"}, rows:[
     ["con","PlayStation 5 Pro"],["prj","BenQ X3100i"],["sze","130 inches"],
     ["sea",{en:"6 recliners",ru:"6 \u0440\u0435\u043a\u043b\u0430\u0439\u043d\u0435\u0440\u043e\u0432"}],["aud","Samsung HW-Q990D Dolby Atmos"],
     ["scr",{en:"Movie nights too",ru:"\u0418 \u043a\u0438\u043d\u043e\u043f\u043e\u043a\u0430\u0437\u044b"}]]}
@@ -849,6 +869,14 @@ var ZONES = [
 
 var lang = "en";
 function t(v){ return (v && typeof v === "object") ? (v[lang] || v.en) : v; }
+
+/* Which column of the price table the zone cards are quoting. Boots to
+   whichever rate is actually running, so the first look matches reality. */
+var rate = "off";
+var NOTE = {
+  off:  {en:"From \u20ac%s / hour off-peak", ru:"\u041e\u0442 %s\u20ac / \u0447\u0430\u0441 \u0432 \u043e\u0444\u043f\u0438\u043a"},
+  peak: {en:"From \u20ac%s / hour at peak",  ru:"\u041e\u0442 %s\u20ac / \u0447\u0430\u0441 \u0432 \u043f\u0438\u043a"}
+};
 
 /* Each loop is inlined once here and handed to every <video data-clip> that
    asks for it. Writing the data URI into the markup twice would double its
@@ -984,13 +1012,29 @@ function buildSpecs(i, animate){
     row.lastChild.textContent = t(r[1]);
     rowsBox.appendChild(row);
   });
-  $("#spNote").textContent = t(z.note);
+  $("#spNote").textContent = t(NOTE[rate]).replace("%s", z.price[rate]) + (z.per ? t(z.per) : "");
   media.forEach(function(m,k){
     var on = k === i;
     m.classList.toggle("on", on);
     if (m.tagName === "VIDEO"){ if (on && !RM) m.play().catch(function(){}); else m.pause(); }
   });
 }
+
+/* \u2500\u2500 peak / off-peak switch \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+function setRate(r){
+  rate = r;
+  $$(".segb").forEach(function(b){
+    b.setAttribute("aria-pressed", b.getAttribute("data-rate") === r ? "true" : "false");
+  });
+  $$(".zp").forEach(function(b){
+    b.innerHTML = "\u20ac" + b.getAttribute("data-" + r);
+    b.closest(".zcard").setAttribute("data-rate", r);
+  });
+  buildSpecs(active);
+}
+$$(".segb").forEach(function(b){
+  b.addEventListener("click", function(){ setRate(b.getAttribute("data-rate")); });
+});
 
 /* \u2500\u2500 counters \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
 function countUp(el){
@@ -1061,6 +1105,7 @@ function drawWipe(){
 }
 
 /* \u2500\u2500 peak / off-peak clock \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+var NOWSTATE = "off";
 var NOW = {
   peak:{en:"Peak rate right now", ru:"\u0421\u0435\u0439\u0447\u0430\u0441 \u043f\u0438\u043a"},
   off:{en:"Off-peak right now \u2014 cheapest hours", ru:"\u0421\u0435\u0439\u0447\u0430\u0441 \u043e\u0444\u043f\u0438\u043a \u2014 \u0441\u0430\u043c\u044b\u0435 \u0434\u0435\u0448\u0451\u0432\u044b\u0435 \u0447\u0430\u0441\u044b"},
@@ -1082,6 +1127,7 @@ function clock(){
   else if (h < 13) state = "closed";               // no rate exists before 13:00
   else if (h < 18) state = (d === 0 || d === 6) ? "peak" : "off";
   else state = "peak";
+  NOWSTATE = state;
   var box = $("#now");
   box.setAttribute("data-state", state === "off" ? "off" : state);
   $("#nowTxt").textContent = t(state === "peak" ? NOW.peak : state === "off" ? NOW.off : NOW.shut);
@@ -1174,10 +1220,10 @@ function shader(){
   "  float mask=mix(scan+ambient,lg*wipeL,uIntro);",
   /* grade: drain the colour out of the footage and push it into ember */
   "  float l=lum(feed);",
-  "  vec3 graded=mix(vec3(l),feed,0.30);",
-  "  graded=graded*vec3(1.05,0.72,0.60)+vec3(0.06,0.014,0.0)*pow(l,3.0)*3.5;",
-  "  float side=smoothstep(0.02,0.72,uv.x);",
-  "  vec3 col=vec3(0.018,0.020,0.025)+graded*(0.11+0.30*side)*(1.0-uIntro*0.75);",
+  "  vec3 graded=mix(vec3(l),feed,0.34);",
+  "  graded=graded*vec3(1.20,0.74,0.52)+vec3(0.08,0.018,0.0)*pow(l,3.0)*3.5;",
+  "  float side=smoothstep(0.05,0.62,uv.x);",
+  "  vec3 col=vec3(0.018,0.020,0.025)+graded*(0.13+0.58*side)*(1.0-uIntro*0.75);",
   /* two slow light streaks so the empty half of the frame still moves */
   "  float s1=smoothstep(0.055,0.0,abs(uv.y-0.30-sin(uv.x*2.1+uTime*0.20)*0.10));",
   "  float s2=smoothstep(0.040,0.0,abs(uv.y-0.72-sin(uv.x*1.5-uTime*0.15)*0.08));",
@@ -1187,8 +1233,8 @@ function shader(){
   "  col+=vec3(1.0,0.55,0.30)*pow(dt*mask,2.0)*0.40;", /* stand-in bloom */
   "  float line=smoothstep(0.004,0.0,abs(uv.y-fract(uTime*0.09)));",
   "  col+=vec3(0.9,0.18,0.08)*line*0.09;",
-  "  col*=mix(0.34,1.02,smoothstep(1.30,0.10,length((uv-vec2(0.55,0.48))*vec2(sA,1.0))));",
-  "  col+=(h21(uv*uRes.xy+uTime)-0.5)*0.022;",         /* grain */
+  "  col*=mix(0.50,1.04,smoothstep(1.45,0.10,length((uv-vec2(0.58,0.48))*vec2(sA,1.0))));",
+  "  col+=(h21(uv*uRes.xy+uTime)-0.5)*0.014;",         /* grain, light enough to keep edges */
   "  gl_FragColor=vec4(col,1.0);",
   "}"].join("\n");
 
@@ -1363,6 +1409,7 @@ function intro(){
 applyLang();
 buildSpecs(0);
 clock();
+setRate(NOWSTATE === "peak" ? "peak" : "off");
 setInterval(clock, 60000);
 intro();
 
