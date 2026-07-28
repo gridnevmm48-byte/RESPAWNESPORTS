@@ -179,9 +179,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1.05rem;mix
 #gl{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 /* the raw element is the no-WebGL fallback: same footage, graded in CSS */
 #heroVid{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
-  opacity:.34;filter:grayscale(.4) contrast(1.15) brightness(.72);
+  position:absolute;top:50%;right:6vw;transform:translateY(-50%);
+  width:min(32vw,22rem);height:auto;aspect-ratio:9/16;object-fit:cover;
+  z-index:0;border-radius:10px;opacity:.9;filter:contrast(1.06);
 }
+@media(max-width:860px){#heroVid{top:22%;right:auto;left:50%;transform:translate(-50%,-22%);width:52vw}}
 #hero.gl #heroVid{opacity:0;pointer-events:none}
 /* the room is busy behind the headline, so the copy gets its own floor */
 #hero::after{
@@ -1184,27 +1186,35 @@ function shader(){
   var FS = [
   "precision highp float;",
   "uniform sampler2D uFeed,uLogo;",
-  "uniform vec2 uRes,uPtr;",
-  "uniform float uTime,uIntro,uProg,uImgA;",
+  "uniform vec2 uRes,uPtr,uObjC;",
+  "uniform float uTime,uIntro,uProg,uImgA,uObjH;",
   "float h21(vec2 p){p=fract(p*vec2(123.34,345.45));p+=dot(p,p+34.345);return fract(p.x*p.y);}",
   "float lum(vec3 c){return dot(c,vec3(0.30,0.59,0.11));}",
   "void main(){",
   "  vec2 uv=gl_FragCoord.xy/uRes;",
   "  float sA=uRes.x/uRes.y;",
-  /* cover-fit the footage, then drift it slowly so the frame never sits still */
-  "  vec2 fuv = sA>uImgA ? vec2(uv.x,0.5+(uv.y-0.5)*(uImgA/sA))",
-  "                      : vec2(0.5+(uv.x-0.5)*(sA/uImgA),uv.y);",
-  "  float z=1.0+0.05*sin(uTime*0.11);",
-  "  fuv=(fuv-0.5)/z+0.5+vec2(sin(uTime*0.07)*0.012,cos(uTime*0.09)*0.010)+uPtr*0.012;",
-  "  vec3 feed=texture2D(uFeed,fuv).rgb;",
+  /* The footage is 360x640. Blown up full-bleed it turns to mush, so it plays
+     inside a panel sized near its own pixels and the copy keeps the dark half.
+     Panel drifts with a slow bob and follows the pointer. */
+  "  vec2 c=uObjC+vec2(uPtr.x*0.016,uPtr.y*0.013)+vec2(0.0,sin(uTime*0.5)*0.010);",
+  "  vec2 hs=vec2(uObjH*uImgA,uObjH)*0.5;",
+  "  vec2 d=(uv-c)*vec2(sA,1.0);",
+  "  float rr=0.012;",
+  "  vec2 q=abs(d)-hs+rr;",
+  "  float sd=length(max(q,0.0))+min(max(q.x,q.y),0.0)-rr;",
+  "  float inPanel=smoothstep(0.0015,-0.0015,sd);",
+  "  float edge=smoothstep(0.0030,0.0,abs(sd));",
+  "  vec2 fuv=d/(hs*2.0)+0.5;",
+  "  fuv=(fuv-0.5)/(1.0+0.03*sin(uTime*0.11))+0.5;",
+  "  vec3 feed=texture2D(uFeed,clamp(fuv,0.001,0.999)).rgb*inPanel;",
   /* five taps stand in for a depth map: a blurred read of where the light is */
-  "  float e=0.012;",
-  "  float depth=lum(feed)*0.4",
-  "    +lum(texture2D(uFeed,fuv+vec2(e,0.0)).rgb)*0.15",
-  "    +lum(texture2D(uFeed,fuv-vec2(e,0.0)).rgb)*0.15",
-  "    +lum(texture2D(uFeed,fuv+vec2(0.0,e)).rgb)*0.15",
-  "    +lum(texture2D(uFeed,fuv-vec2(0.0,e)).rgb)*0.15;",
-  "  depth=pow(clamp(depth*1.6,0.0,1.0),0.85);",
+  "  float e=0.014;",
+  "  float depth=(lum(feed)*0.4",
+  "    +lum(texture2D(uFeed,clamp(fuv+vec2(e,0.0),0.001,0.999)).rgb)*0.15",
+  "    +lum(texture2D(uFeed,clamp(fuv-vec2(e,0.0),0.001,0.999)).rgb)*0.15",
+  "    +lum(texture2D(uFeed,clamp(fuv+vec2(0.0,e),0.001,0.999)).rgb)*0.15",
+  "    +lum(texture2D(uFeed,clamp(fuv-vec2(0.0,e),0.001,0.999)).rgb)*0.15)*inPanel;",
+  "  depth=pow(clamp(depth*1.7,0.0,1.0),0.85);",
   /* dot field, square in screen space so the grid never stretches */
   "  vec2 st=vec2(uv.x*sA,uv.y);",
   "  vec2 tile=vec2(104.0);",
@@ -1212,8 +1222,8 @@ function shader(){
   "  float bright=h21(floor(st*tile*0.5));",
   "  float dt=smoothstep(0.55,0.45,length(g))*(0.35+0.65*bright);",
   /* band A: the sweep reads the light in the footage and traces its edges */
-  "  float scan=1.0-smoothstep(0.0,0.028,abs(depth-uProg));",
-  "  float ambient=0.016*smoothstep(0.35,0.90,depth);",
+  "  float scan=(1.0-smoothstep(0.0,0.045,abs(depth-uProg)))*inPanel;",
+  "  float ambient=0.05*smoothstep(0.25,0.85,depth)*inPanel;",
   /* band B: the same dots spell the wordmark while the intro runs */
   "  vec2 wuv=(uv-vec2(0.5,0.5))/vec2(min(0.80,0.95/sA),0.30)+0.5;",
   "  float win=step(0.0,wuv.x)*step(wuv.x,1.0)*step(0.0,wuv.y)*step(wuv.y,1.0);",
@@ -1222,20 +1232,23 @@ function shader(){
   "  float mask=mix(scan+ambient,lg*wipeL,uIntro);",
   /* grade: drain the colour out of the footage and push it into ember */
   "  float l=lum(feed);",
-  "  vec3 graded=mix(vec3(l),feed,0.78);",
-  "  graded=graded*vec3(1.14,0.94,0.86)+vec3(0.09,0.022,0.0)*pow(l,3.0)*2.2;",
-  "  float side=smoothstep(0.10,0.58,uv.x);",
-  "  vec3 col=vec3(0.018,0.020,0.025)+graded*(0.62+0.55*side)*(1.0-uIntro*0.80);",
+  "  vec3 graded=mix(vec3(l),feed,0.80);",
+  "  graded=graded*vec3(1.20,1.00,0.92)+vec3(0.10,0.024,0.0)*pow(l,3.0)*2.4;",
+  /* ground: near-black with an ember pool sitting behind the panel */
+  "  float halo=exp(-pow(length((uv-c)*vec2(sA,1.0))*1.7,2.0));",
+  "  vec3 col=vec3(0.019,0.021,0.026)+vec3(0.95,0.20,0.06)*halo*0.13;",
+  "  col=mix(col,graded*1.30,inPanel*(1.0-uIntro*0.85));",
+  "  col+=vec3(1.0,0.34,0.12)*edge*0.55*(1.0-uIntro);",
   /* two slow light streaks so the empty half of the frame still moves */
   "  float s1=smoothstep(0.055,0.0,abs(uv.y-0.30-sin(uv.x*2.1+uTime*0.20)*0.10));",
   "  float s2=smoothstep(0.040,0.0,abs(uv.y-0.72-sin(uv.x*1.5-uTime*0.15)*0.08));",
   "  col+=vec3(0.85,0.20,0.07)*(s1*0.030+s2*0.022);",
   "  vec3 ember=vec3(1.0,0.20,0.07)*dt*mask;",
-  "  col=1.0-(1.0-col)*(1.0-ember*0.62);",              /* screen blend */
-  "  col+=vec3(1.0,0.55,0.30)*pow(dt*mask,2.0)*0.26;", /* stand-in bloom */
+  "  col=1.0-(1.0-col)*(1.0-ember*1.30);",              /* screen blend */
+  "  col+=vec3(1.0,0.55,0.30)*pow(dt*mask,2.0)*0.45;", /* stand-in bloom */
   "  float line=smoothstep(0.004,0.0,abs(uv.y-fract(uTime*0.09)));",
   "  col+=vec3(0.9,0.18,0.08)*line*0.09;",
-  "  col*=mix(0.72,1.05,smoothstep(1.50,0.10,length((uv-vec2(0.60,0.46))*vec2(sA,1.0))));",
+  "  col*=mix(0.62,1.04,smoothstep(1.40,0.12,length((uv-vec2(0.55,0.48))*vec2(sA,1.0))));",
   "  col+=(h21(uv*uRes.xy+uTime)-0.5)*0.014;",         /* grain, light enough to keep edges */
   "  gl_FragColor=vec4(col,1.0);",
   "}"].join("\n");
@@ -1277,7 +1290,7 @@ function shader(){
   }
 
   var U = {};
-  ["uRes","uPtr","uTime","uIntro","uProg","uImgA"]
+  ["uRes","uPtr","uTime","uIntro","uProg","uImgA","uObjC","uObjH"]
     .forEach(function(n){ U[n] = gl.getUniformLocation(prog, n); });
 
   /* one black pixel until the first video frame decodes */
@@ -1285,7 +1298,7 @@ function shader(){
   seed.width = seed.height = 2;
   var feedTex = tex(seed, 0);   gl.uniform1i(gl.getUniformLocation(prog, "uFeed"), 0);
   var logoTex = tex(logo(1024), 2); gl.uniform1i(gl.getUniformLocation(prog, "uLogo"), 2);
-  gl.uniform1f(U.uImgA, 16 / 9);
+  gl.uniform1f(U.uImgA, 9 / 16);
 
   /* the wordmark needs the webfont; redraw once it lands */
   if (document.fonts && document.fonts.ready){
@@ -1302,6 +1315,11 @@ function shader(){
     cv.height = Math.max(1, Math.floor(cv.clientHeight * dpr));
     gl.viewport(0, 0, cv.width, cv.height);
     gl.uniform2f(U.uRes, cv.width, cv.height);
+    /* wide: panel right of the headline. narrow: up top, above the copy.
+       uObjC.y runs with gl_FragCoord, so it is measured from the bottom. */
+    var wide = cv.clientWidth / cv.clientHeight > 1.05;
+    gl.uniform2f(U.uObjC, wide ? 0.755 : 0.50, wide ? 0.500 : 0.720);
+    gl.uniform1f(U.uObjH, wide ? 0.68 : 0.34);
   }
   addEventListener("resize", size);
   size();
