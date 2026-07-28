@@ -1,0 +1,1378 @@
+<title>RESPAWN ESPORTS — Limassol</title>
+
+<style>
+{{FONTS}}
+
+/* ── tokens ─────────────────────────────────────────────────────────────── */
+:root{
+  color-scheme:dark;
+  --ink:#070709;
+  --coal:#0D0E11;
+  --bone:#E4E2DD;
+  --smoke:#85888F;
+  --ember:#E4321A;
+  --hot:#FF6A2A;
+  --line:rgba(228,226,221,.14);
+  --line-d:rgba(7,7,9,.15);
+  --pad:clamp(1rem,3.2vw,3rem);
+  --disp:"Manrope",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --wipe:cubic-bezier(.76,0,.24,1);
+}
+html,:root[data-theme="light"],:root[data-theme="dark"]{background:var(--ink)}
+
+*{box-sizing:border-box}
+/* clip, not hidden: overflow-x:hidden on body would promote body to the
+   scrolling element, which breaks anchors and every rect-driven animation */
+html{scroll-behavior:smooth;overflow-x:clip}
+body,:root[data-theme="light"] body{
+  margin:0;background:var(--ink);color:var(--bone);
+  font-family:var(--disp);font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+}
+html.lock,html.lock body{overflow:hidden}
+img,canvas,video,svg{display:block;max-width:100%}
+/* the type rule above outranks the UA sheet, so [hidden] has to be restated */
+[hidden]{display:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+
+/* ── type ───────────────────────────────────────────────────────────────── */
+.h1{font-size:clamp(2.9rem,10.5vw,9.5rem);line-height:.87;letter-spacing:-.05em;font-weight:600;margin:0;text-wrap:balance}
+.h2{font-size:clamp(2rem,5.4vw,4.8rem);line-height:.94;letter-spacing:-.042em;font-weight:600;margin:0;text-wrap:balance}
+.h3{font-size:clamp(1.3rem,2.3vw,1.9rem);line-height:1.04;letter-spacing:-.032em;font-weight:600;margin:0}
+.lbl{font-family:var(--mono);font-size:.62rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--smoke)}
+p{font-size:clamp(.95rem,1.05vw,1.05rem);line-height:1.6;color:var(--smoke);margin:0;max-width:60ch}
+.num{font-variant-numeric:tabular-nums;font-weight:200;letter-spacing:-.06em}
+
+.wrap{width:100%;max-width:1480px;margin-inline:auto;padding-inline:var(--pad)}
+.sec{padding-block:clamp(4.5rem,10vh,8.5rem);position:relative;scroll-margin-top:4rem}
+.head{display:grid;gap:1.2rem;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+@media(min-width:900px){.head{grid-template-columns:8rem 1fr;gap:2.4rem;align-items:start}}
+
+/* ── preloader ──────────────────────────────────────────────────────────── */
+.pl{position:fixed;inset:0;z-index:200;pointer-events:none}
+.pl.done{display:none}
+.pl-belts{position:absolute;inset:0;display:flex}
+.pl-belts i{flex:1;background:var(--ink);will-change:transform}
+.pl.out .pl-belts i{transform:translateY(-101%);transition:transform .95s var(--wipe)}
+.pl-core{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6rem;text-align:center}
+.pl.out .pl-core{opacity:0;transform:translateY(-14px);transition:opacity .4s ease,transform .5s var(--ease)}
+.pl-frame{position:relative;padding:clamp(1.4rem,4vw,2.6rem) clamp(1.6rem,6vw,4rem)}
+.pl-frame rect{fill:none;stroke:rgba(228,226,221,.28);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1;animation:plBox 1.1s var(--ease) .15s forwards}
+@keyframes plBox{to{stroke-dashoffset:0}}
+.pl-frame>svg.pl-box{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pl-plus{position:absolute;width:11px;height:11px;opacity:0;animation:plFade .5s ease 1s forwards}
+.pl-plus line{stroke:var(--smoke)}
+.pl-plus.tl{top:-5px;left:-5px}.pl-plus.tr{top:-5px;right:-5px}
+.pl-plus.bl{bottom:-5px;left:-5px}.pl-plus.br{bottom:-5px;right:-5px}
+@keyframes plFade{to{opacity:1}}
+.pl-mark{width:min(62vw,30rem);height:auto;overflow:visible}
+.pl-mark text{font-family:var(--disp);font-weight:600;font-size:64px;letter-spacing:.06em}
+.pl-mark .st{fill:none;stroke:var(--ember);stroke-width:.7}
+.pl-mark .fl{fill:var(--bone)}
+.pl-mark .clipbar{transform:scaleX(0);transform-origin:left;animation:plWipe 1s var(--ease) forwards}
+.pl-mark .clipbar.b{animation-delay:.45s}
+@keyframes plWipe{to{transform:scaleX(1)}}
+.pl-tag{display:flex;gap:.7rem;align-items:center;justify-content:center}
+.pl-tag span{opacity:0;animation:plUp .6s var(--ease) forwards}
+.pl-tag .dot{color:var(--ember)}
+@keyframes plUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pl-count{display:flex;gap:.06em;font-family:var(--mono);font-size:.8rem;color:var(--smoke)}
+.reel{height:1.2em;overflow:hidden}
+.reel i{display:block;font-style:normal;line-height:1.2em;will-change:transform}
+.fly{position:fixed;z-index:201;width:11px;height:11px;opacity:0;pointer-events:none}
+.fly line{stroke:#4a4d54}
+
+/* ── header ─────────────────────────────────────────────────────────────── */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1.05rem;mix-blend-mode:difference}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.mark{font-weight:600;letter-spacing:.3em;font-size:.88rem;line-height:1;color:#fff}
+.mark small{display:block;font-family:var(--mono);font-size:.48rem;letter-spacing:.52em;opacity:.6;margin-top:.42em}
+.hdr-r{display:flex;align-items:center;gap:.45rem}
+.pill{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:.52rem .85rem;color:#fff;
+  transition:border-color .3s,opacity .3s;
+}
+.pill:hover{border-color:#fff;opacity:.75}
+.burger{display:flex;align-items:center;gap:.55rem}
+.burger .bars{position:relative;width:14px;height:11px}
+.burger .bars i{position:absolute;left:0;width:14px;height:1px;background:#fff;transition:transform .45s var(--ease)}
+.burger .bars i:first-child{transform:translateY(3px)}
+.burger .bars i:last-child{transform:translateY(7px)}
+.burger:hover .bars i:first-child{transform:translateY(7px)}
+.burger:hover .bars i:last-child{transform:translateY(3px)}
+.is-open .burger .bars i:first-child{transform:translateY(5px) rotate(45deg)}
+.is-open .burger .bars i:last-child{transform:translateY(5px) rotate(-45deg)}
+
+/* ── letter roll links ──────────────────────────────────────────────────── */
+.nl{position:relative;display:inline-flex;overflow:hidden;line-height:1.05;vertical-align:bottom}
+.nl .lay{display:inline-flex;white-space:pre}
+.nl .cl{position:absolute;left:0;top:0}
+.nl b{display:inline-block;font-weight:inherit;transition:transform .5s var(--ease);transition-delay:calc(var(--i)*18ms)}
+.nl .cl b{transform:translateY(105%)}
+.nl:hover b,a:hover .nl b,button:hover .nl b{transform:translateY(-105%)}
+.nl:hover .cl b,a:hover .nl .cl b,button:hover .nl .cl b{transform:translateY(0)}
+
+/* ── menu overlay ───────────────────────────────────────────────────────── */
+.menu{
+  position:fixed;inset:0;z-index:99;background:var(--coal);
+  clip-path:circle(0% at 92% 4%);
+  transition:clip-path .85s var(--wipe);
+  display:grid;align-content:center;gap:2.5rem;padding:6rem var(--pad) 3rem;overflow-y:auto;
+  visibility:hidden;
+}
+.is-open .menu{clip-path:circle(145% at 92% 4%);visibility:visible}
+.menu a.mlink{font-size:clamp(2.2rem,7vw,4.5rem);font-weight:600;letter-spacing:-.04em;line-height:1;display:block}
+.menu ul{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+.menu li{opacity:0;transform:translateY(18px)}
+.is-open .menu li{opacity:1;transform:none;transition:opacity .5s ease,transform .6s var(--ease);transition-delay:calc(.25s + var(--i)*60ms)}
+.menu-foot{display:grid;gap:.5rem;border-top:1px solid var(--line);padding-top:1.4rem}
+@media(min-width:760px){.menu-foot{grid-template-columns:repeat(3,1fr)}}
+
+/* ── trionn-style button ────────────────────────────────────────────────── */
+.tbtn{
+  --run:26px;
+  position:relative;display:inline-flex;align-items:center;min-height:2.7rem;
+  padding-inline:0 2.2rem;overflow:hidden;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+}
+.tbtn .w{display:inline-flex;white-space:pre}
+.tbtn .w b{display:inline-block;font-weight:400;transition:transform .42s var(--ease);transition-delay:calc(var(--i)*16ms)}
+.tbtn:hover .w b{transform:translateX(var(--run))}
+.tbtn .ar{position:absolute;top:50%;width:1rem;height:1rem;margin-top:-.5rem;transition:transform .38s var(--ease),opacity .3s ease}
+.tbtn .ar svg{width:100%;height:100%;fill:currentColor}
+.tbtn .ar.r{right:.6rem;opacity:1}
+.tbtn .ar.l{left:-1.4rem;opacity:0}
+.tbtn:hover .ar.r{transform:translateX(1.6rem);opacity:0}
+.tbtn:hover .ar.l{transform:translateX(1.4rem);opacity:1}
+.tbtn .u{position:absolute;left:0;right:0;bottom:0;height:1px}
+.tbtn .u i{position:absolute;inset:0;background:currentColor;transition:transform .5s var(--ease)}
+.tbtn .u .ur{transform-origin:right}
+.tbtn .u .ul{transform-origin:left;transform:scaleX(0)}
+.tbtn:hover .u .ur{transform:scaleX(0);transition-duration:.28s}
+.tbtn:hover .u .ul{transform:scaleX(1);transition-delay:.2s}
+
+.cta{
+  display:inline-flex;align-items:center;gap:.6rem;border-radius:999px;padding:.95rem 1.45rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--line);transition:transform .35s var(--ease),background .3s,color .3s,border-color .3s;
+}
+.cta svg{width:1rem;height:1rem;fill:currentColor;flex:none}
+.cta:hover{transform:translateY(-2px)}
+.cta.solid{background:var(--ember);border-color:var(--ember);color:#fff}
+.cta.solid:hover{background:var(--hot);border-color:var(--hot)}
+.cta.ghost:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+/* ── divider ────────────────────────────────────────────────────────────── */
+.div{display:grid;place-items:center;position:relative;padding-block:clamp(2.5rem,6vw,4.5rem)}
+.div .ln{position:absolute;top:50%;left:50%;height:1px;width:0;background:var(--line);transform:translateX(-50%);transition:width 1.4s var(--ease)}
+.div.in .ln{width:100%}
+.div svg{width:13px;height:13px;position:relative}
+.div line{stroke:var(--smoke)}
+
+/* ── hero ───────────────────────────────────────────────────────────────── */
+#hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-block:7rem 2.2rem;overflow:hidden}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+/* the raw element is the no-WebGL fallback: same footage, graded in CSS */
+#heroVid{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  opacity:.34;filter:grayscale(.4) contrast(1.15) brightness(.72);
+}
+#hero.gl #heroVid{opacity:0;pointer-events:none}
+/* the room is busy behind the headline, so the copy gets its own floor */
+#hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,7,9,.62) 0%,rgba(7,7,9,.12) 32%,rgba(7,7,9,.72) 72%,rgba(7,7,9,.94) 100%);
+}
+/* narrow screens put the copy over the bright half, so weight the scrim */
+@media(max-width:860px){
+  #hero::after{background:linear-gradient(180deg,rgba(7,7,9,.70) 0%,rgba(7,7,9,.34) 26%,rgba(7,7,9,.88) 58%,rgba(7,7,9,.97) 100%)}
+}
+#hero .wrap{position:relative;z-index:2;width:100%}
+/* keep the headline clear of the pad floating on the right */
+@media(min-width:1000px){.hero-t{max-width:64%}#hero .hero-b>.up:first-child p{max-width:44ch}}
+.hero-t span{display:inline-block;opacity:0;transform:translateY(.4em);filter:blur(10px)}
+.go .hero-t span{animation:heroIn .95s var(--ease) forwards}
+@keyframes heroIn{to{opacity:1;transform:none;filter:blur(0)}}
+.up{opacity:0;transform:translateY(16px)}
+.go .up{animation:upIn .8s var(--ease) forwards}
+@keyframes upIn{to{opacity:1;transform:none}}
+.hero-b{display:grid;gap:1.6rem;margin-top:2.2rem}
+@media(min-width:1000px){
+  .hero-b{grid-template-columns:minmax(0,1fr) auto;gap:2.4rem 3rem;align-items:end}
+  .hero-b .cue{grid-column:1;grid-row:2;align-self:end}
+  .hero-b .est{grid-column:2;grid-row:1/3;align-self:end}
+}
+.est{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:rgba(7,7,9,.45);backdrop-filter:blur(7px);max-width:20rem}
+.est>div{padding:.85rem 1rem;display:flex;flex-direction:column;justify-content:center;gap:.35rem}
+.est>div:first-child{border-right:1px solid var(--line);min-width:6.6rem;align-items:center;text-align:center}
+.est b{font-size:1.55rem;letter-spacing:-.04em;font-weight:600}
+.cue{display:flex;align-items:center;gap:.6rem;opacity:.6}
+.cue i{width:1px;height:2.6rem;background:linear-gradient(var(--ember),transparent);animation:cue 2.4s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%,100%{transform:scaleY(.25);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ── manifesto ──────────────────────────────────────────────────────────── */
+.mani{font-size:clamp(1.5rem,4vw,3.3rem);line-height:1.14;letter-spacing:-.038em;font-weight:600;margin:0;max-width:24ch;color:inherit}
+.mani span{color:rgba(228,226,221,.13);transition:color .5s ease}
+.mani span.lit{color:var(--bone)}
+
+/* ── marquee ────────────────────────────────────────────────────────────── */
+.mq{overflow:hidden;border-block:1px solid var(--line);padding-block:1.1rem}
+.mq-in{display:flex;width:max-content;animation:mq 26s linear infinite}
+.mq-in>div{display:flex;align-items:center;padding-right:2rem}
+.mq-in span{font-size:clamp(2rem,6vw,4.6rem);font-weight:600;letter-spacing:-.04em;text-transform:uppercase;line-height:1}
+.mq-in svg{width:clamp(1.2rem,2.4vw,2rem);height:clamp(1.2rem,2.4vw,2rem);margin-inline:clamp(1.4rem,3.5vw,3.5rem)}
+.mq-in line{stroke:var(--ember)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ── zone cards ─────────────────────────────────────────────────────────── */
+.zwrap{perspective:1400px}
+.zlist{display:flex;gap:1px;background:var(--line);border-block:1px solid var(--line);transform-style:preserve-3d}
+@media(max-width:1099px){
+  .zlist{overflow-x:auto;scroll-snap-type:x mandatory;background:none;border:0;gap:1rem;padding-inline:var(--pad);scrollbar-width:none}
+  .zlist::-webkit-scrollbar{display:none}
+}
+.zcard{
+  position:relative;flex:1 0 auto;min-height:clamp(22rem,52vh,30rem);overflow:hidden;background:var(--ink);
+  opacity:0;transform:translateY(60px) rotateX(14deg);transform-origin:50% 100%;
+  transition:opacity .8s ease,transform 1s var(--ease);
+}
+@media(max-width:1099px){.zcard{width:78vw;max-width:22rem;scroll-snap-align:center;border:1px solid var(--line);border-radius:4px}}
+@media(min-width:1100px){.zcard{flex:1 1 25%;min-width:0}}
+.zlist.in .zcard{opacity:1;transform:none;transition-delay:calc(var(--i)*110ms)}
+.zcard .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34;transform:scale(1.06);transition:opacity .7s ease,transform 1.4s var(--ease);filter:grayscale(.35)}
+.zcard:hover .bg{opacity:.6;transform:scale(1);filter:grayscale(0)}
+.zcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,9,.55),rgba(7,7,9,.2) 40%,rgba(7,7,9,.95))}
+.zcard .zin{position:relative;z-index:2;height:100%;padding:1.5rem 1.35rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem}
+.zcard .ztop{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem}
+.zcard h3{font-size:clamp(1.45rem,2.4vw,1.95rem);letter-spacing:-.04em;margin:0;font-weight:600;line-height:1}
+.zhz{display:flex;align-items:baseline;gap:.35rem}
+.zhz b{font-size:clamp(2.6rem,5.6vw,4.2rem);font-weight:200;letter-spacing:-.06em;line-height:.85;font-variant-numeric:tabular-nums}
+.zbot{display:grid;gap:.7rem}
+.zbot p{font-size:.86rem;line-height:1.4;color:rgba(228,226,221,.72)}
+.zprice{display:flex;align-items:baseline;gap:.4rem;border-top:1px solid var(--line);padding-top:.7rem}
+.zprice b{font-size:1.7rem;font-weight:600;letter-spacing:-.04em}
+.zcard .bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);z-index:3}
+.zcard:hover .bar{transform:scaleX(1)}
+
+/* ── specs ──────────────────────────────────────────────────────────────── */
+.sp{display:grid;gap:2rem}
+@media(min-width:1000px){.sp{grid-template-columns:1fr minmax(0,26rem);gap:3.5rem;align-items:start}}
+.sptabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
+.sptab{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:999px;padding:.5rem .9rem;color:var(--smoke);
+  transition:color .3s,border-color .3s,background .3s;
+}
+.sptab:hover{color:var(--bone);border-color:var(--bone)}
+.sptab[aria-selected="true"]{background:var(--bone);border-color:var(--bone);color:var(--ink)}
+.sprows{display:grid;gap:0}
+.sprow{display:grid;grid-template-columns:6.4rem 1fr;gap:1rem;align-items:baseline;padding-block:.85rem;border-top:1px solid var(--line)}
+.sprow:last-child{border-bottom:1px solid var(--line)}
+.sprow .v{font-size:clamp(1rem,1.5vw,1.25rem);letter-spacing:-.02em}
+.sprow.anim{opacity:0;transform:translateY(12px);animation:upIn .55s var(--ease) forwards;animation-delay:calc(var(--i)*55ms)}
+.spmedia{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:var(--coal)}
+.spmedia>*{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.spmedia>.on{opacity:1}
+.spfoot{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-top:1.6rem}
+
+/* ── cinema ─────────────────────────────────────────────────────────────── */
+.cin{display:grid;gap:2.2rem;align-items:center}
+@media(min-width:1000px){.cin{grid-template-columns:1.1fr .9fr;gap:4rem}}
+.cinbox{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:var(--coal)}
+.cinbox video,.cinbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cinbox .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(228,226,221,.05) 0 1px,transparent 1px 4px);pointer-events:none}
+.cinbox .tag{position:absolute;left:1rem;bottom:1rem;z-index:2}
+.rows{display:grid;margin-top:1.8rem}
+.rows div{display:grid;grid-template-columns:2.2rem 1fr;gap:1rem;align-items:baseline;padding-block:.8rem;border-top:1px solid var(--line)}
+.rows div:last-child{border-bottom:1px solid var(--line)}
+.rows .n{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--hot)}
+.rows p{font-size:.94rem}
+
+/* ── stripe wipe ────────────────────────────────────────────────────────── */
+.wipe{height:100vh;position:relative}
+.wipe-st{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+.wipe-st i{flex:1;background:var(--bone);transform:scaleY(0);transform-origin:bottom;margin-top:-1px}
+
+/* ── prices (light room) ────────────────────────────────────────────────── */
+#prices{background:var(--bone);color:#0B0C0E}
+#prices .lbl{color:#5A5D64}
+#prices p{color:#494C52}
+#prices .div .ln{background:var(--line-d)}
+#prices .div line{stroke:#5A5D64}
+.now{
+  display:inline-flex;align-items:center;gap:.7rem;border:1px solid var(--line-d);border-radius:999px;
+  padding:.55rem 1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:1.6rem;
+}
+.now .dot{width:.5rem;height:.5rem;border-radius:50%;background:#2E7D4F;position:relative;flex:none}
+.now .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.35;animation:ping 2.4s ease-out infinite}
+.now[data-state="peak"] .dot{background:var(--ember)}
+.now[data-state="closed"] .dot{background:#8A8D93}
+@keyframes ping{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.keys{display:grid;gap:1px;background:var(--line-d);border:1px solid var(--line-d);border-radius:4px;overflow:hidden;margin-bottom:2.4rem}
+@media(min-width:720px){.keys{grid-template-columns:1fr 1fr}}
+.keys div{background:var(--bone);padding:1.15rem 1.3rem;display:grid;gap:.4rem}
+.keys b{font-size:1.05rem;letter-spacing:-.025em;font-weight:600}
+.keys span{font-family:var(--mono);font-size:.72rem;color:#494C52;line-height:1.8}
+.tbl{width:100%;overflow-x:auto}
+.tbl table{width:100%;border-collapse:collapse;min-width:34rem;color:#0B0C0E;font-family:var(--disp);font-variant-numeric:tabular-nums}
+.tbl caption{text-align:left;padding-bottom:.8rem}
+.tbl th,.tbl td{text-align:right;padding:.85rem .7rem;border-bottom:1px solid var(--line-d);font-size:.98rem}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl thead th{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:#5A5D64;font-weight:400;border-bottom:1px solid rgba(11,12,14,.32);vertical-align:bottom;line-height:1.6}
+.tbl tbody th{font-weight:600;letter-spacing:-.02em;font-size:1rem}
+.tbl tr.vip{background:rgba(228,50,26,.07)}
+.tbl tr.vip th{color:var(--ember)}
+.off{color:#26714A}
+.tbl td.off b{font-weight:600}
+.bonus{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.3rem}
+.bonus span{font-family:var(--mono);font-size:.68rem;border:1px solid var(--line-d);border-radius:999px;padding:.34rem .7rem}
+.bonus b{color:var(--ember)}
+
+/* ── reviews ────────────────────────────────────────────────────────────── */
+.rate{display:grid;gap:2rem;align-items:center}
+@media(min-width:900px){.rate{grid-template-columns:auto 1fr;gap:4rem}}
+.score{display:flex;align-items:baseline;gap:.5rem}
+.score b{font-size:clamp(4rem,10vw,7rem);font-weight:200;letter-spacing:-.06em;line-height:.8}
+.stars{display:flex;gap:.2rem;margin-top:.9rem}
+.stars svg{width:1rem;height:1rem;fill:var(--hot)}
+.notes{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(min-width:760px){.notes{grid-template-columns:repeat(3,1fr)}}
+.notes blockquote{background:var(--ink);margin:0;padding:1.3rem 1.2rem;display:grid;gap:.9rem}
+.notes p{font-size:.93rem;color:var(--bone);line-height:1.5}
+.notes cite{font-family:var(--mono);font-size:.56rem;letter-spacing:.15em;color:var(--smoke);font-style:normal;text-transform:uppercase}
+
+/* ── contact + map ──────────────────────────────────────────────────────── */
+#contact{background:linear-gradient(180deg,var(--ink),#150907 88%)}
+.ct{display:grid;gap:2.6rem}
+@media(min-width:1000px){.ct{grid-template-columns:1.1fr .9fr;gap:4rem;align-items:end}}
+.acts{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:2rem}
+.info{display:grid}
+.info a,.info div{display:grid;grid-template-columns:6.4rem 1fr;gap:1rem;align-items:baseline;padding-block:.95rem;border-top:1px solid var(--line)}
+.info>:last-child{border-bottom:1px solid var(--line)}
+.info .v{font-size:1rem;letter-spacing:-.01em;transition:color .3s}
+.info a:hover .v{color:var(--hot)}
+
+.mapwrap{position:relative;display:block;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#0A0B0E}
+.mapwrap svg{width:100%;height:auto;display:block}
+.mapwrap .sea{fill:#0C1418}
+.mapwrap .blk{fill:#161920}
+.mapwrap .rd{stroke:#2A2E36;stroke-width:5;fill:none;stroke-linecap:round}
+.mapwrap .rd.main{stroke:#3C424C;stroke-width:8}
+.mapwrap .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease)}
+.mapwrap.in .draw{stroke-dashoffset:0}
+.mapwrap text{font-family:var(--mono);font-size:9px;letter-spacing:.14em;fill:#6E737C;text-transform:uppercase}
+.mapwrap .pin{fill:var(--ember)}
+.mapwrap .ping{fill:none;stroke:var(--ember);transform-origin:center;transform-box:fill-box;animation:mapPing 2.8s ease-out infinite}
+@keyframes mapPing{0%{r:6;opacity:.9}100%{r:34;opacity:0}}
+.mapwrap .ovl{position:absolute;inset:auto 0 0 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:.5rem 1rem;padding:1rem 1.1rem;background:linear-gradient(transparent,rgba(7,7,9,.85))}
+.mapwrap:hover .go-map{color:var(--hot)}
+.go-map{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;gap:.5rem;align-items:center;white-space:nowrap;transition:color .3s}
+.go-map svg{width:10px;height:9px;flex:none}
+.mapwrap .ovl .lbl{white-space:nowrap}
+
+/* ── footer ─────────────────────────────────────────────────────────────── */
+footer{border-top:1px solid var(--line);padding-block:2.4rem 2.8rem}
+.fbig{font-size:clamp(3rem,15vw,13rem);font-weight:600;letter-spacing:-.055em;line-height:.8;margin:0 0 1.6rem;color:rgba(228,226,221,.1)}
+.frow{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:space-between;align-items:center}
+
+/* ── reveal + cursor ────────────────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+#cur,#curd{position:fixed;top:0;left:0;z-index:150;pointer-events:none;border-radius:50%;mix-blend-mode:difference;opacity:0;transition:opacity .3s}
+#cur{width:32px;height:32px;border:1px solid #fff;margin:-16px 0 0 -16px}
+#curd{width:4px;height:4px;background:#fff;margin:-2px 0 0 -2px}
+body.hascur #cur,body.hascur #curd{opacity:1}
+body.hascur.hot #cur{transform:scale(1.5)}
+@media(pointer:coarse){#cur,#curd{display:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .rv,.zcard,.hero-t span,.up{opacity:1;transform:none;filter:none}
+  .pl{display:none}
+}
+</style>
+
+<!-- ══ preloader ══════════════════════════════════════════════════════════ -->
+<div class="pl" id="pl" aria-hidden="true">
+  <div class="pl-belts"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="pl-core">
+    <div class="pl-frame">
+      <svg class="pl-box" preserveAspectRatio="none"><rect x=".5" y=".5" width="99%" height="97%" pathLength="1" rx="2"></rect></svg>
+      <span class="pl-plus tl"><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></span>
+      <span class="pl-plus tr"><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></span>
+      <span class="pl-plus bl"><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></span>
+      <span class="pl-plus br"><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></span>
+      <svg class="pl-mark" viewBox="0 0 400 90">
+        <defs>
+          <clipPath id="wa"><rect class="clipbar" x="0" y="0" width="400" height="90"></rect></clipPath>
+          <clipPath id="wb"><rect class="clipbar b" x="0" y="0" width="400" height="90"></rect></clipPath>
+        </defs>
+        <g clip-path="url(#wa)"><text class="st" x="200" y="52" text-anchor="middle">RESPAWN</text></g>
+        <g clip-path="url(#wb)"><text class="fl" x="200" y="52" text-anchor="middle">RESPAWN</text></g>
+        <text class="fl" x="200" y="76" text-anchor="middle" style="font-size:11px;letter-spacing:.62em;opacity:.5">ESPORTS</text>
+      </svg>
+    </div>
+    <div class="pl-tag lbl">
+      <span style="animation-delay:1.15s">Play</span><span class="dot" style="animation-delay:1.25s">+</span>
+      <span style="animation-delay:1.35s">Watch</span><span class="dot" style="animation-delay:1.45s">+</span>
+      <span style="animation-delay:1.55s">Repeat</span>
+    </div>
+    <div class="pl-count" id="plCount">
+      <span class="reel"><i></i></span><span class="reel"><i></i></span><span class="reel"><i></i></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ header ═════════════════════════════════════════════════════════════ -->
+<header>
+  <div class="wrap hdr">
+    <a href="#hero" class="mark" data-scroll>RESPAWN<small>ESPORTS</small></a>
+    <div class="hdr-r">
+      <button class="pill" id="lang" type="button" aria-label="Language">RU</button>
+      <a class="pill" href="https://wa.me/35797762727" target="_blank" rel="noopener" data-en="Book" data-ru="Бронь">Book</a>
+      <button class="pill burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">
+        <span data-en="Menu" data-ru="Меню">Menu</span><span class="bars"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ menu ═══════════════════════════════════════════════════════════════ -->
+<nav class="menu" id="menu" aria-label="Main">
+  <ul id="menuList">
+    <li style="--i:0"><a class="mlink" href="#zones" data-scroll data-roll data-en="Zones" data-ru="Залы">Zones</a></li>
+    <li style="--i:1"><a class="mlink" href="#specs" data-scroll data-roll data-en="Specs" data-ru="Железо">Specs</a></li>
+    <li style="--i:2"><a class="mlink" href="#cinema" data-scroll data-roll data-en="Cinema" data-ru="Кинозал">Cinema</a></li>
+    <li style="--i:3"><a class="mlink" href="#prices" data-scroll data-roll data-en="Prices" data-ru="Цены">Prices</a></li>
+    <li style="--i:4"><a class="mlink" href="#contact" data-scroll data-roll data-en="Contact" data-ru="Контакты">Contact</a></li>
+  </ul>
+  <div class="menu-foot">
+    <div><span class="lbl" data-en="Phone" data-ru="Телефон">Phone</span><div><a href="tel:+35797762727" data-roll>+357 97 762727</a></div></div>
+    <div><span class="lbl">Telegram</span><div><a href="https://t.me/respawnesportscy" target="_blank" rel="noopener" data-roll>@respawnesportscy</a></div></div>
+    <div><span class="lbl">Instagram</span><div><a href="https://www.instagram.com/respawn.cy/" target="_blank" rel="noopener" data-roll>@respawn.cy</a></div></div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══ hero ═══════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <video id="heroVid" muted playsinline loop preload="auto" data-clip="hero" aria-hidden="true"></video>
+  <div class="wrap">
+    <h1 class="h1 hero-t" id="heroT" data-en="Respawn. Then dominate." data-ru="Респавн. И доминируй."></h1>
+    <div class="hero-b">
+      <div class="up" style="animation-delay:1.05s">
+        <p data-en="Esports club in central Limassol. Four gaming zones, a 130-inch private cinema, and rates that drop in the afternoon." data-ru="Киберспортивный клуб в центре Лимассола. Четыре игровые зоны, приватный кинозал 130 дюймов и дневной тариф дешевле вечернего.">Esports club in central Limassol.</p>
+        <div class="acts" style="margin-top:1.4rem">
+          <a class="cta solid" href="https://wa.me/35797762727" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.7-.9-1.7-.9-2.6 0-.9.5-1.4.7-1.6.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.2-.3.3-.1.6.5.9 1.1 1.6 1.9 2.2.4.2.6.2.8 0l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"></path></svg>
+            <span data-en="Book a seat" data-ru="Забронировать место">Book a seat</span>
+          </a>
+          <a class="cta ghost" href="tel:+35797762727"><span data-en="Call 97 762727" data-ru="Позвонить 97 762727">Call 97 762727</span></a>
+        </div>
+      </div>
+      <div class="up est" style="animation-delay:1.2s">
+        <div><b>4.9</b><span class="lbl">Google</span></div>
+        <div>
+          <span class="lbl" data-en="62 reviews" data-ru="62 отзыва">62 reviews</span>
+          <span class="lbl">Agiou Andreou 160</span>
+        </div>
+      </div>
+      <div class="up cue" style="animation-delay:1.35s"><i></i><span class="lbl" data-en="Scroll" data-ru="Листай">Scroll</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ manifesto ══════════════════════════════════════════════════════════ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <p class="mani" id="mani" data-en="Tournament hardware, a private cinema and a lounge — all under one roof in Limassol." data-ru="Турнирное железо, приватный кинозал и лаунж — всё под одной крышей в Лимассоле."></p>
+  </div>
+  <div class="wrap"><div class="div rv"><span class="ln"></span><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></div></div>
+</section>
+
+<!-- ══ zones ══════════════════════════════════════════════════════════════ -->
+<section class="sec" id="zones" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="lbl" data-en="Zones" data-ru="Залы">Zones</span>
+      <div>
+        <h2 class="h2" data-en="Four rooms. Compare them." data-ru="Четыре зала. Сравни.">Four rooms. Compare them.</h2>
+        <p style="margin-top:1.1rem" data-en="Same standard everywhere, different ceiling. Pick by refresh rate and by what the hour costs you." data-ru="Стандарт везде один, потолок разный. Выбирай по герцовке и по цене часа.">Same standard everywhere, different ceiling.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="zwrap">
+    <div class="zlist" id="zlist">
+      <article class="zcard" style="--i:0">
+        <video class="bg" muted playsinline loop preload="auto" data-clip="comfort"></video>
+        <span class="bar"></span>
+        <div class="zin">
+          <div class="ztop"><h3>COMFORT</h3><span class="lbl" data-en="Everyday" data-ru="Каждый день">Everyday</span></div>
+          <div class="zhz"><b class="cnt" data-count="165">0</b><span class="lbl">Hz</span></div>
+          <div class="zbot">
+            <p>RTX 5060 &middot; i7-14700K &middot; BenQ 27&quot; 2K</p>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b>&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="zcard" style="--i:1">
+        <video class="bg" muted playsinline loop preload="auto" data-clip="bootcamp"></video>
+        <span class="bar"></span>
+        <div class="zin">
+          <div class="ztop"><h3>BOOTCAMP</h3><span class="lbl" data-en="Competitive" data-ru="Соревновательный">Competitive</span></div>
+          <div class="zhz"><b class="cnt" data-count="360">0</b><span class="lbl">Hz</span></div>
+          <div class="zbot">
+            <p>RTX 5070 Ti &middot; i7-14700K &middot; Alienware 27&quot;</p>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b>&euro;4</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="zcard" style="--i:2">
+        <video class="bg" muted playsinline loop preload="auto" data-clip="vip"></video>
+        <span class="bar"></span>
+        <div class="zin">
+          <div class="ztop"><h3>VIP</h3><span class="lbl" data-en="Top tier" data-ru="Топ">Top tier</span></div>
+          <div class="zhz"><b class="cnt" data-count="260">0</b><span class="lbl">Hz</span></div>
+          <div class="zbot">
+            <p>RTX 5070 &middot; i9-14900K &middot; ASUS TUF 27&quot; 2K</p>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b>&euro;8</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="zcard" style="--i:3">
+        <video class="bg" muted playsinline loop preload="auto" data-clip="ps5"></video>
+        <span class="bar"></span>
+        <div class="zin">
+          <div class="ztop"><h3>PS5 PREMIUM</h3><span class="lbl" data-en="Up to 6" data-ru="До 6 человек">Up to 6</span></div>
+          <div class="zhz"><b class="cnt" data-count="130">0</b><span class="lbl">inch</span></div>
+          <div class="zbot">
+            <p>PS5 Pro &middot; BenQ X3100i &middot; Dolby Atmos</p>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b>&euro;7</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ marquee ════════════════════════════════════════════════════════════ -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-in" id="mq"></div>
+</div>
+
+<!-- ══ specs ══════════════════════════════════════════════════════════════ -->
+<section class="sec" id="specs">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="lbl" data-en="Hardware" data-ru="Железо">Hardware</span>
+      <div>
+        <h2 class="h2" data-en="Every seat, spelled out." data-ru="Каждое место — по пунктам.">Every seat, spelled out.</h2>
+        <p style="margin-top:1.1rem" data-en="No mystery builds. This is exactly what sits on the desk in each room." data-ru="Никаких загадочных сборок. Вот ровно то, что стоит на столе в каждом зале.">No mystery builds.</p>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="sptabs" role="tablist" id="sptabs"></div>
+      <div class="sp">
+        <div>
+          <div class="sprows" id="sprows"></div>
+          <div class="spfoot">
+            <span class="lbl" id="spNote"></span>
+            <a class="tbtn" href="#prices" data-scroll data-btn data-en="See the rate" data-ru="Смотреть тариф"></a>
+          </div>
+        </div>
+        <div class="spmedia">
+          <video muted playsinline loop preload="auto" data-clip="comfort"  data-z="0"></video>
+          <video muted playsinline loop preload="auto" data-clip="bootcamp" data-z="1"></video>
+          <video muted playsinline loop preload="auto" data-clip="vip"      data-z="2"></video>
+          <video muted playsinline loop preload="auto" data-clip="ps5"      data-z="3"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ cinema ═════════════════════════════════════════════════════════════ -->
+<section class="sec" id="cinema">
+  <div class="wrap">
+    <div class="cin">
+      <div class="cinbox rv">
+        <video muted playsinline loop preload="auto" data-clip="cinema"></video>
+        <span class="scan"></span>
+        <span class="tag lbl">130&Prime; &middot; Dolby Atmos &middot; PS5 Pro</span>
+      </div>
+      <div class="rv">
+        <span class="lbl" data-en="Cinema &amp; lounge" data-ru="Кинозал и лаунж">Cinema &amp; lounge</span>
+        <h2 class="h2" style="margin-top:1rem" data-en="Book the room. Play it or watch it." data-ru="Забронируй зал. Играй или смотри.">Book the room.</h2>
+        <p style="margin-top:1.1rem" data-en="The PS5 Premium room becomes a private cinema in a minute: a 130-inch screen, a BenQ X3100i projector, Dolby Atmos and six recliners." data-ru="Зал PS5 Premium за минуту превращается в приватный кинотеатр: экран 130 дюймов, проектор BenQ X3100i, Dolby Atmos и шесть реклайнеров.">The PS5 Premium room becomes a private cinema in a minute.</p>
+        <div class="rows">
+          <div><span class="n">01</span><p data-en="A large library of games on PC and PS5 Pro — from esports titles to co-op." data-ru="Большая библиотека игр на PC и PS5 Pro — от киберспорта до кооператива.">Games library</p></div>
+          <div><span class="n">02</span><p data-en="Hookah on request, plus drinks and snacks at the bar." data-ru="Кальян по запросу, напитки и снеки на баре.">Hookah on request</p></div>
+          <div><span class="n">03</span><p data-en="Movie nights, birthdays and team bootcamps — the room books whole." data-ru="Кинопросмотры, дни рождения и командные буткемпы — зал бронируется целиком.">Whole-room booking</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ stripe wipe ════════════════════════════════════════════════════════ -->
+<div class="wipe" id="wipe" aria-hidden="true">
+  <div class="wipe-st"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<!-- ══ prices ═════════════════════════════════════════════════════════════ -->
+<section class="sec" id="prices">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="lbl" data-en="Prices" data-ru="Цены">Prices</span>
+      <div>
+        <span class="now" id="now" data-state="closed"><span class="dot"></span><span id="nowTxt"></span></span>
+        <h2 class="h2" data-en="Two rates. That is the whole system." data-ru="Два тарифа. Вот и вся система.">Two rates.</h2>
+        <p style="margin-top:1.1rem" data-en="Afternoons are cheaper than evenings. Check the clock, then read your price off the table." data-ru="Днём дешевле, чем вечером. Посмотри на часы — и просто найди свою цену в таблице.">Afternoons are cheaper.</p>
+      </div>
+    </div>
+
+    <div class="keys rv">
+      <div>
+        <b data-en="Peak — the busy hours" data-ru="Пик — часы загрузки">Peak</b>
+        <span data-en="Mon-Fri 18:00 &rarr; 03:00&#10;Sat-Sun 13:00 &rarr; 03:00" data-ru="Пн-Пт 18:00 &rarr; 03:00&#10;Сб-Вс 13:00 &rarr; 03:00" style="white-space:pre-line">Mon-Fri 18:00 &rarr; 03:00</span>
+      </div>
+      <div>
+        <b class="off" data-en="Off-peak — the cheap hours" data-ru="Офпик — дешёвые часы">Off-peak</b>
+        <span data-en="Mon-Fri 13:00 &rarr; 18:00" data-ru="Пн-Пт 13:00 &rarr; 18:00">Mon-Fri 13:00 &rarr; 18:00</span>
+      </div>
+    </div>
+
+    <div class="tbl rv">
+      <table>
+        <caption class="lbl" data-en="PC zones" data-ru="Компьютерные залы">PC zones</caption>
+        <thead><tr>
+          <th data-en="Zone" data-ru="Зал">Zone</th>
+          <th data-en="1 h&#10;peak" data-ru="1 ч&#10;пик" style="white-space:pre-line">1 h peak</th>
+          <th data-en="3 h&#10;peak" data-ru="3 ч&#10;пик" style="white-space:pre-line">3 h peak</th>
+          <th data-en="1 h&#10;off-peak" data-ru="1 ч&#10;офпик" style="white-space:pre-line">1 h off</th>
+          <th data-en="3 h&#10;off-peak" data-ru="3 ч&#10;офпик" style="white-space:pre-line">3 h off</th>
+        </tr></thead>
+        <tbody>
+          <tr><th>Comfort</th><td>&euro;5</td><td>&euro;12</td><td class="off"><b>&euro;3</b></td><td class="off"><b>&euro;7</b></td></tr>
+          <tr><th>Bootcamp</th><td>&euro;6</td><td>&euro;15</td><td class="off"><b>&euro;4</b></td><td class="off"><b>&euro;10</b></td></tr>
+          <tr class="vip"><th>VIP</th><td>&euro;10</td><td>&euro;25</td><td class="off"><b>&euro;8</b></td><td class="off"><b>&euro;20</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl rv" style="margin-top:2.8rem">
+      <table>
+        <caption class="lbl" data-en="PS5 Premium — per hour for the whole room" data-ru="PS5 Premium — за час на весь зал">PS5 Premium</caption>
+        <thead><tr>
+          <th data-en="People" data-ru="Человек">People</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+        </tr></thead>
+        <tbody>
+          <tr><th data-en="Peak" data-ru="Пик">Peak</th><td>&euro;15</td><td>&euro;25</td><td>&euro;35</td><td>&euro;40</td><td>&euro;45</td><td>&euro;50</td></tr>
+          <tr><th class="off" data-en="Off-peak" data-ru="Офпик">Off-peak</th><td class="off"><b>&euro;7</b></td><td class="off"><b>&euro;12</b></td><td class="off"><b>&euro;17</b></td><td class="off"><b>&euro;20</b></td><td class="off"><b>&euro;22</b></td><td class="off"><b>&euro;25</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rv" style="margin-top:2.8rem">
+      <span class="lbl" data-en="Top up &amp; get bonus — added instantly, for in-club use" data-ru="Пополни и получи бонус — начисляется сразу, тратится в клубе">Top up &amp; get bonus</span>
+      <div class="bonus">
+        <span>&euro;14&ndash;24 &rarr; <b>+&euro;1</b></span><span>&euro;25&ndash;39 &rarr; <b>+&euro;2</b></span>
+        <span>&euro;40&ndash;59 &rarr; <b>+&euro;3</b></span><span>&euro;60&ndash;99 &rarr; <b>+&euro;5</b></span>
+        <span>&euro;100+ &rarr; <b>+&euro;10</b></span><span>&euro;200+ &rarr; <b>+&euro;25</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ reviews ════════════════════════════════════════════════════════════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="rate rv">
+      <div>
+        <div class="score"><b class="num cnt" data-count="4.9" data-dec="1">0</b><span class="lbl">/ 5</span></div>
+        <div class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
+        </div>
+        <span class="lbl" style="display:block;margin-top:.9rem" data-en="62 Google reviews" data-ru="62 отзыва в Google">62 Google reviews</span>
+      </div>
+      <div class="notes">
+        <blockquote>
+          <p data-en="360 Hz displays and current-gen GPUs in every seat — the hardware teams actually practise on." data-ru="Мониторы 360 Гц и видеокарты текущего поколения на каждом месте — железо, на котором реально тренируются команды.">360 Hz displays in every seat.</p>
+          <cite data-en="Bootcamp zone" data-ru="Зал Bootcamp">Bootcamp zone</cite>
+        </blockquote>
+        <blockquote>
+          <p data-en="A private room for six: 130-inch screen, Dolby Atmos, recliners — games or a film." data-ru="Приватный зал на шестерых: экран 130 дюймов, Dolby Atmos, реклайнеры — игры или кино.">A private room for six.</p>
+          <cite>PS5 Premium</cite>
+        </blockquote>
+        <blockquote>
+          <p data-en="On Agiou Andreou in central Limassol, with afternoon rates from &euro;3 an hour." data-ru="На Agiou Andreou в центре Лимассола, дневной тариф от 3&euro; в час.">Central Limassol.</p>
+          <cite data-en="Location &amp; rates" data-ru="Локация и тариф">Location</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ contact ════════════════════════════════════════════════════════════ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="ct">
+      <div class="rv">
+        <span class="lbl" data-en="Contact" data-ru="Контакты">Contact</span>
+        <h2 class="h2" style="margin-top:1rem;font-size:clamp(2.6rem,7vw,6rem)" data-en="Grab a seat." data-ru="Займи место.">Grab a seat.</h2>
+        <p style="margin-top:1.2rem" data-en="Write or call — we confirm in a couple of minutes and hold the seat for you." data-ru="Напиши или позвони — подтверждаем за пару минут и держим место за тобой.">Write or call.</p>
+        <div class="acts">
+          <a class="cta solid" href="https://wa.me/35797762727" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.7-.9-1.7-.9-2.6 0-.9.5-1.4.7-1.6.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.2-.3.3-.1.6.5.9 1.1 1.6 1.9 2.2.4.2.6.2.8 0l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"></path></svg>
+            <span data-en="Contact us to book" data-ru="Связаться и забронировать">Contact us to book</span>
+          </a>
+          <a class="cta ghost" href="https://t.me/respawnesportscy" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5l18.3-7c.9-.3 1.6.2 1.4 1.4Z"></path></svg>
+            <span>Telegram</span>
+          </a>
+        </div>
+      </div>
+      <div class="rv info">
+        <a href="tel:+35797762727"><span class="lbl" data-en="Phone" data-ru="Телефон">Phone</span><span class="v">+357 97 762727</span></a>
+        <a href="https://t.me/respawnesportscy" target="_blank" rel="noopener"><span class="lbl">Telegram</span><span class="v">@respawnesportscy</span></a>
+        <a href="https://www.instagram.com/respawn.cy/" target="_blank" rel="noopener"><span class="lbl">Instagram</span><span class="v">@respawn.cy</span></a>
+        <a href="https://share.google/aE8bHmE9RSg9hprBq" target="_blank" rel="noopener"><span class="lbl" data-en="Address" data-ru="Адрес">Address</span><span class="v">Agiou Andreou 160, Limassol 3036</span></a>
+        <div><span class="lbl" data-en="Rates run" data-ru="Тарифы" >Rates run</span><span class="v" data-en="Daily from 13:00 until 03:00" data-ru="Ежедневно с 13:00 до 03:00">Daily 13:00&ndash;03:00</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ map ════════════════════════════════════════════════════════════════ -->
+<section class="sec" id="map" style="padding-top:0">
+  <div class="wrap">
+    <a class="mapwrap rv" id="mapwrap" href="https://share.google/aE8bHmE9RSg9hprBq" target="_blank" rel="noopener" aria-label="Open in Maps">
+      <svg viewBox="0 0 900 380" role="img" aria-label="Agiou Andreou 160, Limassol">
+        <rect width="900" height="380" fill="#0A0B0E"></rect>
+        <rect class="sea" y="300" width="900" height="80"></rect>
+        <path class="sea" d="M0 300h900v10H0z" opacity=".5"></path>
+        <g>
+          <rect class="blk" x="60" y="90" width="180" height="110" rx="2"></rect>
+          <rect class="blk" x="270" y="70" width="150" height="130" rx="2"></rect>
+          <rect class="blk" x="450" y="95" width="200" height="105" rx="2"></rect>
+          <rect class="blk" x="680" y="60" width="170" height="140" rx="2"></rect>
+          <rect class="blk" x="90" y="240" width="210" height="35" rx="2"></rect>
+          <rect class="blk" x="330" y="240" width="240" height="35" rx="2"></rect>
+          <rect class="blk" x="600" y="240" width="230" height="35" rx="2"></rect>
+        </g>
+        <path class="rd main draw" pathLength="1" d="M0 222H900"></path>
+        <path class="rd draw" pathLength="1" d="M0 290H900"></path>
+        <path class="rd draw" pathLength="1" d="M0 45H900"></path>
+        <path class="rd draw" pathLength="1" d="M252 0V300"></path>
+        <path class="rd draw" pathLength="1" d="M434 0V300"></path>
+        <path class="rd draw" pathLength="1" d="M664 0V300"></path>
+        <text x="16" y="214">Agiou Andreou</text>
+        <text x="16" y="283">Seafront promenade</text>
+        <text x="16" y="345" fill="#4A525C">Mediterranean</text>
+        <circle class="ping" cx="520" cy="222" r="6"></circle>
+        <circle class="pin" cx="520" cy="222" r="6"></circle>
+        <circle cx="520" cy="222" r="12" fill="none" stroke="#E4321A" stroke-width="1" opacity=".5"></circle>
+        <text x="540" y="212" fill="#E4E2DD">Respawn &mdash; 160</text>
+      </svg>
+      <span class="ovl">
+        <span class="lbl" style="color:#E4E2DD">Agiou Andreou 160 &middot; Limassol 3036</span>
+        <span class="go-map"><span data-en="Open in Maps" data-ru="Открыть в картах">Open in Maps</span>
+          <svg width="10" height="9" viewBox="0 0 10 9" fill="none"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z" fill="currentColor"></path></svg>
+        </span>
+      </span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fbig">RESPAWN</p>
+    <div class="frow">
+      <span class="lbl">Agiou Andreou 160 &middot; Limassol &middot; Cyprus</span>
+      <span class="lbl">+357 97 762727</span>
+      <span class="lbl">&copy; 2026 Respawn Esports</span>
+    </div>
+  </div>
+</footer>
+
+<div id="cur" aria-hidden="true"></div><div id="curd" aria-hidden="true"></div>
+
+<script>
+(function(){
+"use strict";
+var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var $  = function(s,r){return (r||document).querySelector(s);};
+var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+/* ── content model ──────────────────────────────────────────────────────── */
+var KEY = {
+  cpu:{en:"CPU",ru:"CPU"}, gpu:{en:"GPU",ru:"GPU"},
+  scr:{en:"Display",ru:"Монитор"}, mou:{en:"Mouse",ru:"Мышь"},
+  kbd:{en:"Keyboard",ru:"Клавиатура"}, aud:{en:"Audio",ru:"Звук"},
+  con:{en:"Console",ru:"Консоль"}, prj:{en:"Projector",ru:"Проектор"},
+  sze:{en:"Screen",ru:"Экран"}, sea:{en:"Seating",ru:"Кресла"}
+};
+var ZONES = [
+  {n:"COMFORT", note:{en:"From €3 / hour off-peak",ru:"От 3€ / час в офпик"}, rows:[
+    ["cpu","Intel i7-14700K"],["gpu","NVIDIA RTX 5060"],["scr","BenQ 27″ 2K 165 Hz"],
+    ["mou","ASUS TUF M4 Air"],["kbd","Logitech G213"],["aud","Logitech G432"]]},
+  {n:"BOOTCAMP", note:{en:"From €4 / hour off-peak",ru:"От 4€ / час в офпик"}, rows:[
+    ["cpu","Intel i7-14700K"],["gpu","NVIDIA RTX 5070 Ti"],["scr","Alienware 27″ FullHD 360 Hz"],
+    ["mou","Logitech G403 HERO"],["kbd","Logitech Pro X TKL"],["aud","Logitech G Pro X"]]},
+  {n:"VIP", note:{en:"From €8 / hour off-peak",ru:"От 8€ / час в офпик"}, rows:[
+    ["cpu","Intel i9-14900K"],["gpu","NVIDIA RTX 5070"],["scr","ASUS TUF 27″ 2K 260 Hz"],
+    ["mou","Logitech G Pro X Superlight"],["kbd","Logitech G915 X Lightspeed"],["aud","Logitech G Pro X Lightspeed"]]},
+  {n:"PS5 PREMIUM", note:{en:"From €7 / hour, 1 person",ru:"От 7€ / час, 1 человек"}, rows:[
+    ["con","PlayStation 5 Pro"],["prj","BenQ X3100i"],["sze","130 inches"],
+    ["sea",{en:"6 recliners",ru:"6 реклайнеров"}],["aud","Samsung HW-Q990D Dolby Atmos"],
+    ["scr",{en:"Movie nights too",ru:"И кинопоказы"}]]}
+];
+
+var lang = "en";
+function t(v){ return (v && typeof v === "object") ? (v[lang] || v.en) : v; }
+
+/* Each loop is inlined once here and handed to every <video data-clip> that
+   asks for it. Writing the data URI into the markup twice would double its
+   weight in the file. */
+var CLIPS = {
+  hero:     "{{CLIP:hero}}",
+  comfort:  "{{CLIP:zone-comfort}}",
+  bootcamp: "{{CLIP:zone-bootcamp}}",
+  vip:      "{{CLIP:zone-vip}}",
+  ps5:      "{{CLIP:zone-ps5}}",
+  cinema:   "{{CLIP:cinema}}"
+};
+$$("video[data-clip]").forEach(function(v){
+  var src = CLIPS[v.getAttribute("data-clip")];
+  if (src) v.src = src;
+});
+
+/* ── letter-roll links ──────────────────────────────────────────────────── */
+function roll(el, text){
+  var mk = function(cls){
+    var w = document.createElement("span");
+    w.className = "lay " + cls;
+    text.split("").forEach(function(ch,i){
+      var b = document.createElement("b");
+      b.textContent = ch;
+      b.style.setProperty("--i", i);
+      w.appendChild(b);
+    });
+    return w;
+  };
+  el.textContent = "";
+  var box = document.createElement("span");
+  box.className = "nl";
+  box.appendChild(mk("or"));
+  box.appendChild(mk("cl"));
+  el.appendChild(box);
+}
+var ARROW = '<svg viewBox="0 0 10 9"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg>';
+function tbtn(el, text){
+  var w = '<span class="w">' + text.split("").map(function(c,i){
+    return '<b style="--i:' + i + '">' + (c === " " ? "&nbsp;" : c) + "</b>";
+  }).join("") + "</span>";
+  el.innerHTML = w +
+    '<span class="ar r">' + ARROW + "</span>" +
+    '<span class="ar l">' + ARROW + "</span>" +
+    '<span class="u"><i class="ur"></i><i class="ul"></i></span>';
+}
+
+/* ── i18n ───────────────────────────────────────────────────────────────── */
+function applyLang(){
+  $$("[data-en]").forEach(function(el){
+    var v = el.getAttribute("data-" + lang);
+    if (v === null) return;
+    if (el.hasAttribute("data-roll")) roll(el, v);
+    else if (el.hasAttribute("data-btn")) tbtn(el, v);
+    else el.innerHTML = v;
+  });
+  $$("[data-roll]:not([data-en])").forEach(function(el){
+    if (!el.querySelector(".nl")) roll(el, el.textContent.trim());
+  });
+  $("#lang").textContent = lang === "en" ? "RU" : "EN";
+  document.documentElement.lang = lang;
+  splitHero();
+  splitMani();
+  buildSpecs(active);
+  clock();
+}
+$("#lang").addEventListener("click", function(){
+  lang = lang === "en" ? "ru" : "en";
+  applyLang();
+});
+
+/* ── hero + manifesto text splitting ────────────────────────────────────── */
+var heroT = $("#heroT"), mani = $("#mani");
+function splitHero(){
+  var words = (heroT.getAttribute("data-" + lang) || "").split(" ");
+  heroT.textContent = "";
+  words.forEach(function(w,i){
+    var s = document.createElement("span");
+    s.textContent = w;
+    s.style.animationDelay = (0.15 + i * 0.13) + "s";
+    heroT.appendChild(s);
+    if (i < words.length - 1) heroT.appendChild(document.createTextNode(" "));
+  });
+}
+function splitMani(){
+  var words = (mani.getAttribute("data-" + lang) || "").split(" ");
+  mani.textContent = "";
+  words.forEach(function(w,i){
+    var s = document.createElement("span");
+    s.textContent = w + (i < words.length - 1 ? " " : "");
+    mani.appendChild(s);
+  });
+}
+function litMani(){
+  var sp = mani.querySelectorAll("span");
+  if (!sp.length) return;
+  var r = mani.getBoundingClientRect();
+  var p = (innerHeight * 0.8 - r.top) / (r.height + innerHeight * 0.3);
+  p = Math.max(0, Math.min(1, p));
+  var n = Math.round(p * sp.length);
+  for (var i = 0; i < sp.length; i++) sp[i].classList.toggle("lit", i < n);
+}
+
+/* ── marquee ────────────────────────────────────────────────────────────── */
+(function(){
+  var plus = '<svg viewBox="0 0 40 40"><line x1="20" y1="0" x2="20" y2="40"/><line x1="40" y1="20" x2="0" y2="20"/></svg>';
+  var unit = '<div><span>Play</span>' + plus + '<span>Watch</span>' + plus + '<span>Repeat</span>' + plus + "</div>";
+  $("#mq").innerHTML = unit + unit + unit + unit;
+})();
+
+/* ── specs ──────────────────────────────────────────────────────────────── */
+var active = 0, tabs = $("#sptabs"), rowsBox = $("#sprows"), media = $$(".spmedia > *");
+ZONES.forEach(function(z,i){
+  var b = document.createElement("button");
+  b.className = "sptab";
+  b.type = "button";
+  b.setAttribute("role", "tab");
+  b.textContent = z.n;
+  b.addEventListener("click", function(){ buildSpecs(i, true); });
+  tabs.appendChild(b);
+});
+function buildSpecs(i, animate){
+  active = i;
+  var z = ZONES[i];
+  $$(".sptab", tabs).forEach(function(b,k){ b.setAttribute("aria-selected", k === i ? "true" : "false"); });
+  rowsBox.innerHTML = "";
+  z.rows.forEach(function(r,k){
+    var row = document.createElement("div");
+    row.className = "sprow" + (animate && !RM ? " anim" : "");
+    row.style.setProperty("--i", k);
+    row.innerHTML = '<span class="lbl">' + t(KEY[r[0]]) + '</span><span class="v"></span>';
+    row.lastChild.textContent = t(r[1]);
+    rowsBox.appendChild(row);
+  });
+  $("#spNote").textContent = t(z.note);
+  media.forEach(function(m,k){
+    var on = k === i;
+    m.classList.toggle("on", on);
+    if (m.tagName === "VIDEO"){ if (on && !RM) m.play().catch(function(){}); else m.pause(); }
+  });
+}
+
+/* ── counters ───────────────────────────────────────────────────────────── */
+function countUp(el){
+  var target = parseFloat(el.getAttribute("data-count"));
+  var dec = parseInt(el.getAttribute("data-dec") || "0", 10);
+  if (RM){ el.textContent = target.toFixed(dec); return; }
+  var t0 = performance.now(), dur = 1400;
+  (function step(now){
+    var p = Math.min(1, (now - t0) / dur);
+    var e = 1 - Math.pow(1 - p, 3);
+    el.textContent = (target * e).toFixed(dec);
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ── reveals ────────────────────────────────────────────────────────────── */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if (!e.isIntersecting) return;
+    e.target.classList.add("in");
+    $$(".cnt", e.target).forEach(countUp);
+    io.unobserve(e.target);
+  });
+}, {threshold:.15});
+$$(".rv, .div, #zlist, #mapwrap").forEach(function(el){ io.observe(el); });
+
+/* videos only run while on screen */
+var vio = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    var v = e.target;
+    if (v.closest(".spmedia") && !v.classList.contains("on")) return;
+    if (e.isIntersecting && !RM) v.play().catch(function(){}); else v.pause();
+  });
+}, {threshold:.2});
+$$("video[data-clip]").forEach(function(v){ vio.observe(v); });
+
+/* ── menu ───────────────────────────────────────────────────────────────── */
+var burger = $("#burger");
+burger.addEventListener("click", function(){
+  var open = document.body.classList.toggle("is-open");
+  document.documentElement.classList.toggle("lock", open);
+  burger.setAttribute("aria-expanded", open ? "true" : "false");
+});
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape" && document.body.classList.contains("is-open")) burger.click();
+});
+$$("[data-scroll]").forEach(function(a){
+  a.addEventListener("click", function(e){
+    var tgt = document.querySelector(a.getAttribute("href"));
+    if (!tgt) return;
+    e.preventDefault();
+    if (document.body.classList.contains("is-open")) burger.click();
+    setTimeout(function(){
+      tgt.scrollIntoView({behavior: RM ? "auto" : "smooth", block:"start"});
+    }, 120);
+  });
+});
+
+/* ── stripe wipe ────────────────────────────────────────────────────────── */
+var wipe = $("#wipe"), stripes = $$("#wipe i");
+function drawWipe(){
+  var r = wipe.getBoundingClientRect();
+  var p = Math.max(0, Math.min(1, -r.top / (r.height * 0.75)));
+  stripes.forEach(function(s,i){
+    var v = Math.max(0, Math.min(1, (p - i * 0.06) / 0.55));
+    s.style.transform = "scaleY(" + v + ")";
+  });
+}
+
+/* ── peak / off-peak clock ──────────────────────────────────────────────── */
+var NOW = {
+  peak:{en:"Peak rate right now", ru:"Сейчас пик"},
+  off:{en:"Off-peak right now — cheapest hours", ru:"Сейчас офпик — самые дешёвые часы"},
+  shut:{en:"Rates start at 13:00", ru:"Тарифы начинаются с 13:00"}
+};
+function clock(){
+  var f, h, d;
+  try {
+    f = new Intl.DateTimeFormat("en-GB", {timeZone:"Asia/Nicosia", hour:"numeric", weekday:"short", hour12:false});
+    var parts = {};
+    f.formatToParts(new Date()).forEach(function(p){ parts[p.type] = p.value; });
+    h = parseInt(parts.hour, 10);
+    d = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(parts.weekday);
+  } catch (err) {
+    var n = new Date(); h = n.getHours(); d = n.getDay();
+  }
+  var state;
+  if (h < 3) state = "peak";                       // the 00:00-03:00 tail is peak every night
+  else if (h < 13) state = "closed";               // no rate exists before 13:00
+  else if (h < 18) state = (d === 0 || d === 6) ? "peak" : "off";
+  else state = "peak";
+  var box = $("#now");
+  box.setAttribute("data-state", state === "off" ? "off" : state);
+  $("#nowTxt").textContent = t(state === "peak" ? NOW.peak : state === "off" ? NOW.off : NOW.shut);
+}
+
+/* ── cursor ─────────────────────────────────────────────────────────────── */
+(function(){
+  if (!window.matchMedia("(pointer:fine)").matches) return;
+  var c = $("#cur"), dt = $("#curd"), cx = 0, cy = 0, tx = 0, ty = 0;
+  addEventListener("pointermove", function(e){
+    tx = e.clientX; ty = e.clientY;
+    dt.style.transform = "translate(" + tx + "px," + ty + "px)";
+    document.body.classList.add("hascur");
+  }, {passive:true});
+  addEventListener("pointerover", function(e){
+    document.body.classList.toggle("hot", !!(e.target.closest && e.target.closest("a,button")));
+  }, {passive:true});
+  (function loop(){
+    cx += (tx - cx) * .16; cy += (ty - cy) * .16;
+    c.style.transform = "translate(" + cx + "px," + cy + "px)";
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ── hero shader ────────────────────────────────────────────────────────── */
+function shader(){
+  var cv = $("#gl"), vid = $("#heroVid");
+  var gl = null;
+  try { gl = cv.getContext("webgl", {alpha:false, antialias:false, powerPreference:"low-power"}); } catch (e) {}
+  function bail(){ cv.remove(); }   /* the <video> underneath is the fallback */
+  if (!gl || RM) return bail();
+  $("#hero").classList.add("gl");
+
+  /* the wordmark, rasterised so the dot field can spell it out */
+  function logo(w){
+    var c = document.createElement("canvas");
+    c.width = w; c.height = Math.round(w * 0.34);
+    var x = c.getContext("2d");
+    x.fillStyle = "#000"; x.fillRect(0, 0, c.width, c.height);
+    x.fillStyle = "#fff";
+    x.textAlign = "center"; x.textBaseline = "middle";
+    x.font = '600 ' + Math.round(c.width * 0.155) + 'px Manrope, Helvetica, Arial, sans-serif';
+    x.letterSpacing = Math.round(c.width * 0.012) + "px";
+    x.fillText("RESPAWN", c.width / 2, c.height * 0.44);
+    x.font = '400 ' + Math.round(c.width * 0.031) + 'px Manrope, Helvetica, Arial, sans-serif';
+    x.letterSpacing = Math.round(c.width * 0.026) + "px";
+    x.fillText("ESPORTS", c.width / 2, c.height * 0.72);
+    return c;
+  }
+
+  var VS = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
+  var FS = [
+  "precision highp float;",
+  "uniform sampler2D uFeed,uLogo;",
+  "uniform vec2 uRes,uPtr;",
+  "uniform float uTime,uIntro,uProg,uImgA;",
+  "float h21(vec2 p){p=fract(p*vec2(123.34,345.45));p+=dot(p,p+34.345);return fract(p.x*p.y);}",
+  "float lum(vec3 c){return dot(c,vec3(0.30,0.59,0.11));}",
+  "void main(){",
+  "  vec2 uv=gl_FragCoord.xy/uRes;",
+  "  float sA=uRes.x/uRes.y;",
+  /* cover-fit the footage, then drift it slowly so the frame never sits still */
+  "  vec2 fuv = sA>uImgA ? vec2(uv.x,0.5+(uv.y-0.5)*(uImgA/sA))",
+  "                      : vec2(0.5+(uv.x-0.5)*(sA/uImgA),uv.y);",
+  "  float z=1.0+0.05*sin(uTime*0.11);",
+  "  fuv=(fuv-0.5)/z+0.5+vec2(sin(uTime*0.07)*0.012,cos(uTime*0.09)*0.010)+uPtr*0.012;",
+  "  vec3 feed=texture2D(uFeed,fuv).rgb;",
+  /* five taps stand in for a depth map: a blurred read of where the light is */
+  "  float e=0.012;",
+  "  float depth=lum(feed)*0.4",
+  "    +lum(texture2D(uFeed,fuv+vec2(e,0.0)).rgb)*0.15",
+  "    +lum(texture2D(uFeed,fuv-vec2(e,0.0)).rgb)*0.15",
+  "    +lum(texture2D(uFeed,fuv+vec2(0.0,e)).rgb)*0.15",
+  "    +lum(texture2D(uFeed,fuv-vec2(0.0,e)).rgb)*0.15;",
+  "  depth=pow(clamp(depth*1.6,0.0,1.0),0.85);",
+  /* dot field, square in screen space so the grid never stretches */
+  "  vec2 st=vec2(uv.x*sA,uv.y);",
+  "  vec2 tile=vec2(104.0);",
+  "  vec2 g=mod(st*tile,2.0)-1.0;",
+  "  float bright=h21(floor(st*tile*0.5));",
+  "  float dt=smoothstep(0.55,0.45,length(g))*(0.35+0.65*bright);",
+  /* band A: the sweep reads the light in the footage and traces its edges */
+  "  float scan=1.0-smoothstep(0.0,0.042,abs(depth-uProg));",
+  "  float ambient=0.045*smoothstep(0.22,0.75,depth);",
+  /* band B: the same dots spell the wordmark while the intro runs */
+  "  vec2 wuv=(uv-vec2(0.5,0.5))/vec2(min(0.80,0.95/sA),0.30)+0.5;",
+  "  float win=step(0.0,wuv.x)*step(wuv.x,1.0)*step(0.0,wuv.y)*step(wuv.y,1.0);",
+  "  float lg=texture2D(uLogo,wuv).r*win;",
+  "  float wipeL=smoothstep(0.0,0.35,uProg*1.4-wuv.x*0.5);",
+  "  float mask=mix(scan+ambient,lg*wipeL,uIntro);",
+  /* grade: drain the colour out of the footage and push it into ember */
+  "  float l=lum(feed);",
+  "  vec3 graded=mix(vec3(l),feed,0.30);",
+  "  graded=graded*vec3(1.05,0.72,0.60)+vec3(0.06,0.014,0.0)*pow(l,3.0)*3.5;",
+  "  float side=smoothstep(0.02,0.72,uv.x);",
+  "  vec3 col=vec3(0.018,0.020,0.025)+graded*(0.11+0.30*side)*(1.0-uIntro*0.75);",
+  /* two slow light streaks so the empty half of the frame still moves */
+  "  float s1=smoothstep(0.055,0.0,abs(uv.y-0.30-sin(uv.x*2.1+uTime*0.20)*0.10));",
+  "  float s2=smoothstep(0.040,0.0,abs(uv.y-0.72-sin(uv.x*1.5-uTime*0.15)*0.08));",
+  "  col+=vec3(0.85,0.20,0.07)*(s1*0.030+s2*0.022);",
+  "  vec3 ember=vec3(1.0,0.20,0.07)*dt*mask;",
+  "  col=1.0-(1.0-col)*(1.0-ember*1.15);",              /* screen blend */
+  "  col+=vec3(1.0,0.55,0.30)*pow(dt*mask,2.0)*0.40;", /* stand-in bloom */
+  "  float line=smoothstep(0.004,0.0,abs(uv.y-fract(uTime*0.09)));",
+  "  col+=vec3(0.9,0.18,0.08)*line*0.09;",
+  "  col*=mix(0.34,1.02,smoothstep(1.30,0.10,length((uv-vec2(0.55,0.48))*vec2(sA,1.0))));",
+  "  col+=(h21(uv*uRes.xy+uTime)-0.5)*0.022;",         /* grain */
+  "  gl_FragColor=vec4(col,1.0);",
+  "}"].join("\n");
+
+  function sh(t, s){
+    var o = gl.createShader(t);
+    gl.shaderSource(o, s); gl.compileShader(o);
+    if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o));
+    return o;
+  }
+  var prog;
+  try {
+    prog = gl.createProgram();
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS));
+    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  } catch (e){ return bail(); }
+  gl.useProgram(prog);
+
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(prog, "p");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  function tex(src, unit){
+    var t = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+    return t;
+  }
+
+  var U = {};
+  ["uRes","uPtr","uTime","uIntro","uProg","uImgA"]
+    .forEach(function(n){ U[n] = gl.getUniformLocation(prog, n); });
+
+  /* one black pixel until the first video frame decodes */
+  var seed = document.createElement("canvas");
+  seed.width = seed.height = 2;
+  var feedTex = tex(seed, 0);   gl.uniform1i(gl.getUniformLocation(prog, "uFeed"), 0);
+  var logoTex = tex(logo(1024), 2); gl.uniform1i(gl.getUniformLocation(prog, "uLogo"), 2);
+  gl.uniform1f(U.uImgA, 16 / 9);
+
+  /* the wordmark needs the webfont; redraw once it lands */
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      gl.activeTexture(gl.TEXTURE2);
+      gl.bindTexture(gl.TEXTURE_2D, logoTex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, logo(1024));
+    }).catch(function(){});
+  }
+
+  function size(){
+    var dpr = Math.min(devicePixelRatio || 1, 1.75);
+    cv.width  = Math.max(1, Math.floor(cv.clientWidth  * dpr));
+    cv.height = Math.max(1, Math.floor(cv.clientHeight * dpr));
+    gl.viewport(0, 0, cv.width, cv.height);
+    gl.uniform2f(U.uRes, cv.width, cv.height);
+  }
+  addEventListener("resize", size);
+  size();
+
+  var ptr = [0,0], ptrT = [0,0];
+  addEventListener("pointermove", function(e){
+    ptrT[0] = (e.clientX / innerWidth  - 0.5) * 2;
+    ptrT[1] = (0.5 - e.clientY / innerHeight) * 2;
+  }, {passive:true});
+
+  var vis = true;
+  new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }, {threshold:0}).observe(cv);
+
+  var INTRO = 2.9, t0 = performance.now(), lastT = -1;
+  (function frame(now){
+    requestAnimationFrame(frame);
+    if (!vis) return;
+    var s = (now - t0) / 1000;
+    /* push the current video frame up, but only when it has actually moved */
+    if (vid.readyState >= 2 && vid.currentTime !== lastT){
+      lastT = vid.currentTime;
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, feedTex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, vid);
+      if (vid.videoWidth) gl.uniform1f(U.uImgA, vid.videoWidth / vid.videoHeight);
+    }
+    ptr[0] += (ptrT[0] - ptr[0]) * 0.05;
+    ptr[1] += (ptrT[1] - ptr[1]) * 0.05;
+    /* intro: dots spell the wordmark, then dissolve into the room */
+    var intro = s < INTRO ? Math.min(1, (INTRO - s) / 0.9) : 0;
+    var prog  = s < INTRO ? Math.min(1, s / (INTRO - 0.6))
+                          : (Math.sin((s - INTRO) * 0.45) * 0.5 + 0.5);
+    gl.uniform2f(U.uPtr, ptr[0], ptr[1]);
+    gl.uniform1f(U.uTime, s);
+    gl.uniform1f(U.uIntro, intro);
+    gl.uniform1f(U.uProg, prog);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  })(t0);
+}
+
+/* ── preloader ──────────────────────────────────────────────────────────── */
+function intro(){
+  var pl = $("#pl");
+  var seen = false;
+  try { seen = sessionStorage.getItem("respawn.intro") === "1"; } catch (e) {}
+  function start(){
+    document.body.classList.add("go");
+    var hv = $("#heroVid");
+    if (hv && !RM) hv.play().catch(function(){});
+    shader();   /* seeds black and picks the footage up as it decodes */
+  }
+  if (seen || RM){
+    pl.classList.add("done");
+    start();
+    return;
+  }
+  document.documentElement.classList.add("lock");
+
+  /* three reels, each a 0-9 strip we slide */
+  var reels = $$("#plCount i");
+  reels.forEach(function(r){
+    r.textContent = "";
+    for (var i = 0; i < 11; i++) r.appendChild(document.createTextNode(String(i % 10) + "\n"));
+    r.innerHTML = r.textContent.trim().split("\n").join("<br>");
+  });
+  var t0 = performance.now(), DUR = 2200;
+  (function tick(now){
+    var p = Math.min(1, (now - t0) / DUR);
+    var v = (1 - Math.pow(1 - p, 3)) * 100;
+    var digits = [Math.floor(v / 100), Math.floor(v / 10) % 10, v % 10];
+    reels.forEach(function(r,i){
+      r.style.transform = "translateY(" + (-digits[i] * (100 / 11)) + "%)";
+    });
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+
+  /* a few plus glyphs drifting across while it loads */
+  for (var i = 0; i < 5; i++){
+    (function(k){
+      var f = document.createElement("span");
+      f.className = "fly";
+      f.innerHTML = '<svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"/><line x1="0" y1="6.5" x2="13" y2="6.5"/></svg>';
+      f.style.left = (8 + Math.random() * 84) + "vw";
+      f.style.top = (12 + Math.random() * 76) + "vh";
+      f.animate(
+        [{opacity:0, transform:"translateY(30px) rotate(0deg)"},
+         {opacity:.9, offset:.4},
+         {opacity:0, transform:"translateY(-70px) rotate(90deg)"}],
+        {duration:2400, delay:300 + k * 260, easing:"cubic-bezier(.16,1,.3,1)"}
+      );
+      document.body.appendChild(f);
+      setTimeout(function(){ f.remove(); }, 3400 + k * 260);
+    })(i);
+  }
+
+  setTimeout(function(){
+    pl.classList.add("out");
+    $$("#pl .pl-belts i").forEach(function(b,i){ b.style.transitionDelay = (i * 40) + "ms"; });
+    document.documentElement.classList.remove("lock");
+    start();
+    try { sessionStorage.setItem("respawn.intro", "1"); } catch (e) {}
+    setTimeout(function(){ pl.classList.add("done"); }, 1500);
+  }, 2700);
+}
+
+/* ── boot ───────────────────────────────────────────────────────────────── */
+applyLang();
+buildSpecs(0);
+clock();
+setInterval(clock, 60000);
+intro();
+
+var raf = false;
+addEventListener("scroll", function(){
+  if (raf) return;
+  raf = true;
+  requestAnimationFrame(function(){ litMani(); drawWipe(); raf = false; });
+}, {passive:true});
+litMani();
+drawWipe();
+})();
+</script>
