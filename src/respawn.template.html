@@ -186,11 +186,13 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1.05rem;mix
 /* the room is busy behind the headline, so the copy gets its own floor */
 #hero::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(7,7,9,.62) 0%,rgba(7,7,9,.12) 32%,rgba(7,7,9,.72) 72%,rgba(7,7,9,.94) 100%);
+  background:
+    linear-gradient(100deg,rgba(6,6,8,.94) 0%,rgba(6,6,8,.86) 26%,rgba(6,6,8,.42) 52%,rgba(6,6,8,0) 74%),
+    linear-gradient(180deg,rgba(6,6,8,.72) 0%,rgba(6,6,8,0) 26%,rgba(6,6,8,0) 58%,rgba(6,6,8,.88) 100%);
 }
 /* narrow screens put the copy over the bright half, so weight the scrim */
 @media(max-width:860px){
-  #hero::after{background:linear-gradient(180deg,rgba(7,7,9,.70) 0%,rgba(7,7,9,.34) 26%,rgba(7,7,9,.88) 58%,rgba(7,7,9,.97) 100%)}
+  #hero::after{background:linear-gradient(180deg,rgba(6,6,8,.72) 0%,rgba(6,6,8,.30) 22%,rgba(6,6,8,.86) 52%,rgba(6,6,8,.97) 100%)}
 }
 #hero .wrap{position:relative;z-index:2;width:100%}
 /* keep the headline clear of the pad floating on the right */
@@ -481,10 +483,10 @@ body.hascur.hot #cur{transform:scale(1.5)}
   <canvas id="gl" aria-hidden="true"></canvas>
   <video id="heroVid" muted playsinline loop preload="auto" data-clip="hero" aria-hidden="true"></video>
   <div class="wrap">
-    <h1 class="h1 hero-t" id="heroT" data-en="Respawn. Then dominate." data-ru="Респавн. И доминируй."></h1>
+    <h1 class="h1 hero-t" id="heroT" data-en="Pick a game. Take a seat." data-ru="Выбирай игру. Занимай место."></h1>
     <div class="hero-b">
       <div class="up" style="animation-delay:1.05s">
-        <p data-en="Esports club in central Limassol. Four gaming zones, a 130-inch private cinema, and rates that drop in the afternoon." data-ru="Киберспортивный клуб в центре Лимассола. Четыре игровые зоны, приватный кинозал 130 дюймов и дневной тариф дешевле вечернего.">Esports club in central Limassol.</p>
+        <p data-en="Four gaming zones, a big PC and PS5 library, and a 130-inch private cinema — in central Limassol. Afternoons cost less." data-ru="Четыре игровые зоны, большая библиотека игр на PC и PS5 и приватный кинозал 130 дюймов — в центре Лимассола. Днём дешевле.">Four gaming zones in central Limassol.</p>
         <div class="acts" style="margin-top:1.4rem">
           <a class="cta solid" href="https://wa.me/35797762727" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.7-.9-1.7-.9-2.6 0-.9.5-1.4.7-1.6.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.2-.3.3-.1.6.5.9 1.1 1.6 1.9 2.2.4.2.6.2.8 0l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"></path></svg>
@@ -1210,8 +1212,8 @@ function shader(){
   "  float bright=h21(floor(st*tile*0.5));",
   "  float dt=smoothstep(0.55,0.45,length(g))*(0.35+0.65*bright);",
   /* band A: the sweep reads the light in the footage and traces its edges */
-  "  float scan=1.0-smoothstep(0.0,0.042,abs(depth-uProg));",
-  "  float ambient=0.045*smoothstep(0.22,0.75,depth);",
+  "  float scan=1.0-smoothstep(0.0,0.028,abs(depth-uProg));",
+  "  float ambient=0.016*smoothstep(0.35,0.90,depth);",
   /* band B: the same dots spell the wordmark while the intro runs */
   "  vec2 wuv=(uv-vec2(0.5,0.5))/vec2(min(0.80,0.95/sA),0.30)+0.5;",
   "  float win=step(0.0,wuv.x)*step(wuv.x,1.0)*step(0.0,wuv.y)*step(wuv.y,1.0);",
@@ -1220,20 +1222,20 @@ function shader(){
   "  float mask=mix(scan+ambient,lg*wipeL,uIntro);",
   /* grade: drain the colour out of the footage and push it into ember */
   "  float l=lum(feed);",
-  "  vec3 graded=mix(vec3(l),feed,0.34);",
-  "  graded=graded*vec3(1.20,0.74,0.52)+vec3(0.08,0.018,0.0)*pow(l,3.0)*3.5;",
-  "  float side=smoothstep(0.05,0.62,uv.x);",
-  "  vec3 col=vec3(0.018,0.020,0.025)+graded*(0.13+0.58*side)*(1.0-uIntro*0.75);",
+  "  vec3 graded=mix(vec3(l),feed,0.78);",
+  "  graded=graded*vec3(1.14,0.94,0.86)+vec3(0.09,0.022,0.0)*pow(l,3.0)*2.2;",
+  "  float side=smoothstep(0.10,0.58,uv.x);",
+  "  vec3 col=vec3(0.018,0.020,0.025)+graded*(0.62+0.55*side)*(1.0-uIntro*0.80);",
   /* two slow light streaks so the empty half of the frame still moves */
   "  float s1=smoothstep(0.055,0.0,abs(uv.y-0.30-sin(uv.x*2.1+uTime*0.20)*0.10));",
   "  float s2=smoothstep(0.040,0.0,abs(uv.y-0.72-sin(uv.x*1.5-uTime*0.15)*0.08));",
   "  col+=vec3(0.85,0.20,0.07)*(s1*0.030+s2*0.022);",
   "  vec3 ember=vec3(1.0,0.20,0.07)*dt*mask;",
-  "  col=1.0-(1.0-col)*(1.0-ember*1.15);",              /* screen blend */
-  "  col+=vec3(1.0,0.55,0.30)*pow(dt*mask,2.0)*0.40;", /* stand-in bloom */
+  "  col=1.0-(1.0-col)*(1.0-ember*0.62);",              /* screen blend */
+  "  col+=vec3(1.0,0.55,0.30)*pow(dt*mask,2.0)*0.26;", /* stand-in bloom */
   "  float line=smoothstep(0.004,0.0,abs(uv.y-fract(uTime*0.09)));",
   "  col+=vec3(0.9,0.18,0.08)*line*0.09;",
-  "  col*=mix(0.50,1.04,smoothstep(1.45,0.10,length((uv-vec2(0.58,0.48))*vec2(sA,1.0))));",
+  "  col*=mix(0.72,1.05,smoothstep(1.50,0.10,length((uv-vec2(0.60,0.46))*vec2(sA,1.0))));",
   "  col+=(h21(uv*uRes.xy+uTime)-0.5)*0.014;",         /* grain, light enough to keep edges */
   "  gl_FragColor=vec4(col,1.0);",
   "}"].join("\n");
