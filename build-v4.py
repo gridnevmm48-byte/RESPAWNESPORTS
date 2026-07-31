@@ -26,6 +26,8 @@ SRC = ROOT / "src" / "respawn.template.html"
 ASSETS = ROOT / "assets-src"
 OUT = ROOT / "dist" / "respawn-v4.html"
 PREVIEW = ROOT / "dist" / "preview.html"
+# docs/ is what GitHub Pages serves, so the published site tracks every build
+PAGES = ROOT / "docs" / "index.html"
 
 # family -> weights we ship. Manrope carries Cyrillic, which the bilingual copy
 # needs and Space Grotesk does not have.
@@ -138,6 +140,26 @@ def build() -> None:
     PREVIEW.write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        "</head><body>\n" + doc + "\n</body></html>",
+        encoding="ascii")
+
+    # The Pages copy is a full document, same wrapper the Artifact host applies,
+    # plus the metadata a real site needs and an artifact does not.
+    PAGES.parent.mkdir(exist_ok=True)
+    PAGES.write_text(
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        '<meta name="description" content="RESPAWN ESPORTS - esports club in central Limassol. '
+        'Four gaming zones, PC and PS5 game library, 130-inch private cinema. '
+        'Agiou Andreou 160. Off-peak rates from 3 EUR/hour.">'
+        '<meta property="og:title" content="RESPAWN ESPORTS - Limassol">'
+        '<meta property="og:description" content="Four gaming zones, a big PC and PS5 library, '
+        'and a 130-inch private cinema in central Limassol.">'
+        '<meta property="og:type" content="website">'
+        '<link rel="icon" href="data:image/svg+xml,'
+        '%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E'
+        '%3Crect width=%22100%22 height=%22100%22 fill=%22%23070709%22/%3E'
+        '%3Ccircle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22%23E4321A%22/%3E%3C/svg%3E">'
         "</head><body>\n" + doc + "\n</body></html>",
         encoding="ascii")
 
