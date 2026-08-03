@@ -1070,7 +1070,7 @@ function buildSpecs(i, animate){
   media.forEach(function(m,k){
     var on = k === i;
     m.classList.toggle("on", on);
-    if (m.tagName === "VIDEO"){ if (on && !RM) m.play().catch(function(){}); else m.pause(); }
+    if (m.tagName === "VIDEO"){ if (on) m.play().catch(function(){}); else m.pause(); }
   });
 }
 
@@ -1120,7 +1120,7 @@ var vio = new IntersectionObserver(function(es){
   es.forEach(function(e){
     var v = e.target;
     if (v.closest(".spmedia") && !v.classList.contains("on")) return;
-    if (e.isIntersecting && !RM) v.play().catch(function(){}); else v.pause();
+    if (e.isIntersecting) v.play().catch(function(){}); else v.pause();
   });
 }, {threshold:.2});
 $$("video[data-clip]").forEach(function(v){ vio.observe(v); });
@@ -1402,7 +1402,7 @@ function intro(){
   function start(){
     document.body.classList.add("go");
     var hv = $("#heroVid");
-    if (hv && !RM) hv.play().catch(function(){});
+    if (hv) hv.play().catch(function(){});
     shader();   /* seeds black and picks the footage up as it decodes */
   }
   if (seen || RM){
