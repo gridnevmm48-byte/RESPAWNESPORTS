@@ -930,9 +930,11 @@ var NOTE = {
   peak: {en:"From €%s / hour at peak",  ru:"От %s€ / час в пик"}
 };
 
-/* Each loop is inlined once here and handed to every <video data-clip> that
-   asks for it. Writing the data URI into the markup twice would double its
-   weight in the file. */
+/* Each loop is resolved once here and handed to every <video data-clip> that
+   asks for it. On the real site these are separate /clips/*.mp4 files the
+   browser fetches lazily (see the IntersectionObserver below); only the
+   Artifact build inlines them as data URIs, where a strict CSP forbids
+   external requests. */
 var CLIPS = {
   hero:     "{{CLIP:hero}}",
   comfort:  "{{CLIP:zone-comfort}}",

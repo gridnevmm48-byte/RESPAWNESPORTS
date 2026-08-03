@@ -4,10 +4,7 @@
     {
       "name": "respawn",
       "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-c",
-        "import os; d = '/private/tmp/claude-502/-Users-maksim-Desktop-web-respan/75ebb091-444b-44b7-8eae-2b446803cf65/scratchpad/serve'; os.chdir(d); import http.server, socketserver; socketserver.TCPServer.allow_reuse_address = True; print('serving', d, flush=True); socketserver.TCPServer(('127.0.0.1', 8823), http.server.SimpleHTTPRequestHandler).serve_forever()"
-      ],
+      "runtimeArgs": ["-m", "http.server", "8823"],
       "port": 8823,
       "autoPort": true
     }

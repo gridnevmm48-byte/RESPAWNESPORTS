@@ -83,6 +83,14 @@ def data_uri(path: pathlib.Path, mime: str) -> str:
     return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
 
 
+def find_clip(name: str) -> pathlib.Path:
+    for d in CLIP_DIRS:
+        f = ASSETS / d / f"{name}.mp4"
+        if f.exists():
+            return f
+    die(f"missing clip {name}.mp4 in {CLIP_DIRS}")
+
+
 def collect_fonts() -> tuple[str, list[str]]:
     out, used = [], []
     for name in FONT_SOURCES:
@@ -102,10 +110,13 @@ def collect_fonts() -> tuple[str, list[str]]:
     return "".join(out), used
 
 
-def build() -> None:
-    html = SRC.read_text(encoding="utf-8")
-    fonts_css, faces = collect_fonts()
-    seen = {"img": [], "clip": []}
+def render(template: str, fonts_css: str, seen: dict, inline_clips: bool,
+           clip_out_dirs: list[pathlib.Path]) -> str:
+    """Resolve every {{...}} token. inline_clips=True embeds clips as data
+    URIs (Artifact build, strict CSP, no external requests allowed).
+    inline_clips=False instead copies each clip to clip_out_dirs/<name>.mp4
+    and points <video> at that relative path, so the browser fetches clips
+    lazily over HTTP instead of blocking on one giant inline document."""
 
     def swap(m: re.Match) -> str:
         kind, name = m.group("kind"), m.group("name")
@@ -117,22 +128,41 @@ def build() -> None:
         if kind == "WEBP":
             seen["img"].append(name + ".webp")
             return data_uri(ASSETS / f"{name}.webp", "image/webp")
-        for d in CLIP_DIRS:
-            f = ASSETS / d / f"{name}.mp4"
-            if f.exists():
-                seen["clip"].append(f"{name} ({f.stat().st_size // 1024}K)")
-                return data_uri(f, "video/mp4")
-        die(f"missing clip {name}.mp4 in {CLIP_DIRS}")
+        f = find_clip(name)
+        seen["clip"].append(f"{name} ({f.stat().st_size // 1024}K)")
+        if inline_clips:
+            return data_uri(f, "video/mp4")
+        for d in clip_out_dirs:
+            d.mkdir(parents=True, exist_ok=True)
+            (d / f"{name}.mp4").write_bytes(f.read_bytes())
+        return f"clips/{name}.mp4"
 
-    html, n = TOKEN.subn(swap, html)
+    out, n = TOKEN.subn(swap, template)
     if n == 0:
         die("template has no {{...}} tokens - wrong file?")
-    if "{{" in html:
-        die(f"unresolved token near: {html[html.index('{{'):][:60]}")
+    if "{{" in out:
+        die(f"unresolved token near: {out[out.index('{{'):][:60]}")
+    return out
 
+
+def build() -> None:
+    template = SRC.read_text(encoding="utf-8")
+    fonts_css, faces = collect_fonts()
+
+    # Artifact build: everything inlined, zero external requests.
+    seen_inline = {"img": [], "clip": []}
+    doc_inline = ascii_escape(
+        render(template, fonts_css, seen_inline, inline_clips=True, clip_out_dirs=[]))
     OUT.parent.mkdir(exist_ok=True)
-    doc = ascii_escape(html)
-    OUT.write_text(doc, encoding="ascii")
+    OUT.write_text(doc_inline, encoding="ascii")
+
+    # Real-site build: clips are separate /clips/*.mp4 files the browser
+    # fetches lazily, so a slow connection no longer freezes the whole page
+    # behind one multi-megabyte inline <script>.
+    seen_ext = {"img": [], "clip": []}
+    doc_ext = ascii_escape(
+        render(template, fonts_css, seen_ext, inline_clips=False,
+               clip_out_dirs=[PREVIEW.parent / "clips", PAGES.parent / "clips"]))
 
     # The Artifact host wraps our fragment in a real document. Opening the bare
     # fragment from disk lands in quirks mode instead, where the scrolling
@@ -140,7 +170,7 @@ def build() -> None:
     PREVIEW.write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        "</head><body>\n" + doc + "\n</body></html>",
+        "</head><body>\n" + doc_ext + "\n</body></html>",
         encoding="ascii")
 
     # The Pages copy is a full document, same wrapper the Artifact host applies,
@@ -160,16 +190,18 @@ def build() -> None:
         '%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E'
         '%3Crect width=%22100%22 height=%22100%22 fill=%22%23070709%22/%3E'
         '%3Ccircle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22%23E4321A%22/%3E%3C/svg%3E">'
-        "</head><body>\n" + doc + "\n</body></html>",
+        "</head><body>\n" + doc_ext + "\n</body></html>",
         encoding="ascii")
 
-    kb = OUT.stat().st_size / 1024
-    print(f"built {OUT.relative_to(ROOT)} - {kb:.0f} KB")
+    kb_inline = len(doc_inline) / 1024
+    kb_ext = len(doc_ext) / 1024
+    print(f"built {OUT.relative_to(ROOT)} - {kb_inline:.0f} KB (Artifact, fully inlined)")
+    print(f"built {PAGES.relative_to(ROOT)} - {kb_ext:.0f} KB + clips/ (real site, lazy video)")
     print(f"  fonts:  {len(faces)} faces ({', '.join(sorted(set(faces)))})")
-    print(f"  photos: {', '.join(sorted(set(seen['img'])))}")
-    print(f"  clips:  {', '.join(sorted(set(seen['clip']))) or 'none'}")
-    if kb > 2400:
-        print("  WARNING: over 1.4 MB - drop a clip or re-encode the photos")
+    print(f"  photos: {', '.join(sorted(set(seen_ext['img'])))}")
+    print(f"  clips:  {', '.join(sorted(set(seen_ext['clip']))) or 'none'}")
+    if kb_inline > 2400:
+        print("  WARNING: Artifact build over 1.4 MB - drop a clip or re-encode the photos")
 
 
 if __name__ == "__main__":
