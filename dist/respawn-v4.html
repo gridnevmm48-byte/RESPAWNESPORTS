@@ -323,14 +323,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-bl
 /* &#x2500;&#x2500; food menu cards &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
 .fmtabs{margin-top:2.8rem}
 .fmgrid{flex-wrap:wrap}
-.fmgrid .fcard{
-  min-height:14rem;flex:1 1 16rem;
-  background:
-    repeating-linear-gradient(0deg,rgba(228,226,221,.05) 0 1px,transparent 1px 4px),
-    radial-gradient(120% 140% at 100% 0%,rgba(228,50,26,.16),transparent 55%),
-    var(--ink);
-}
-.fmgrid .fcard::after{background:linear-gradient(180deg,rgba(7,7,9,.35) 0%,rgba(7,7,9,.05) 40%,rgba(7,7,9,.55) 100%)}
+.fmgrid .fcard{min-height:14rem;flex:1 1 16rem}
 .fmgrid .fcard .zin{padding:1.25rem 1.25rem;gap:1rem}
 .fmgrid .fcard h3{font-size:1.0625rem;text-transform:none;letter-spacing:-.01em}
 .fmgrid .fcard .ztop .lbl{opacity:.55}
@@ -375,16 +368,10 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-bl
 .rows .n{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.14em;color:var(--hot)}
 .rows p{font-size:var(--fs-body)}
 
-/* &#x2500;&#x2500; stripe wipe (reveals the Prices heading, no dead scroll space) &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
-.wiperz{position:relative;display:inline-block}
-.wipe-ov{position:absolute;inset:-6% -4%;display:flex;pointer-events:none;z-index:2}
-.wipe-ov i{flex:1;background:var(--bone);transform:scaleX(1);transform-origin:right;margin-left:-1px;transition:transform .7s var(--ease)}
-.head.in .wipe-ov i{transform:scaleX(0)}
-.wipe-ov i:nth-child(1){transition-delay:0ms}
-.wipe-ov i:nth-child(2){transition-delay:70ms}
-.wipe-ov i:nth-child(3){transition-delay:140ms}
-.wipe-ov i:nth-child(4){transition-delay:210ms}
-.wipe-ov i:nth-child(5){transition-delay:280ms}
+/* &#x2500;&#x2500; stripe wipe (scroll-scrubbed, layered right over the Prices text) &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
+.wiperz{position:relative}
+.wipe-ov{position:absolute;inset:-6% -8%;display:flex;overflow:hidden;pointer-events:none;z-index:2}
+.wipe-ov i{flex:1;background:var(--bone);transform:scaleX(1);transform-origin:right;margin-left:-1px}
 
 /* &#x2500;&#x2500; prices (light room) &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
 #prices{background:var(--bone);color:#0B0C0E}
@@ -478,6 +465,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
   .rv,.zcard,.hero-t span,.up{opacity:1;transform:none;filter:none}
+  .wipe-ov i{transform:scaleX(0)!important}
   .pl{display:none}
 }
 </style>
@@ -728,13 +716,11 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
   <div class="wrap">
     <div class="head rv">
       <span class="lbl" data-en="Prices" data-ru="&#x426;&#x435;&#x43D;&#x44B;">Prices</span>
-      <div>
+      <div class="wiperz">
         <span class="now" id="now" data-state="closed"><span class="dot"></span><span id="nowTxt"></span></span>
-        <div class="wiperz">
-          <h2 class="h2" data-en="Two rates. That is the whole system." data-ru="&#x414;&#x432;&#x430; &#x442;&#x430;&#x440;&#x438;&#x444;&#x430;. &#x412;&#x43E;&#x442; &#x438; &#x432;&#x441;&#x44F; &#x441;&#x438;&#x441;&#x442;&#x435;&#x43C;&#x430;.">Two rates.</h2>
-          <span class="wipe-ov" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        </div>
+        <h2 class="h2" data-en="Two rates. That is the whole system." data-ru="&#x414;&#x432;&#x430; &#x442;&#x430;&#x440;&#x438;&#x444;&#x430;. &#x412;&#x43E;&#x442; &#x438; &#x432;&#x441;&#x44F; &#x441;&#x438;&#x441;&#x442;&#x435;&#x43C;&#x430;.">Two rates.</h2>
         <p style="margin-top:1.1rem" data-en="Afternoons are cheaper than evenings. Check the clock, then read your price off the table." data-ru="&#x414;&#x43D;&#x451;&#x43C; &#x434;&#x435;&#x448;&#x435;&#x432;&#x43B;&#x435;, &#x447;&#x435;&#x43C; &#x432;&#x435;&#x447;&#x435;&#x440;&#x43E;&#x43C;. &#x41F;&#x43E;&#x441;&#x43C;&#x43E;&#x442;&#x440;&#x438; &#x43D;&#x430; &#x447;&#x430;&#x441;&#x44B; &#x2014; &#x438; &#x43F;&#x440;&#x43E;&#x441;&#x442;&#x43E; &#x43D;&#x430;&#x439;&#x434;&#x438; &#x441;&#x432;&#x43E;&#x44E; &#x446;&#x435;&#x43D;&#x443; &#x432; &#x442;&#x430;&#x431;&#x43B;&#x438;&#x446;&#x435;.">Afternoons are cheaper.</p>
+        <span class="wipe-ov" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
       </div>
     </div>
 
@@ -1056,6 +1042,19 @@ function litMani(){
   p = Math.max(0, Math.min(1, p));
   var n = Math.round(p * sp.length);
   for (var i = 0; i < sp.length; i++) sp[i].classList.toggle("lit", i < n);
+}
+
+/* \u2500\u2500 stripe wipe: scroll-scrubbed, layered right over the Prices text \u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+var wiperz = $(".wiperz"), wstripes = $$(".wipe-ov i");
+function drawWipe(){
+  if (!wiperz) return;
+  var r = wiperz.getBoundingClientRect();
+  var p = (innerHeight * 0.8 - r.top) / (r.height * 0.7 + innerHeight * 0.3);
+  p = Math.max(0, Math.min(1, p));
+  wstripes.forEach(function(s,i){
+    var v = Math.max(0, Math.min(1, (p - i * 0.09) / 0.5));
+    s.style.transform = "scaleX(" + (1 - v) + ")";
+  });
 }
 
 /* \u2500\u2500 marquee \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
@@ -1553,8 +1552,9 @@ var raf = false;
 addEventListener("scroll", function(){
   if (raf) return;
   raf = true;
-  requestAnimationFrame(function(){ litMani(); raf = false; });
+  requestAnimationFrame(function(){ litMani(); drawWipe(); raf = false; });
 }, {passive:true});
 litMani();
+drawWipe();
 })();
 </script>
