@@ -376,10 +376,16 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-bl
 .rows .n{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.14em;color:var(--hot)}
 .rows p{font-size:var(--fs-body)}
 
-/* &#x2500;&#x2500; stripe wipe &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
-.wipe{height:100vh;position:relative}
-.wipe-st{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow:hidden}
-.wipe-st i{flex:1;background:var(--bone);transform:scaleY(0);transform-origin:bottom;margin-top:-1px}
+/* &#x2500;&#x2500; stripe wipe (reveals the Prices heading, no dead scroll space) &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
+.wiperz{position:relative;display:inline-block}
+.wipe-ov{position:absolute;inset:-6% -4%;display:flex;pointer-events:none;z-index:2}
+.wipe-ov i{flex:1;background:var(--bone);transform:scaleX(1);transform-origin:right;margin-left:-1px;transition:transform .7s var(--ease)}
+.head.in .wipe-ov i{transform:scaleX(0)}
+.wipe-ov i:nth-child(1){transition-delay:0ms}
+.wipe-ov i:nth-child(2){transition-delay:70ms}
+.wipe-ov i:nth-child(3){transition-delay:140ms}
+.wipe-ov i:nth-child(4){transition-delay:210ms}
+.wipe-ov i:nth-child(5){transition-delay:280ms}
 
 /* &#x2500;&#x2500; prices (light room) &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
 #prices{background:var(--bone);color:#0B0C0E}
@@ -630,7 +636,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
           <div class="zhz"><b class="cnt" data-count="260">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 &middot; i9-14900K &middot; ASUS TUF 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="8" data-peak="10">&euro;8</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="6" data-peak="8">&euro;6</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -718,11 +724,6 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
   </div>
 </section>
 
-<!-- &#x2550;&#x2550; stripe wipe &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; -->
-<div class="wipe" id="wipe" aria-hidden="true">
-  <div class="wipe-st"><i></i><i></i><i></i><i></i><i></i></div>
-</div>
-
 <!-- &#x2550;&#x2550; prices &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; -->
 <section class="sec" id="prices">
   <div class="wrap">
@@ -730,7 +731,10 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
       <span class="lbl" data-en="Prices" data-ru="&#x426;&#x435;&#x43D;&#x44B;">Prices</span>
       <div>
         <span class="now" id="now" data-state="closed"><span class="dot"></span><span id="nowTxt"></span></span>
-        <h2 class="h2" data-en="Two rates. That is the whole system." data-ru="&#x414;&#x432;&#x430; &#x442;&#x430;&#x440;&#x438;&#x444;&#x430;. &#x412;&#x43E;&#x442; &#x438; &#x432;&#x441;&#x44F; &#x441;&#x438;&#x441;&#x442;&#x435;&#x43C;&#x430;.">Two rates.</h2>
+        <div class="wiperz">
+          <h2 class="h2" data-en="Two rates. That is the whole system." data-ru="&#x414;&#x432;&#x430; &#x442;&#x430;&#x440;&#x438;&#x444;&#x430;. &#x412;&#x43E;&#x442; &#x438; &#x432;&#x441;&#x44F; &#x441;&#x438;&#x441;&#x442;&#x435;&#x43C;&#x430;.">Two rates.</h2>
+          <span class="wipe-ov" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
         <p style="margin-top:1.1rem" data-en="Afternoons are cheaper than evenings. Check the clock, then read your price off the table." data-ru="&#x414;&#x43D;&#x451;&#x43C; &#x434;&#x435;&#x448;&#x435;&#x432;&#x43B;&#x435;, &#x447;&#x435;&#x43C; &#x432;&#x435;&#x447;&#x435;&#x440;&#x43E;&#x43C;. &#x41F;&#x43E;&#x441;&#x43C;&#x43E;&#x442;&#x440;&#x438; &#x43D;&#x430; &#x447;&#x430;&#x441;&#x44B; &#x2014; &#x438; &#x43F;&#x440;&#x43E;&#x441;&#x442;&#x43E; &#x43D;&#x430;&#x439;&#x434;&#x438; &#x441;&#x432;&#x43E;&#x44E; &#x446;&#x435;&#x43D;&#x443; &#x432; &#x442;&#x430;&#x431;&#x43B;&#x438;&#x446;&#x435;.">Afternoons are cheaper.</p>
       </div>
     </div>
@@ -1255,16 +1259,6 @@ $$("[data-scroll]").forEach(function(a){
   });
 });
 
-/* \u2500\u2500 stripe wipe \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-var wipe = $("#wipe"), stripes = $$("#wipe i");
-function drawWipe(){
-  var r = wipe.getBoundingClientRect();
-  var p = Math.max(0, Math.min(1, -r.top / (r.height * 0.75)));
-  stripes.forEach(function(s,i){
-    var v = Math.max(0, Math.min(1, (p - i * 0.06) / 0.55));
-    s.style.transform = "scaleY(" + v + ")";
-  });
-}
 
 /* \u2500\u2500 peak / off-peak clock \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
 var NOWSTATE = "off";
@@ -1560,10 +1554,9 @@ var raf = false;
 addEventListener("scroll", function(){
   if (raf) return;
   raf = true;
-  requestAnimationFrame(function(){ litMani(); drawWipe(); raf = false; });
+  requestAnimationFrame(function(){ litMani(); raf = false; });
 }, {passive:true});
 litMani();
-drawWipe();
 })();
 </script>
 
