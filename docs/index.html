@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RESPAWN ESPORTS - esports club in central Limassol. Four gaming zones, PC and PS5 game library, 130-inch private cinema. Agiou Andreou 160. Off-peak rates from 3 EUR/hour."><meta property="og:title" content="RESPAWN ESPORTS - Limassol"><meta property="og:description" content="Four gaming zones, a big PC and PS5 library, and a 130-inch private cinema in central Limassol."><meta property="og:type" content="website"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23070709%22/%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22%23E4321A%22/%3E%3C/svg%3E"></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RESPAWN ESPORTS - esports club in central Limassol. Four gaming zones, PC and PS5 game library, 130-inch private PS5 room. Agiou Andreou 160. Off-peak rates from 3 EUR/hour."><meta property="og:title" content="RESPAWN ESPORTS - Limassol"><meta property="og:description" content="Four gaming zones, a big PC and PS5 library, and a 130-inch private PS5 room in central Limassol."><meta property="og:type" content="website"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23070709%22/%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22%23E4321A%22/%3E%3C/svg%3E"></head><body>
 <title>RESPAWN ESPORTS &#x2014; Limassol</title>
 
 <style>
@@ -321,6 +321,24 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-bl
 .zcard .bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);z-index:3}
 .zcard:hover .bar{transform:scaleX(1)}
 
+/* &#x2500;&#x2500; food menu cards &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
+.fmtabs{margin-top:2.8rem}
+.fmgrid{flex-wrap:wrap}
+.fmgrid .fcard{
+  min-height:14rem;flex:1 1 16rem;
+  background:
+    repeating-linear-gradient(0deg,rgba(228,226,221,.05) 0 1px,transparent 1px 4px),
+    radial-gradient(120% 140% at 100% 0%,rgba(228,50,26,.16),transparent 55%),
+    var(--ink);
+}
+.fmgrid .fcard::after{background:linear-gradient(180deg,rgba(7,7,9,.35) 0%,rgba(7,7,9,.05) 40%,rgba(7,7,9,.55) 100%)}
+.fmgrid .fcard .zin{padding:1.25rem 1.25rem;gap:1rem}
+.fmgrid .fcard h3{font-size:1.0625rem;text-transform:none;letter-spacing:-.01em}
+.fmgrid .fcard .ztop .lbl{opacity:.55}
+.fmgrid .fcard .zbot p{font-size:.875rem;color:rgba(228,226,221,.62)}
+.fmgrid .fcard .zprice b{font-size:1.375rem;color:var(--ember)}
+@media(max-width:1023px){.fmgrid .fcard{width:78vw;max-width:20rem}}
+
 /* &#x2500;&#x2500; specs &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
 .sp{display:grid;gap:2rem}
 @media(min-width:1000px){.sp{grid-template-columns:repeat(var(--cols),1fr);gap:var(--gap);align-items:start}
@@ -447,15 +465,9 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
 .fbig{font-size:var(--t-wordmark);font-weight:600;letter-spacing:-.055em;line-height:.8;margin:0 0 1.5rem;color:rgba(228,226,221,.1)}
 .frow{display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:space-between;align-items:center}
 
-/* &#x2500;&#x2500; reveal + cursor &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
+/* &#x2500;&#x2500; reveal &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.in{opacity:1;transform:none}
-#cur,#curd{position:fixed;top:0;left:0;z-index:150;pointer-events:none;border-radius:50%;mix-blend-mode:difference;opacity:0;transition:opacity .3s}
-#cur{width:32px;height:32px;border:1px solid #fff;margin:16px 0 0 16px}
-#curd{width:4px;height:4px;background:#fff;margin:2px 0 0 2px}
-body.hascur #cur,body.hascur #curd{opacity:1}
-body.hascur.hot #cur{transform:scale(1.5)}
-@media(pointer:coarse){#cur,#curd{display:none}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
@@ -515,7 +527,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
   <ul id="menuList">
     <li style="--i:0"><a class="mlink" href="#zones" data-scroll data-roll data-en="Zones" data-ru="&#x417;&#x430;&#x43B;&#x44B;">Zones</a></li>
     <li style="--i:1"><a class="mlink" href="#specs" data-scroll data-roll data-en="Specs" data-ru="&#x416;&#x435;&#x43B;&#x435;&#x437;&#x43E;">Specs</a></li>
-    <li style="--i:2"><a class="mlink" href="#cinema" data-scroll data-roll data-en="Cinema" data-ru="&#x41A;&#x438;&#x43D;&#x43E;&#x437;&#x430;&#x43B;">Cinema</a></li>
+    <li style="--i:2"><a class="mlink" href="#cinema" data-scroll data-roll data-en="PS5 Room" data-ru="PS5 &#x420;&#x443;&#x43C;">PS5 Room</a></li>
     <li style="--i:3"><a class="mlink" href="#prices" data-scroll data-roll data-en="Prices" data-ru="&#x426;&#x435;&#x43D;&#x44B;">Prices</a></li>
     <li style="--i:4"><a class="mlink" href="#contact" data-scroll data-roll data-en="Contact" data-ru="&#x41A;&#x43E;&#x43D;&#x442;&#x430;&#x43A;&#x442;&#x44B;">Contact</a></li>
   </ul>
@@ -536,7 +548,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
     <h1 class="h1 hero-t" id="heroT" data-en="Pick a game. Take a seat." data-ru="&#x412;&#x44B;&#x431;&#x438;&#x440;&#x430;&#x439; &#x438;&#x433;&#x440;&#x443;. &#x417;&#x430;&#x43D;&#x438;&#x43C;&#x430;&#x439; &#x43C;&#x435;&#x441;&#x442;&#x43E;."></h1>
     <div class="hero-b">
       <div class="up" style="animation-delay:1.05s">
-        <p data-en="Four gaming zones, a big PC and PS5 library, and a 130-inch private cinema &#x2014; in central Limassol. Afternoons cost less." data-ru="&#x427;&#x435;&#x442;&#x44B;&#x440;&#x435; &#x438;&#x433;&#x440;&#x43E;&#x432;&#x44B;&#x435; &#x437;&#x43E;&#x43D;&#x44B;, &#x431;&#x43E;&#x43B;&#x44C;&#x448;&#x430;&#x44F; &#x431;&#x438;&#x431;&#x43B;&#x438;&#x43E;&#x442;&#x435;&#x43A;&#x430; &#x438;&#x433;&#x440; &#x43D;&#x430; PC &#x438; PS5 &#x438; &#x43F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; &#x43A;&#x438;&#x43D;&#x43E;&#x437;&#x430;&#x43B; 130 &#x434;&#x44E;&#x439;&#x43C;&#x43E;&#x432; &#x2014; &#x432; &#x446;&#x435;&#x43D;&#x442;&#x440;&#x435; &#x41B;&#x438;&#x43C;&#x430;&#x441;&#x441;&#x43E;&#x43B;&#x430;. &#x414;&#x43D;&#x451;&#x43C; &#x434;&#x435;&#x448;&#x435;&#x432;&#x43B;&#x435;.">Four gaming zones in central Limassol.</p>
+        <p data-en="Four gaming zones, a big PC and PS5 library, and a 130-inch private PS5 room &#x2014; in central Limassol. Afternoons cost less." data-ru="&#x427;&#x435;&#x442;&#x44B;&#x440;&#x435; &#x438;&#x433;&#x440;&#x43E;&#x432;&#x44B;&#x435; &#x437;&#x43E;&#x43D;&#x44B;, &#x431;&#x43E;&#x43B;&#x44C;&#x448;&#x430;&#x44F; &#x431;&#x438;&#x431;&#x43B;&#x438;&#x43E;&#x442;&#x435;&#x43A;&#x430; &#x438;&#x433;&#x440; &#x43D;&#x430; PC &#x438; PS5 &#x438; &#x43F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; PS5-&#x440;&#x443;&#x43C; &#x441; &#x44D;&#x43A;&#x440;&#x430;&#x43D;&#x43E;&#x43C; 130 &#x434;&#x44E;&#x439;&#x43C;&#x43E;&#x432; &#x2014; &#x432; &#x446;&#x435;&#x43D;&#x442;&#x440;&#x435; &#x41B;&#x438;&#x43C;&#x430;&#x441;&#x441;&#x43E;&#x43B;&#x430;. &#x414;&#x43D;&#x451;&#x43C; &#x434;&#x435;&#x448;&#x435;&#x432;&#x43B;&#x435;.">Four gaming zones in central Limassol.</p>
         <div class="acts" style="margin-top:1.4rem">
           <a class="cta solid" href="https://wa.me/35797762727" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.7-.9-1.7-.9-2.6 0-.9.5-1.4.7-1.6.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.2-.3.3-.1.6.5.9 1.1 1.6 1.9 2.2.4.2.6.2.8 0l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"></path></svg>
@@ -560,7 +572,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
 <!-- &#x2550;&#x2550; manifesto &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; -->
 <section class="sec" id="about">
   <div class="wrap">
-    <p class="mani" id="mani" data-en="Tournament hardware, a private cinema and a lounge &#x2014; all under one roof in Limassol." data-ru="&#x422;&#x443;&#x440;&#x43D;&#x438;&#x440;&#x43D;&#x43E;&#x435; &#x436;&#x435;&#x43B;&#x435;&#x437;&#x43E;, &#x43F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; &#x43A;&#x438;&#x43D;&#x43E;&#x437;&#x430;&#x43B; &#x438; &#x43B;&#x430;&#x443;&#x43D;&#x436; &#x2014; &#x432;&#x441;&#x451; &#x43F;&#x43E;&#x434; &#x43E;&#x434;&#x43D;&#x43E;&#x439; &#x43A;&#x440;&#x44B;&#x448;&#x435;&#x439; &#x432; &#x41B;&#x438;&#x43C;&#x430;&#x441;&#x441;&#x43E;&#x43B;&#x435;."></p>
+    <p class="mani" id="mani" data-en="Tournament hardware, a private PS5 room and a lounge &#x2014; all under one roof in Limassol." data-ru="&#x422;&#x443;&#x440;&#x43D;&#x438;&#x440;&#x43D;&#x43E;&#x435; &#x436;&#x435;&#x43B;&#x435;&#x437;&#x43E;, &#x43F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; PS5-&#x440;&#x443;&#x43C; &#x438; &#x43B;&#x430;&#x443;&#x43D;&#x436; &#x2014; &#x432;&#x441;&#x451; &#x43F;&#x43E;&#x434; &#x43E;&#x434;&#x43D;&#x43E;&#x439; &#x43A;&#x440;&#x44B;&#x448;&#x435;&#x439; &#x432; &#x41B;&#x438;&#x43C;&#x430;&#x441;&#x441;&#x43E;&#x43B;&#x435;."></p>
   </div>
   <div class="wrap"><div class="div rv"><span class="ln"></span><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></div></div>
 </section>
@@ -592,7 +604,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="165">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5060 &middot; i7-14700K &middot; BenQ 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="2" data-peak="4">&euro;2</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -605,7 +617,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="360">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 Ti &middot; i7-14700K &middot; Alienware 27&quot;</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="4" data-peak="6">&euro;4</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -686,17 +698,23 @@ body.hascur.hot #cur{transform:scale(1.5)}
         <span class="tag lbl">130&Prime; &middot; Dolby Atmos &middot; PS5 Pro</span>
       </div>
       <div class="rv">
-        <span class="lbl" data-en="Cinema &amp; lounge" data-ru="&#x41A;&#x438;&#x43D;&#x43E;&#x437;&#x430;&#x43B; &#x438; &#x43B;&#x430;&#x443;&#x43D;&#x436;">Cinema &amp; lounge</span>
+        <span class="lbl" data-en="PS5 Room &amp; lounge" data-ru="PS5-&#x440;&#x443;&#x43C; &#x438; &#x43B;&#x430;&#x443;&#x43D;&#x436;">PS5 Room &amp; lounge</span>
         <h2 class="h2" style="margin-top:1rem" data-en="Book the room. Play it or watch it." data-ru="&#x417;&#x430;&#x431;&#x440;&#x43E;&#x43D;&#x438;&#x440;&#x443;&#x439; &#x437;&#x430;&#x43B;. &#x418;&#x433;&#x440;&#x430;&#x439; &#x438;&#x43B;&#x438; &#x441;&#x43C;&#x43E;&#x442;&#x440;&#x438;.">Book the room.</h2>
-        <p style="margin-top:1.1rem" data-en="The PS5 Premium room becomes a private cinema in a minute: a 130-inch screen, a BenQ X3100i projector, Dolby Atmos and six recliners." data-ru="&#x417;&#x430;&#x43B; PS5 Premium &#x437;&#x430; &#x43C;&#x438;&#x43D;&#x443;&#x442;&#x443; &#x43F;&#x440;&#x435;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x442;&#x441;&#x44F; &#x432; &#x43F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; &#x43A;&#x438;&#x43D;&#x43E;&#x442;&#x435;&#x430;&#x442;&#x440;: &#x44D;&#x43A;&#x440;&#x430;&#x43D; 130 &#x434;&#x44E;&#x439;&#x43C;&#x43E;&#x432;, &#x43F;&#x440;&#x43E;&#x435;&#x43A;&#x442;&#x43E;&#x440; BenQ X3100i, Dolby Atmos &#x438; &#x448;&#x435;&#x441;&#x442;&#x44C; &#x440;&#x435;&#x43A;&#x43B;&#x430;&#x439;&#x43D;&#x435;&#x440;&#x43E;&#x432;.">The PS5 Premium room becomes a private cinema in a minute.</p>
+        <p style="margin-top:1.1rem" data-en="The PS5 Premium room seats six around a 130-inch screen with a BenQ X3100i projector and Dolby Atmos &#x2014; stream Netflix, HBO, Amazon Prime or whatever you want, or just play." data-ru="&#x417;&#x430;&#x43B; PS5 Premium: &#x44D;&#x43A;&#x440;&#x430;&#x43D; 130 &#x434;&#x44E;&#x439;&#x43C;&#x43E;&#x432;, &#x43F;&#x440;&#x43E;&#x435;&#x43A;&#x442;&#x43E;&#x440; BenQ X3100i, Dolby Atmos &#x438; &#x448;&#x435;&#x441;&#x442;&#x44C; &#x43C;&#x435;&#x441;&#x442; &#x2014; &#x432;&#x43A;&#x43B;&#x44E;&#x447;&#x430;&#x439; Netflix, HBO, Amazon Prime &#x438;&#x43B;&#x438; &#x447;&#x442;&#x43E; &#x443;&#x433;&#x43E;&#x434;&#x43D;&#x43E; &#x435;&#x449;&#x451;, &#x438;&#x43B;&#x438; &#x43F;&#x440;&#x43E;&#x441;&#x442;&#x43E; &#x438;&#x433;&#x440;&#x430;&#x439;.">The PS5 Premium room seats six around a 130-inch screen.</p>
         <div class="rows">
           <div><span class="n">01</span><p data-en="A large library of games on PC and PS5 Pro &#x2014; from esports titles to co-op." data-ru="&#x411;&#x43E;&#x43B;&#x44C;&#x448;&#x430;&#x44F; &#x431;&#x438;&#x431;&#x43B;&#x438;&#x43E;&#x442;&#x435;&#x43A;&#x430; &#x438;&#x433;&#x440; &#x43D;&#x430; PC &#x438; PS5 Pro &#x2014; &#x43E;&#x442; &#x43A;&#x438;&#x431;&#x435;&#x440;&#x441;&#x43F;&#x43E;&#x440;&#x442;&#x430; &#x434;&#x43E; &#x43A;&#x43E;&#x43E;&#x43F;&#x435;&#x440;&#x430;&#x442;&#x438;&#x432;&#x430;.">Games library</p></div>
           <div><span class="n">02</span><p data-en="Hookah on request, plus drinks and snacks at the bar." data-ru="&#x41A;&#x430;&#x43B;&#x44C;&#x44F;&#x43D; &#x43F;&#x43E; &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441;&#x443;, &#x43D;&#x430;&#x43F;&#x438;&#x442;&#x43A;&#x438; &#x438; &#x441;&#x43D;&#x435;&#x43A;&#x438; &#x43D;&#x430; &#x431;&#x430;&#x440;&#x435;.">Hookah on request</p></div>
-          <div><span class="n">03</span><p data-en="Movie nights, birthdays and team bootcamps &#x2014; the room books whole." data-ru="&#x41A;&#x438;&#x43D;&#x43E;&#x43F;&#x440;&#x43E;&#x441;&#x43C;&#x43E;&#x442;&#x440;&#x44B;, &#x434;&#x43D;&#x438; &#x440;&#x43E;&#x436;&#x434;&#x435;&#x43D;&#x438;&#x44F; &#x438; &#x43A;&#x43E;&#x43C;&#x430;&#x43D;&#x434;&#x43D;&#x44B;&#x435; &#x431;&#x443;&#x442;&#x43A;&#x435;&#x43C;&#x43F;&#x44B; &#x2014; &#x437;&#x430;&#x43B; &#x431;&#x440;&#x43E;&#x43D;&#x438;&#x440;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x446;&#x435;&#x43B;&#x438;&#x43A;&#x43E;&#x43C;.">Whole-room booking</p></div>
+          <div><span class="n">03</span><p data-en="Birthdays and team bootcamps &#x2014; the room books whole." data-ru="&#x414;&#x43D;&#x438; &#x440;&#x43E;&#x436;&#x434;&#x435;&#x43D;&#x438;&#x44F; &#x438; &#x43A;&#x43E;&#x43C;&#x430;&#x43D;&#x434;&#x43D;&#x44B;&#x435; &#x431;&#x443;&#x442;&#x43A;&#x435;&#x43C;&#x43F;&#x44B; &#x2014; &#x437;&#x430;&#x43B; &#x431;&#x440;&#x43E;&#x43D;&#x438;&#x440;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x446;&#x435;&#x43B;&#x438;&#x43A;&#x43E;&#x43C;.">Whole-room booking</p></div>
         </div>
         <p class="lbl" style="margin-top:1.4rem;opacity:.6" data-en="Food from a partner restaurant is available too &#x2014; ask the club administrator to order." data-ru="&#x41C;&#x43E;&#x436;&#x43D;&#x43E; &#x437;&#x430;&#x43A;&#x430;&#x437;&#x430;&#x442;&#x44C; &#x435;&#x434;&#x443; &#x438;&#x437; &#x440;&#x435;&#x441;&#x442;&#x43E;&#x440;&#x430;&#x43D;&#x430;-&#x43F;&#x430;&#x440;&#x442;&#x43D;&#x451;&#x440;&#x430; &#x2014; &#x443;&#x442;&#x43E;&#x447;&#x43D;&#x44F;&#x439;&#x442;&#x435; &#x443; &#x430;&#x434;&#x43C;&#x438;&#x43D;&#x438;&#x441;&#x442;&#x440;&#x430;&#x442;&#x43E;&#x440;&#x430; &#x43A;&#x43B;&#x443;&#x431;&#x430;.">Food from a partner restaurant &#x2014; ask the administrator.</p>
       </div>
     </div>
+  </div>
+  <div class="wrap" style="margin-top:2.8rem">
+    <div class="fmtabs sptabs" role="tablist" id="fmtabs"></div>
+  </div>
+  <div class="zwrap">
+    <div class="zlist fmgrid" id="fmgrid"></div>
   </div>
 </section>
 
@@ -791,7 +809,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <cite data-en="Bootcamp zone" data-ru="&#x417;&#x430;&#x43B; Bootcamp">Bootcamp zone</cite>
         </blockquote>
         <blockquote>
-          <p data-en="A private room for six: 130-inch screen, Dolby Atmos, recliners &#x2014; games or a film." data-ru="&#x41F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; &#x437;&#x430;&#x43B; &#x43D;&#x430; &#x448;&#x435;&#x441;&#x442;&#x435;&#x440;&#x44B;&#x445;: &#x44D;&#x43A;&#x440;&#x430;&#x43D; 130 &#x434;&#x44E;&#x439;&#x43C;&#x43E;&#x432;, Dolby Atmos, &#x440;&#x435;&#x43A;&#x43B;&#x430;&#x439;&#x43D;&#x435;&#x440;&#x44B; &#x2014; &#x438;&#x433;&#x440;&#x44B; &#x438;&#x43B;&#x438; &#x43A;&#x438;&#x43D;&#x43E;.">A private room for six.</p>
+          <p data-en="A private room for six: 130-inch screen, Dolby Atmos, recliners &#x2014; games or your own streaming." data-ru="&#x41F;&#x440;&#x438;&#x432;&#x430;&#x442;&#x43D;&#x44B;&#x439; &#x437;&#x430;&#x43B; &#x43D;&#x430; &#x448;&#x435;&#x441;&#x442;&#x435;&#x440;&#x44B;&#x445;: &#x44D;&#x43A;&#x440;&#x430;&#x43D; 130 &#x434;&#x44E;&#x439;&#x43C;&#x43E;&#x432;, Dolby Atmos, &#x440;&#x435;&#x43A;&#x43B;&#x430;&#x439;&#x43D;&#x435;&#x440;&#x44B; &#x2014; &#x438;&#x433;&#x440;&#x44B; &#x438;&#x43B;&#x438; &#x441;&#x432;&#x43E;&#x439; &#x441;&#x442;&#x440;&#x438;&#x43C;&#x438;&#x43D;&#x433;.">A private room for six.</p>
           <cite>PS5 Premium</cite>
         </blockquote>
         <blockquote>
@@ -887,7 +905,6 @@ body.hascur.hot #cur{transform:scale(1.5)}
   </div>
 </footer>
 
-<div id="cur" aria-hidden="true"></div><div id="curd" aria-hidden="true"></div>
 
 <script>
 (function(){
@@ -917,7 +934,7 @@ var ZONES = [
   {n:"PS5 PREMIUM", price:{off:7,peak:15}, per:{en:", for 1 person",ru:", \u0437\u0430 1 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430"}, rows:[
     ["con","PlayStation 5 Pro"],["prj","BenQ X3100i"],["sze",{en:"130 inches",ru:"130 \u0434\u044e\u0439\u043c\u043e\u0432"}],
     ["sea",{en:"6 recliners",ru:"6 \u0440\u0435\u043a\u043b\u0430\u0439\u043d\u0435\u0440\u043e\u0432"}],["aud","Samsung HW-Q990D Dolby Atmos"],
-    ["scr",{en:"Movie nights too",ru:"\u0418 \u043a\u0438\u043d\u043e\u043f\u043e\u043a\u0430\u0437\u044b"}]]}
+    ["scr",{en:"Netflix, HBO, Prime \u2014 stream anything",ru:"Netflix, HBO, Prime \u2014 \u0441\u043c\u043e\u0442\u0440\u0438 \u0447\u0442\u043e \u0443\u0433\u043e\u0434\u043d\u043e"}]]}
 ];
 
 var lang = "en";
@@ -997,6 +1014,8 @@ function applyLang(){
   splitHero();
   splitMani();
   buildSpecs(active);
+  buildFoodTabs();
+  buildFoodGrid();
   clock();
 }
 $("#lang").addEventListener("click", function(){
@@ -1042,6 +1061,94 @@ function litMani(){
   var unit = '<div><span>Play</span>' + plus + '<span>Watch</span>' + plus + '<span>Repeat</span>' + plus + "</div>";
   $("#mq").innerHTML = unit + unit + unit + unit;
 })();
+
+/* \u2500\u2500 food menu \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* Food only, from the partner restaurant's a-la-carte menu \u2014 no drinks. */
+var FOODCATS = [
+  {en:"Starters", ru:"\u0421\u0442\u0430\u0440\u0442\u0435\u0440\u044b", items:[
+    {en:"Shrimp Gyoza", ru:"\u0413\u0451\u0434\u0437\u0430 \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Fried dumplings, green onion, sesame, unagi sauce", ru:"\u0416\u0430\u0440\u0435\u043d\u044b\u0435 \u0433\u0451\u0434\u0437\u0430, \u0437\u0435\u043b\u0451\u043d\u044b\u0439 \u043b\u0443\u043a, \u043a\u0443\u043d\u0436\u0443\u0442, \u0441\u043e\u0443\u0441 \u0443\u043d\u0430\u0433\u0438"}, p:10},
+    {en:"Duck Gyoza", ru:"\u0413\u0451\u0434\u0437\u0430 \u0441 \u0443\u0442\u043a\u043e\u0439", d:{en:"Fried dumplings, green onion, sesame, unagi sauce", ru:"\u0416\u0430\u0440\u0435\u043d\u044b\u0435 \u0433\u0451\u0434\u0437\u0430, \u0437\u0435\u043b\u0451\u043d\u044b\u0439 \u043b\u0443\u043a, \u043a\u0443\u043d\u0436\u0443\u0442, \u0441\u043e\u0443\u0441 \u0443\u043d\u0430\u0433\u0438"}, p:11},
+    {en:"Beef Tartare, Truffle Sauce", ru:"\u0422\u0430\u0440\u0442\u0430\u0440 \u0438\u0437 \u0433\u043e\u0432\u044f\u0434\u0438\u043d\u044b, \u0442\u0440\u044e\u0444\u0435\u043b\u044c\u043d\u044b\u0439 \u0441\u043e\u0443\u0441", d:{en:"Beef tenderloin, truffle sauce, grana padano, spinach", ru:"\u0413\u043e\u0432\u044f\u0436\u044c\u044f \u0432\u044b\u0440\u0435\u0437\u043a\u0430, \u0442\u0440\u044e\u0444\u0435\u043b\u044c\u043d\u044b\u0439 \u0441\u043e\u0443\u0441, \u0433\u0440\u0430\u043d\u0430 \u043f\u0430\u0434\u0430\u043d\u043e, \u0448\u043f\u0438\u043d\u0430\u0442"}, p:17},
+    {en:"Tempura Shrimp, Spicy Sauce", ru:"\u0422\u0435\u043c\u043f\u0443\u0440\u0430 \u0438\u0437 \u043a\u0440\u0435\u0432\u0435\u0442\u043e\u043a, \u043e\u0441\u0442\u0440\u044b\u0439 \u0441\u043e\u0443\u0441", d:{en:"Shrimp, spicy sauce, spinach, coriander", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u043e\u0441\u0442\u0440\u044b\u0439 \u0441\u043e\u0443\u0441, \u0448\u043f\u0438\u043d\u0430\u0442, \u043a\u0438\u043d\u0437\u0430"}, p:15.5},
+    {en:"Tempura Shrimp, Wasabi Sauce", ru:"\u0422\u0435\u043c\u043f\u0443\u0440\u0430 \u0438\u0437 \u043a\u0440\u0435\u0432\u0435\u0442\u043e\u043a, \u0441\u043e\u0443\u0441 \u0432\u0430\u0441\u0430\u0431\u0438", d:{en:"Shrimp, wasabi sauce, spinach, coriander, sesame", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u0441\u043e\u0443\u0441 \u0432\u0430\u0441\u0430\u0431\u0438, \u0448\u043f\u0438\u043d\u0430\u0442, \u043a\u0438\u043d\u0437\u0430, \u043a\u0443\u043d\u0436\u0443\u0442"}, p:15.5},
+    {en:"Burrata, Pesto & Prosciutto", ru:"\u0411\u0443\u0440\u0440\u0430\u0442\u0430, \u043f\u0435\u0441\u0442\u043e \u0438 \u043f\u0440\u043e\u0448\u0443\u0442\u0442\u043e", d:{en:"Fresh burrata, tomatoes, pesto, prosciutto", ru:"\u0421\u0432\u0435\u0436\u0430\u044f \u0431\u0443\u0440\u0440\u0430\u0442\u0430, \u0442\u043e\u043c\u0430\u0442\u044b, \u0441\u043e\u0443\u0441 \u043f\u0435\u0441\u0442\u043e, \u043f\u0440\u043e\u0448\u0443\u0442\u0442\u043e"}, p:16}
+  ]},
+  {en:"Salads", ru:"\u0421\u0430\u043b\u0430\u0442\u044b", items:[
+    {en:"Chicken Ceasar Salad", ru:"\u0421\u0430\u043b\u0430\u0442 \u0426\u0435\u0437\u0430\u0440\u044c \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Romaine, cherry tomatoes, croutons, grana padano, chicken thigh", ru:"\u0420\u043e\u043c\u044d\u043d, \u0447\u0435\u0440\u0440\u0438, \u0433\u0440\u0435\u043d\u043a\u0438, \u0433\u0440\u0430\u043d\u0430 \u043f\u0430\u0434\u0430\u043d\u043e, \u043a\u0443\u0440\u0438\u043d\u043e\u0435 \u0431\u0435\u0434\u0440\u043e"}, p:16},
+    {en:"Shrimp Ceasar Salad", ru:"\u0421\u0430\u043b\u0430\u0442 \u0426\u0435\u0437\u0430\u0440\u044c \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Romaine, cherry tomatoes, croutons, grana padano, shrimp", ru:"\u0420\u043e\u043c\u044d\u043d, \u0447\u0435\u0440\u0440\u0438, \u0433\u0440\u0435\u043d\u043a\u0438, \u0433\u0440\u0430\u043d\u0430 \u043f\u0430\u0434\u0430\u043d\u043e, \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0438"}, p:18},
+    {en:"Fried Eggplants, Stracciatella", ru:"\u0416\u0430\u0440\u0435\u043d\u044b\u0435 \u0431\u0430\u043a\u043b\u0430\u0436\u0430\u043d\u044b, \u0441\u0442\u0440\u0430\u0447\u0430\u0442\u0435\u043b\u043b\u0430", d:{en:"Crispy eggplant, Asian sweet chilli dressing, stracciatella, cherry tomatoes", ru:"\u0425\u0440\u0443\u0441\u0442\u044f\u0449\u0438\u0435 \u0431\u0430\u043a\u043b\u0430\u0436\u0430\u043d\u044b, \u0430\u0437\u0438\u0430\u0442\u0441\u043a\u0438\u0439 \u043a\u0438\u0441\u043b\u043e-\u0441\u043b\u0430\u0434\u043a\u0438\u0439 \u0441\u043e\u0443\u0441, \u0441\u0442\u0440\u0430\u0447\u0430\u0442\u0435\u043b\u043b\u0430, \u0447\u0435\u0440\u0440\u0438"}, p:14}
+  ]},
+  {en:"Mains", ru:"\u041e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u0431\u043b\u044e\u0434\u0430", items:[
+    {en:"Beef Quesadilla", ru:"\u041a\u0435\u0441\u0430\u0434\u0438\u043b\u044c\u044f \u0441 \u0433\u043e\u0432\u044f\u0434\u0438\u043d\u043e\u0439", d:{en:"Beef mince, cheddar, tomato, pepper, corn, red onion, tortilla", ru:"\u0413\u043e\u0432\u044f\u0436\u0438\u0439 \u0444\u0430\u0440\u0448, \u0447\u0435\u0434\u0434\u0435\u0440, \u0442\u043e\u043c\u0430\u0442, \u043f\u0435\u0440\u0435\u0446, \u043a\u0443\u043a\u0443\u0440\u0443\u0437\u0430, \u043a\u0440\u0430\u0441\u043d\u044b\u0439 \u043b\u0443\u043a, \u0442\u043e\u0440\u0442\u0438\u043b\u044c\u044f"}, p:11},
+    {en:"Chicken Quesadilla", ru:"\u041a\u0435\u0441\u0430\u0434\u0438\u043b\u044c\u044f \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Chicken, cheddar, tomato, pepper, corn, red onion, tortilla", ru:"\u041a\u0443\u0440\u0438\u0446\u0430, \u0447\u0435\u0434\u0434\u0435\u0440, \u0442\u043e\u043c\u0430\u0442, \u043f\u0435\u0440\u0435\u0446, \u043a\u0443\u043a\u0443\u0440\u0443\u0437\u0430, \u043a\u0440\u0430\u0441\u043d\u044b\u0439 \u043b\u0443\u043a, \u0442\u043e\u0440\u0442\u0438\u043b\u044c\u044f"}, p:11},
+    {en:"Shrimp Quesadilla", ru:"\u041a\u0435\u0441\u0430\u0434\u0438\u043b\u044c\u044f \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Shrimp, cheddar, tomato, pepper, corn, red onion, tortilla", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u0447\u0435\u0434\u0434\u0435\u0440, \u0442\u043e\u043c\u0430\u0442, \u043f\u0435\u0440\u0435\u0446, \u043a\u0443\u043a\u0443\u0440\u0443\u0437\u0430, \u043a\u0440\u0430\u0441\u043d\u044b\u0439 \u043b\u0443\u043a, \u0442\u043e\u0440\u0442\u0438\u043b\u044c\u044f"}, p:12},
+    {en:"Pelmeni, Beef & Pork, Red Caviar", ru:"\u041f\u0435\u043b\u044c\u043c\u0435\u043d\u0438, \u0433\u043e\u0432\u044f\u0434\u0438\u043d\u0430 \u0438 \u0441\u0432\u0438\u043d\u0438\u043d\u0430, \u043a\u0440\u0430\u0441\u043d\u0430\u044f \u0438\u043a\u0440\u0430", d:{en:"Beef & pork mince, dill, parsley, red caviar", ru:"\u0424\u0430\u0440\u0448 \u0438\u0437 \u0433\u043e\u0432\u044f\u0434\u0438\u043d\u044b \u0438 \u0441\u0432\u0438\u043d\u0438\u043d\u044b, \u0443\u043a\u0440\u043e\u043f, \u043f\u0435\u0442\u0440\u0443\u0448\u043a\u0430, \u043a\u0440\u0430\u0441\u043d\u0430\u044f \u0438\u043a\u0440\u0430"}, p:17},
+    {en:"Chicken Glass Noodles", ru:"\u0424\u0443\u043d\u0447\u043e\u0437\u0430 \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Glass noodles, chicken thigh, oyster-sesame sauce, pepper, coriander", ru:"\u0424\u0443\u043d\u0447\u043e\u0437\u0430, \u043a\u0443\u0440\u0438\u043d\u043e\u0435 \u0431\u0435\u0434\u0440\u043e, \u0443\u0441\u0442\u0440\u0438\u0447\u043d\u043e-\u043a\u0443\u043d\u0436\u0443\u0442\u043d\u044b\u0439 \u0441\u043e\u0443\u0441, \u043f\u0435\u0440\u0435\u0446, \u043a\u0438\u043d\u0437\u0430"}, p:12},
+    {en:"Shrimp Glass Noodles", ru:"\u0424\u0443\u043d\u0447\u043e\u0437\u0430 \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Glass noodles, shrimp, oyster-sesame sauce, pepper, coriander", ru:"\u0424\u0443\u043d\u0447\u043e\u0437\u0430, \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u0443\u0441\u0442\u0440\u0438\u0447\u043d\u043e-\u043a\u0443\u043d\u0436\u0443\u0442\u043d\u044b\u0439 \u0441\u043e\u0443\u0441, \u043f\u0435\u0440\u0435\u0446, \u043a\u0438\u043d\u0437\u0430"}, p:14},
+    {en:"Beef Kuksi", ru:"\u041a\u0443\u043a\u0441\u0438 \u0441 \u0433\u043e\u0432\u044f\u0434\u0438\u043d\u043e\u0439", d:{en:"Cold Korean noodle soup, beef tenderloin, kimchi, omelette", ru:"\u0425\u043e\u043b\u043e\u0434\u043d\u044b\u0439 \u043a\u043e\u0440\u0435\u0439\u0441\u043a\u0438\u0439 \u0441\u0443\u043f \u0441 \u043b\u0430\u043f\u0448\u043e\u0439, \u0433\u043e\u0432\u044f\u0436\u044c\u044f \u0432\u044b\u0440\u0435\u0437\u043a\u0430, \u043a\u0438\u043c\u0447\u0438, \u043e\u043c\u043b\u0435\u0442"}, p:14},
+    {en:"Chicken Kuksi", ru:"\u041a\u0443\u043a\u0441\u0438 \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Cold Korean noodle soup, crispy chicken, kimchi, omelette", ru:"\u0425\u043e\u043b\u043e\u0434\u043d\u044b\u0439 \u043a\u043e\u0440\u0435\u0439\u0441\u043a\u0438\u0439 \u0441\u0443\u043f \u0441 \u043b\u0430\u043f\u0448\u043e\u0439, \u0445\u0440\u0443\u0441\u0442\u044f\u0449\u0430\u044f \u043a\u0443\u0440\u0438\u0446\u0430, \u043a\u0438\u043c\u0447\u0438, \u043e\u043c\u043b\u0435\u0442"}, p:14},
+    {en:"Shrimp Kuksi", ru:"\u041a\u0443\u043a\u0441\u0438 \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Cold Korean noodle soup, pan-fried shrimp, kimchi, omelette", ru:"\u0425\u043e\u043b\u043e\u0434\u043d\u044b\u0439 \u043a\u043e\u0440\u0435\u0439\u0441\u043a\u0438\u0439 \u0441\u0443\u043f \u0441 \u043b\u0430\u043f\u0448\u043e\u0439, \u043e\u0431\u0436\u0430\u0440\u0435\u043d\u043d\u044b\u0435 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u043a\u0438\u043c\u0447\u0438, \u043e\u043c\u043b\u0435\u0442"}, p:14.5},
+    {en:"Beef Stroganoff, Truffle Puree", ru:"\u0411\u0435\u0444\u0441\u0442\u0440\u043e\u0433\u0430\u043d\u043e\u0432, \u0442\u0440\u044e\u0444\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u044e\u0440\u0435", d:{en:"Beef in creamy mushroom sauce, truffle puree", ru:"\u0413\u043e\u0432\u044f\u0434\u0438\u043d\u0430 \u0432 \u0441\u043b\u0438\u0432\u043e\u0447\u043d\u043e-\u0433\u0440\u0438\u0431\u043d\u043e\u043c \u0441\u043e\u0443\u0441\u0435, \u0442\u0440\u044e\u0444\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u044e\u0440\u0435"}, p:20},
+    {en:"Short Ribs with Coleslaw", ru:"\u0420\u0451\u0431\u0440\u044b\u0448\u043a\u0438 \u0441 \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443", d:{en:"Braised pork ribs, homemade BBQ sauce, potatoes, coleslaw", ru:"\u0422\u043e\u043c\u043b\u0451\u043d\u044b\u0435 \u0440\u0451\u0431\u0440\u044b\u0448\u043a\u0438, \u0434\u043e\u043c\u0430\u0448\u043d\u0438\u0439 \u0431\u0430\u0440\u0431\u0435\u043a\u044e-\u0441\u043e\u0443\u0441, \u043a\u0430\u0440\u0442\u043e\u0444\u0435\u043b\u044c, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443"}, p:22}
+  ]},
+  {en:"Bowls", ru:"\u0411\u043e\u0443\u043b\u044b", items:[
+    {en:"Salmon Bowl", ru:"\u0411\u043e\u0443\u043b \u0441 \u043b\u043e\u0441\u043e\u0441\u0435\u043c", d:{en:"Salmon, Japanese rice, edamame, avocado, nori", ru:"\u041b\u043e\u0441\u043e\u0441\u044c, \u044f\u043f\u043e\u043d\u0441\u043a\u0438\u0439 \u0440\u0438\u0441, \u044d\u0434\u0430\u043c\u0430\u043c\u0435, \u0430\u0432\u043e\u043a\u0430\u0434\u043e, \u043d\u043e\u0440\u0438"}, p:18},
+    {en:"Chicken Bowl", ru:"\u0411\u043e\u0443\u043b \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Fried chicken, Japanese rice, edamame, avocado, nori", ru:"\u0416\u0430\u0440\u0435\u043d\u0430\u044f \u043a\u0443\u0440\u0438\u0446\u0430, \u044f\u043f\u043e\u043d\u0441\u043a\u0438\u0439 \u0440\u0438\u0441, \u044d\u0434\u0430\u043c\u0430\u043c\u0435, \u0430\u0432\u043e\u043a\u0430\u0434\u043e, \u043d\u043e\u0440\u0438"}, p:16},
+    {en:"Shrimp Bowl", ru:"\u0411\u043e\u0443\u043b \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Shrimp, Japanese rice, edamame, avocado, nori", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u044f\u043f\u043e\u043d\u0441\u043a\u0438\u0439 \u0440\u0438\u0441, \u044d\u0434\u0430\u043c\u0430\u043c\u0435, \u0430\u0432\u043e\u043a\u0430\u0434\u043e, \u043d\u043e\u0440\u0438"}, p:17},
+    {en:"Summer Chicken Bowl", ru:"\u041b\u0435\u0442\u043d\u0438\u0439 \u0431\u043e\u0443\u043b \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Chicken, quinoa, pesto, pineapple, grapefruit, edamame", ru:"\u041a\u0443\u0440\u0438\u0446\u0430, \u043a\u0438\u043d\u043e\u0430, \u043f\u0435\u0441\u0442\u043e, \u0430\u043d\u0430\u043d\u0430\u0441, \u0433\u0440\u0435\u0439\u043f\u0444\u0440\u0443\u0442, \u044d\u0434\u0430\u043c\u0430\u043c\u0435"}, p:15},
+    {en:"Summer Salmon Bowl", ru:"\u041b\u0435\u0442\u043d\u0438\u0439 \u0431\u043e\u0443\u043b \u0441 \u043b\u043e\u0441\u043e\u0441\u0435\u043c", d:{en:"Salmon, quinoa, pesto, pineapple, grapefruit, edamame", ru:"\u041b\u043e\u0441\u043e\u0441\u044c, \u043a\u0438\u043d\u043e\u0430, \u043f\u0435\u0441\u0442\u043e, \u0430\u043d\u0430\u043d\u0430\u0441, \u0433\u0440\u0435\u0439\u043f\u0444\u0440\u0443\u0442, \u044d\u0434\u0430\u043c\u0430\u043c\u0435"}, p:16},
+    {en:"Summer Shrimp Bowl", ru:"\u041b\u0435\u0442\u043d\u0438\u0439 \u0431\u043e\u0443\u043b \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Shrimp, quinoa, pesto, pineapple, grapefruit, edamame", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u043a\u0438\u043d\u043e\u0430, \u043f\u0435\u0441\u0442\u043e, \u0430\u043d\u0430\u043d\u0430\u0441, \u0433\u0440\u0435\u0439\u043f\u0444\u0440\u0443\u0442, \u044d\u0434\u0430\u043c\u0430\u043c\u0435"}, p:17}
+  ]},
+  {en:"Chef's Shawarma", ru:"\u0428\u0430\u0443\u0440\u043c\u0430 \u043e\u0442 \u0448\u0435\u0444\u0430", items:[
+    {en:"Chicken Shawarma (Medium)", ru:"\u0428\u0430\u0443\u0440\u043c\u0430 \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439 (\u0441\u0440\u0435\u0434\u043d\u044f\u044f)", d:{en:"Chicken thigh, tomato, cucumber, coleslaw, lavash", ru:"\u041a\u0443\u0440\u0438\u043d\u043e\u0435 \u0431\u0435\u0434\u0440\u043e, \u0442\u043e\u043c\u0430\u0442, \u043e\u0433\u0443\u0440\u0435\u0446, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443, \u043b\u0430\u0432\u0430\u0448"}, p:10},
+    {en:"Medium Cheese Shawarma", ru:"\u0428\u0430\u0443\u0440\u043c\u0430 \u0441 \u0441\u044b\u0440\u043e\u043c (\u0441\u0440\u0435\u0434\u043d\u044f\u044f)", d:{en:"Chicken thigh, cheese sauce, cheddar, coleslaw, lavash", ru:"\u041a\u0443\u0440\u0438\u043d\u043e\u0435 \u0431\u0435\u0434\u0440\u043e, \u0441\u044b\u0440\u043d\u044b\u0439 \u0441\u043e\u0443\u0441, \u0447\u0435\u0434\u0434\u0435\u0440, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443, \u043b\u0430\u0432\u0430\u0448"}, p:14},
+    {en:"Chicken Shawarma", ru:"\u0428\u0430\u0443\u0440\u043c\u0430 \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Chicken thigh, tomato, cucumber, coleslaw, lavash", ru:"\u041a\u0443\u0440\u0438\u043d\u043e\u0435 \u0431\u0435\u0434\u0440\u043e, \u0442\u043e\u043c\u0430\u0442, \u043e\u0433\u0443\u0440\u0435\u0446, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443, \u043b\u0430\u0432\u0430\u0448"}, p:17},
+    {en:"Shrimp Shawarma (Medium)", ru:"\u0428\u0430\u0443\u0440\u043c\u0430 \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438 (\u0441\u0440\u0435\u0434\u043d\u044f\u044f)", d:{en:"Shrimp, tomato, cucumber, coleslaw, lavash", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u0442\u043e\u043c\u0430\u0442, \u043e\u0433\u0443\u0440\u0435\u0446, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443, \u043b\u0430\u0432\u0430\u0448"}, p:12},
+    {en:"Shrimp Shawarma", ru:"\u0428\u0430\u0443\u0440\u043c\u0430 \u0441 \u043a\u0440\u0435\u0432\u0435\u0442\u043a\u0430\u043c\u0438", d:{en:"Shrimp, tomato, cucumber, coleslaw, lavash", ru:"\u041a\u0440\u0435\u0432\u0435\u0442\u043a\u0438, \u0442\u043e\u043c\u0430\u0442, \u043e\u0433\u0443\u0440\u0435\u0446, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443, \u043b\u0430\u0432\u0430\u0448"}, p:19},
+    {en:"Chicken Shawarma Platter", ru:"\u0422\u0430\u0440\u0435\u043b\u043a\u0430 \u0448\u0430\u0443\u0440\u043c\u044b \u0441 \u043a\u0443\u0440\u0438\u0446\u0435\u0439", d:{en:"Chicken thigh, tomato, cucumber, coleslaw, fried potato", ru:"\u041a\u0443\u0440\u0438\u043d\u043e\u0435 \u0431\u0435\u0434\u0440\u043e, \u0442\u043e\u043c\u0430\u0442, \u043e\u0433\u0443\u0440\u0435\u0446, \u043a\u043e\u0443\u043b\u0441\u043b\u043e\u0443, \u043a\u0430\u0440\u0442\u043e\u0444\u0435\u043b\u044c \u0444\u0440\u0438"}, p:22}
+  ]},
+  {en:"Desserts", ru:"\u0414\u0435\u0441\u0435\u0440\u0442\u044b", items:[
+    {en:"Basque Cheesecake", ru:"\u0411\u0430\u0441\u043a\u0441\u043a\u0438\u0439 \u0447\u0438\u0437\u043a\u0435\u0439\u043a", d:{en:"Creamy burnt cheesecake, chocolate sauce", ru:"\u041a\u0440\u0435\u043c\u043e\u0432\u044b\u0439 \u0447\u0438\u0437\u043a\u0435\u0439\u043a \u0441 \u043a\u0430\u0440\u0430\u043c\u0435\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u043a\u043e\u0440\u043e\u0447\u043a\u043e\u0439, \u0448\u043e\u043a\u043e\u043b\u0430\u0434\u043d\u044b\u0439 \u0441\u043e\u0443\u0441"}, p:9},
+    {en:"Mochi Ice Cream (4pc)", ru:"\u041c\u043e\u0440\u043e\u0436\u0435\u043d\u043e\u0435 \u043c\u043e\u0442\u0438 (4 \u0448\u0442)", d:{en:"Coconut, matcha, cheesecake, mango", ru:"\u041a\u043e\u043a\u043e\u0441, \u043c\u0430\u0442\u0447\u0430, \u0447\u0438\u0437\u043a\u0435\u0439\u043a, \u043c\u0430\u043d\u0433\u043e"}, p:10},
+    {en:"Napoleon", ru:"\u041d\u0430\u043f\u043e\u043b\u0435\u043e\u043d", d:{en:"Layers of pastry soaked in vanilla custard", ru:"\u0421\u043b\u043e\u0451\u043d\u043e\u0435 \u0442\u0435\u0441\u0442\u043e, \u043f\u0440\u043e\u043f\u0438\u0442\u0430\u043d\u043d\u043e\u0435 \u0432\u0430\u043d\u0438\u043b\u044c\u043d\u044b\u043c \u043a\u0440\u0435\u043c\u043e\u043c"}, p:10}
+  ]}
+];
+var activeFood = 0;
+function buildFoodTabs(){
+  var box = $("#fmtabs");
+  if (!box) return;
+  box.innerHTML = "";
+  FOODCATS.forEach(function(c,i){
+    var b = document.createElement("button");
+    b.className = "sptab";
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", i === activeFood ? "true" : "false");
+    b.textContent = t(c);
+    b.addEventListener("click", function(){ activeFood = i; buildFoodTabs(); buildFoodGrid(); });
+    box.appendChild(b);
+  });
+}
+function buildFoodGrid(){
+  var box = $("#fmgrid");
+  if (!box) return;
+  var cat = FOODCATS[activeFood];
+  box.innerHTML = cat.items.map(function(it,k){
+    return '<article class="zcard fcard" style="--i:' + k + '">' +
+      '<span class="bar"></span>' +
+      '<div class="zin">' +
+        '<div class="ztop"><h3>' + t(it) + '</h3><span class="lbl">' + t(cat) + '</span></div>' +
+        '<div class="zbot">' +
+          '<p>' + t(it.d) + '</p>' +
+          '<span class="zprice"><b>&euro;' + it.p + '</b></span>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+  box.classList.add("in");
+}
+buildFoodTabs();
+buildFoodGrid();
 
 /* \u2500\u2500 specs \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
 var active = 0, tabs = $("#sptabs"), rowsBox = $("#sprows"), media = $$(".spmedia > *");
@@ -1187,25 +1294,6 @@ function clock(){
   box.setAttribute("data-state", state === "off" ? "off" : state);
   $("#nowTxt").textContent = t(state === "peak" ? NOW.peak : state === "off" ? NOW.off : NOW.shut);
 }
-
-/* \u2500\u2500 cursor \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-(function(){
-  if (!window.matchMedia("(pointer:fine)").matches) return;
-  var c = $("#cur"), dt = $("#curd"), cx = 0, cy = 0, tx = 0, ty = 0;
-  addEventListener("pointermove", function(e){
-    tx = e.clientX; ty = e.clientY;
-    dt.style.transform = "translate(" + tx + "px," + ty + "px)";
-    document.body.classList.add("hascur");
-  }, {passive:true});
-  addEventListener("pointerover", function(e){
-    document.body.classList.toggle("hot", !!(e.target.closest && e.target.closest("a,button")));
-  }, {passive:true});
-  (function loop(){
-    cx += (tx - cx) * .16; cy += (ty - cy) * .16;
-    c.style.transform = "translate(" + cx + "px," + cy + "px)";
-    requestAnimationFrame(loop);
-  })();
-})();
 
 /* \u2500\u2500 hero shader \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
 function shader(){

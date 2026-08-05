@@ -320,6 +320,24 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-bl
 .zcard .bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);z-index:3}
 .zcard:hover .bar{transform:scaleX(1)}
 
+/* ── food menu cards ────────────────────────────────────────────────────── */
+.fmtabs{margin-top:2.8rem}
+.fmgrid{flex-wrap:wrap}
+.fmgrid .fcard{
+  min-height:14rem;flex:1 1 16rem;
+  background:
+    repeating-linear-gradient(0deg,rgba(228,226,221,.05) 0 1px,transparent 1px 4px),
+    radial-gradient(120% 140% at 100% 0%,rgba(228,50,26,.16),transparent 55%),
+    var(--ink);
+}
+.fmgrid .fcard::after{background:linear-gradient(180deg,rgba(7,7,9,.35) 0%,rgba(7,7,9,.05) 40%,rgba(7,7,9,.55) 100%)}
+.fmgrid .fcard .zin{padding:1.25rem 1.25rem;gap:1rem}
+.fmgrid .fcard h3{font-size:1.0625rem;text-transform:none;letter-spacing:-.01em}
+.fmgrid .fcard .ztop .lbl{opacity:.55}
+.fmgrid .fcard .zbot p{font-size:.875rem;color:rgba(228,226,221,.62)}
+.fmgrid .fcard .zprice b{font-size:1.375rem;color:var(--ember)}
+@media(max-width:1023px){.fmgrid .fcard{width:78vw;max-width:20rem}}
+
 /* ── specs ──────────────────────────────────────────────────────────────── */
 .sp{display:grid;gap:2rem}
 @media(min-width:1000px){.sp{grid-template-columns:repeat(var(--cols),1fr);gap:var(--gap);align-items:start}
@@ -446,15 +464,9 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
 .fbig{font-size:var(--t-wordmark);font-weight:600;letter-spacing:-.055em;line-height:.8;margin:0 0 1.5rem;color:rgba(228,226,221,.1)}
 .frow{display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:space-between;align-items:center}
 
-/* ── reveal + cursor ────────────────────────────────────────────────────── */
+/* ── reveal ─────────────────────────────────────────────────────────────── */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.in{opacity:1;transform:none}
-#cur,#curd{position:fixed;top:0;left:0;z-index:150;pointer-events:none;border-radius:50%;mix-blend-mode:difference;opacity:0;transition:opacity .3s}
-#cur{width:32px;height:32px;border:1px solid #fff;margin:16px 0 0 16px}
-#curd{width:4px;height:4px;background:#fff;margin:2px 0 0 2px}
-body.hascur #cur,body.hascur #curd{opacity:1}
-body.hascur.hot #cur{transform:scale(1.5)}
-@media(pointer:coarse){#cur,#curd{display:none}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
@@ -514,7 +526,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
   <ul id="menuList">
     <li style="--i:0"><a class="mlink" href="#zones" data-scroll data-roll data-en="Zones" data-ru="Залы">Zones</a></li>
     <li style="--i:1"><a class="mlink" href="#specs" data-scroll data-roll data-en="Specs" data-ru="Железо">Specs</a></li>
-    <li style="--i:2"><a class="mlink" href="#cinema" data-scroll data-roll data-en="Cinema" data-ru="Кинозал">Cinema</a></li>
+    <li style="--i:2"><a class="mlink" href="#cinema" data-scroll data-roll data-en="PS5 Room" data-ru="PS5 Рум">PS5 Room</a></li>
     <li style="--i:3"><a class="mlink" href="#prices" data-scroll data-roll data-en="Prices" data-ru="Цены">Prices</a></li>
     <li style="--i:4"><a class="mlink" href="#contact" data-scroll data-roll data-en="Contact" data-ru="Контакты">Contact</a></li>
   </ul>
@@ -535,7 +547,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
     <h1 class="h1 hero-t" id="heroT" data-en="Pick a game. Take a seat." data-ru="Выбирай игру. Занимай место."></h1>
     <div class="hero-b">
       <div class="up" style="animation-delay:1.05s">
-        <p data-en="Four gaming zones, a big PC and PS5 library, and a 130-inch private cinema — in central Limassol. Afternoons cost less." data-ru="Четыре игровые зоны, большая библиотека игр на PC и PS5 и приватный кинозал 130 дюймов — в центре Лимассола. Днём дешевле.">Four gaming zones in central Limassol.</p>
+        <p data-en="Four gaming zones, a big PC and PS5 library, and a 130-inch private PS5 room — in central Limassol. Afternoons cost less." data-ru="Четыре игровые зоны, большая библиотека игр на PC и PS5 и приватный PS5-рум с экраном 130 дюймов — в центре Лимассола. Днём дешевле.">Four gaming zones in central Limassol.</p>
         <div class="acts" style="margin-top:1.4rem">
           <a class="cta solid" href="https://wa.me/35797762727" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.7-.9-1.7-.9-2.6 0-.9.5-1.4.7-1.6.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.2-.3.3-.1.6.5.9 1.1 1.6 1.9 2.2.4.2.6.2.8 0l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"></path></svg>
@@ -559,7 +571,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
 <!-- ══ manifesto ══════════════════════════════════════════════════════════ -->
 <section class="sec" id="about">
   <div class="wrap">
-    <p class="mani" id="mani" data-en="Tournament hardware, a private cinema and a lounge — all under one roof in Limassol." data-ru="Турнирное железо, приватный кинозал и лаунж — всё под одной крышей в Лимассоле."></p>
+    <p class="mani" id="mani" data-en="Tournament hardware, a private PS5 room and a lounge — all under one roof in Limassol." data-ru="Турнирное железо, приватный PS5-рум и лаунж — всё под одной крышей в Лимассоле."></p>
   </div>
   <div class="wrap"><div class="div rv"><span class="ln"></span><svg viewBox="0 0 13 13"><line x1="6.5" y1="0" x2="6.5" y2="13"></line><line x1="0" y1="6.5" x2="13" y2="6.5"></line></svg></div></div>
 </section>
@@ -591,7 +603,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="165">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5060 &middot; i7-14700K &middot; BenQ 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="2" data-peak="4">&euro;2</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -604,7 +616,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <div class="zhz"><b class="cnt" data-count="360">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 Ti &middot; i7-14700K &middot; Alienware 27&quot;</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="4" data-peak="6">&euro;4</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
           </div>
         </div>
       </article>
@@ -685,17 +697,23 @@ body.hascur.hot #cur{transform:scale(1.5)}
         <span class="tag lbl">130&Prime; &middot; Dolby Atmos &middot; PS5 Pro</span>
       </div>
       <div class="rv">
-        <span class="lbl" data-en="Cinema &amp; lounge" data-ru="Кинозал и лаунж">Cinema &amp; lounge</span>
+        <span class="lbl" data-en="PS5 Room &amp; lounge" data-ru="PS5-рум и лаунж">PS5 Room &amp; lounge</span>
         <h2 class="h2" style="margin-top:1rem" data-en="Book the room. Play it or watch it." data-ru="Забронируй зал. Играй или смотри.">Book the room.</h2>
-        <p style="margin-top:1.1rem" data-en="The PS5 Premium room becomes a private cinema in a minute: a 130-inch screen, a BenQ X3100i projector, Dolby Atmos and six recliners." data-ru="Зал PS5 Premium за минуту превращается в приватный кинотеатр: экран 130 дюймов, проектор BenQ X3100i, Dolby Atmos и шесть реклайнеров.">The PS5 Premium room becomes a private cinema in a minute.</p>
+        <p style="margin-top:1.1rem" data-en="The PS5 Premium room seats six around a 130-inch screen with a BenQ X3100i projector and Dolby Atmos — stream Netflix, HBO, Amazon Prime or whatever you want, or just play." data-ru="Зал PS5 Premium: экран 130 дюймов, проектор BenQ X3100i, Dolby Atmos и шесть мест — включай Netflix, HBO, Amazon Prime или что угодно ещё, или просто играй.">The PS5 Premium room seats six around a 130-inch screen.</p>
         <div class="rows">
           <div><span class="n">01</span><p data-en="A large library of games on PC and PS5 Pro — from esports titles to co-op." data-ru="Большая библиотека игр на PC и PS5 Pro — от киберспорта до кооператива.">Games library</p></div>
           <div><span class="n">02</span><p data-en="Hookah on request, plus drinks and snacks at the bar." data-ru="Кальян по запросу, напитки и снеки на баре.">Hookah on request</p></div>
-          <div><span class="n">03</span><p data-en="Movie nights, birthdays and team bootcamps — the room books whole." data-ru="Кинопросмотры, дни рождения и командные буткемпы — зал бронируется целиком.">Whole-room booking</p></div>
+          <div><span class="n">03</span><p data-en="Birthdays and team bootcamps — the room books whole." data-ru="Дни рождения и командные буткемпы — зал бронируется целиком.">Whole-room booking</p></div>
         </div>
         <p class="lbl" style="margin-top:1.4rem;opacity:.6" data-en="Food from a partner restaurant is available too — ask the club administrator to order." data-ru="Можно заказать еду из ресторана-партнёра — уточняйте у администратора клуба.">Food from a partner restaurant — ask the administrator.</p>
       </div>
     </div>
+  </div>
+  <div class="wrap" style="margin-top:2.8rem">
+    <div class="fmtabs sptabs" role="tablist" id="fmtabs"></div>
+  </div>
+  <div class="zwrap">
+    <div class="zlist fmgrid" id="fmgrid"></div>
   </div>
 </section>
 
@@ -790,7 +808,7 @@ body.hascur.hot #cur{transform:scale(1.5)}
           <cite data-en="Bootcamp zone" data-ru="Зал Bootcamp">Bootcamp zone</cite>
         </blockquote>
         <blockquote>
-          <p data-en="A private room for six: 130-inch screen, Dolby Atmos, recliners — games or a film." data-ru="Приватный зал на шестерых: экран 130 дюймов, Dolby Atmos, реклайнеры — игры или кино.">A private room for six.</p>
+          <p data-en="A private room for six: 130-inch screen, Dolby Atmos, recliners — games or your own streaming." data-ru="Приватный зал на шестерых: экран 130 дюймов, Dolby Atmos, реклайнеры — игры или свой стриминг.">A private room for six.</p>
           <cite>PS5 Premium</cite>
         </blockquote>
         <blockquote>
@@ -886,7 +904,6 @@ body.hascur.hot #cur{transform:scale(1.5)}
   </div>
 </footer>
 
-<div id="cur" aria-hidden="true"></div><div id="curd" aria-hidden="true"></div>
 
 <script>
 (function(){
@@ -916,7 +933,7 @@ var ZONES = [
   {n:"PS5 PREMIUM", price:{off:7,peak:15}, per:{en:", for 1 person",ru:", за 1 человека"}, rows:[
     ["con","PlayStation 5 Pro"],["prj","BenQ X3100i"],["sze",{en:"130 inches",ru:"130 дюймов"}],
     ["sea",{en:"6 recliners",ru:"6 реклайнеров"}],["aud","Samsung HW-Q990D Dolby Atmos"],
-    ["scr",{en:"Movie nights too",ru:"И кинопоказы"}]]}
+    ["scr",{en:"Netflix, HBO, Prime — stream anything",ru:"Netflix, HBO, Prime — смотри что угодно"}]]}
 ];
 
 var lang = "en";
@@ -996,6 +1013,8 @@ function applyLang(){
   splitHero();
   splitMani();
   buildSpecs(active);
+  buildFoodTabs();
+  buildFoodGrid();
   clock();
 }
 $("#lang").addEventListener("click", function(){
@@ -1041,6 +1060,94 @@ function litMani(){
   var unit = '<div><span>Play</span>' + plus + '<span>Watch</span>' + plus + '<span>Repeat</span>' + plus + "</div>";
   $("#mq").innerHTML = unit + unit + unit + unit;
 })();
+
+/* ── food menu ──────────────────────────────────────────────────────────── */
+/* Food only, from the partner restaurant's a-la-carte menu — no drinks. */
+var FOODCATS = [
+  {en:"Starters", ru:"Стартеры", items:[
+    {en:"Shrimp Gyoza", ru:"Гёдза с креветками", d:{en:"Fried dumplings, green onion, sesame, unagi sauce", ru:"Жареные гёдза, зелёный лук, кунжут, соус унаги"}, p:10},
+    {en:"Duck Gyoza", ru:"Гёдза с уткой", d:{en:"Fried dumplings, green onion, sesame, unagi sauce", ru:"Жареные гёдза, зелёный лук, кунжут, соус унаги"}, p:11},
+    {en:"Beef Tartare, Truffle Sauce", ru:"Тартар из говядины, трюфельный соус", d:{en:"Beef tenderloin, truffle sauce, grana padano, spinach", ru:"Говяжья вырезка, трюфельный соус, грана падано, шпинат"}, p:17},
+    {en:"Tempura Shrimp, Spicy Sauce", ru:"Темпура из креветок, острый соус", d:{en:"Shrimp, spicy sauce, spinach, coriander", ru:"Креветки, острый соус, шпинат, кинза"}, p:15.5},
+    {en:"Tempura Shrimp, Wasabi Sauce", ru:"Темпура из креветок, соус васаби", d:{en:"Shrimp, wasabi sauce, spinach, coriander, sesame", ru:"Креветки, соус васаби, шпинат, кинза, кунжут"}, p:15.5},
+    {en:"Burrata, Pesto & Prosciutto", ru:"Буррата, песто и прошутто", d:{en:"Fresh burrata, tomatoes, pesto, prosciutto", ru:"Свежая буррата, томаты, соус песто, прошутто"}, p:16}
+  ]},
+  {en:"Salads", ru:"Салаты", items:[
+    {en:"Chicken Ceasar Salad", ru:"Салат Цезарь с курицей", d:{en:"Romaine, cherry tomatoes, croutons, grana padano, chicken thigh", ru:"Ромэн, черри, гренки, грана падано, куриное бедро"}, p:16},
+    {en:"Shrimp Ceasar Salad", ru:"Салат Цезарь с креветками", d:{en:"Romaine, cherry tomatoes, croutons, grana padano, shrimp", ru:"Ромэн, черри, гренки, грана падано, креветки"}, p:18},
+    {en:"Fried Eggplants, Stracciatella", ru:"Жареные баклажаны, страчателла", d:{en:"Crispy eggplant, Asian sweet chilli dressing, stracciatella, cherry tomatoes", ru:"Хрустящие баклажаны, азиатский кисло-сладкий соус, страчателла, черри"}, p:14}
+  ]},
+  {en:"Mains", ru:"Основные блюда", items:[
+    {en:"Beef Quesadilla", ru:"Кесадилья с говядиной", d:{en:"Beef mince, cheddar, tomato, pepper, corn, red onion, tortilla", ru:"Говяжий фарш, чеддер, томат, перец, кукуруза, красный лук, тортилья"}, p:11},
+    {en:"Chicken Quesadilla", ru:"Кесадилья с курицей", d:{en:"Chicken, cheddar, tomato, pepper, corn, red onion, tortilla", ru:"Курица, чеддер, томат, перец, кукуруза, красный лук, тортилья"}, p:11},
+    {en:"Shrimp Quesadilla", ru:"Кесадилья с креветками", d:{en:"Shrimp, cheddar, tomato, pepper, corn, red onion, tortilla", ru:"Креветки, чеддер, томат, перец, кукуруза, красный лук, тортилья"}, p:12},
+    {en:"Pelmeni, Beef & Pork, Red Caviar", ru:"Пельмени, говядина и свинина, красная икра", d:{en:"Beef & pork mince, dill, parsley, red caviar", ru:"Фарш из говядины и свинины, укроп, петрушка, красная икра"}, p:17},
+    {en:"Chicken Glass Noodles", ru:"Фунчоза с курицей", d:{en:"Glass noodles, chicken thigh, oyster-sesame sauce, pepper, coriander", ru:"Фунчоза, куриное бедро, устрично-кунжутный соус, перец, кинза"}, p:12},
+    {en:"Shrimp Glass Noodles", ru:"Фунчоза с креветками", d:{en:"Glass noodles, shrimp, oyster-sesame sauce, pepper, coriander", ru:"Фунчоза, креветки, устрично-кунжутный соус, перец, кинза"}, p:14},
+    {en:"Beef Kuksi", ru:"Кукси с говядиной", d:{en:"Cold Korean noodle soup, beef tenderloin, kimchi, omelette", ru:"Холодный корейский суп с лапшой, говяжья вырезка, кимчи, омлет"}, p:14},
+    {en:"Chicken Kuksi", ru:"Кукси с курицей", d:{en:"Cold Korean noodle soup, crispy chicken, kimchi, omelette", ru:"Холодный корейский суп с лапшой, хрустящая курица, кимчи, омлет"}, p:14},
+    {en:"Shrimp Kuksi", ru:"Кукси с креветками", d:{en:"Cold Korean noodle soup, pan-fried shrimp, kimchi, omelette", ru:"Холодный корейский суп с лапшой, обжаренные креветки, кимчи, омлет"}, p:14.5},
+    {en:"Beef Stroganoff, Truffle Puree", ru:"Бефстроганов, трюфельное пюре", d:{en:"Beef in creamy mushroom sauce, truffle puree", ru:"Говядина в сливочно-грибном соусе, трюфельное пюре"}, p:20},
+    {en:"Short Ribs with Coleslaw", ru:"Рёбрышки с коулслоу", d:{en:"Braised pork ribs, homemade BBQ sauce, potatoes, coleslaw", ru:"Томлёные рёбрышки, домашний барбекю-соус, картофель, коулслоу"}, p:22}
+  ]},
+  {en:"Bowls", ru:"Боулы", items:[
+    {en:"Salmon Bowl", ru:"Боул с лососем", d:{en:"Salmon, Japanese rice, edamame, avocado, nori", ru:"Лосось, японский рис, эдамаме, авокадо, нори"}, p:18},
+    {en:"Chicken Bowl", ru:"Боул с курицей", d:{en:"Fried chicken, Japanese rice, edamame, avocado, nori", ru:"Жареная курица, японский рис, эдамаме, авокадо, нори"}, p:16},
+    {en:"Shrimp Bowl", ru:"Боул с креветками", d:{en:"Shrimp, Japanese rice, edamame, avocado, nori", ru:"Креветки, японский рис, эдамаме, авокадо, нори"}, p:17},
+    {en:"Summer Chicken Bowl", ru:"Летний боул с курицей", d:{en:"Chicken, quinoa, pesto, pineapple, grapefruit, edamame", ru:"Курица, киноа, песто, ананас, грейпфрут, эдамаме"}, p:15},
+    {en:"Summer Salmon Bowl", ru:"Летний боул с лососем", d:{en:"Salmon, quinoa, pesto, pineapple, grapefruit, edamame", ru:"Лосось, киноа, песто, ананас, грейпфрут, эдамаме"}, p:16},
+    {en:"Summer Shrimp Bowl", ru:"Летний боул с креветками", d:{en:"Shrimp, quinoa, pesto, pineapple, grapefruit, edamame", ru:"Креветки, киноа, песто, ананас, грейпфрут, эдамаме"}, p:17}
+  ]},
+  {en:"Chef's Shawarma", ru:"Шаурма от шефа", items:[
+    {en:"Chicken Shawarma (Medium)", ru:"Шаурма с курицей (средняя)", d:{en:"Chicken thigh, tomato, cucumber, coleslaw, lavash", ru:"Куриное бедро, томат, огурец, коулслоу, лаваш"}, p:10},
+    {en:"Medium Cheese Shawarma", ru:"Шаурма с сыром (средняя)", d:{en:"Chicken thigh, cheese sauce, cheddar, coleslaw, lavash", ru:"Куриное бедро, сырный соус, чеддер, коулслоу, лаваш"}, p:14},
+    {en:"Chicken Shawarma", ru:"Шаурма с курицей", d:{en:"Chicken thigh, tomato, cucumber, coleslaw, lavash", ru:"Куриное бедро, томат, огурец, коулслоу, лаваш"}, p:17},
+    {en:"Shrimp Shawarma (Medium)", ru:"Шаурма с креветками (средняя)", d:{en:"Shrimp, tomato, cucumber, coleslaw, lavash", ru:"Креветки, томат, огурец, коулслоу, лаваш"}, p:12},
+    {en:"Shrimp Shawarma", ru:"Шаурма с креветками", d:{en:"Shrimp, tomato, cucumber, coleslaw, lavash", ru:"Креветки, томат, огурец, коулслоу, лаваш"}, p:19},
+    {en:"Chicken Shawarma Platter", ru:"Тарелка шаурмы с курицей", d:{en:"Chicken thigh, tomato, cucumber, coleslaw, fried potato", ru:"Куриное бедро, томат, огурец, коулслоу, картофель фри"}, p:22}
+  ]},
+  {en:"Desserts", ru:"Десерты", items:[
+    {en:"Basque Cheesecake", ru:"Баскский чизкейк", d:{en:"Creamy burnt cheesecake, chocolate sauce", ru:"Кремовый чизкейк с карамелизированной корочкой, шоколадный соус"}, p:9},
+    {en:"Mochi Ice Cream (4pc)", ru:"Мороженое моти (4 шт)", d:{en:"Coconut, matcha, cheesecake, mango", ru:"Кокос, матча, чизкейк, манго"}, p:10},
+    {en:"Napoleon", ru:"Наполеон", d:{en:"Layers of pastry soaked in vanilla custard", ru:"Слоёное тесто, пропитанное ванильным кремом"}, p:10}
+  ]}
+];
+var activeFood = 0;
+function buildFoodTabs(){
+  var box = $("#fmtabs");
+  if (!box) return;
+  box.innerHTML = "";
+  FOODCATS.forEach(function(c,i){
+    var b = document.createElement("button");
+    b.className = "sptab";
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", i === activeFood ? "true" : "false");
+    b.textContent = t(c);
+    b.addEventListener("click", function(){ activeFood = i; buildFoodTabs(); buildFoodGrid(); });
+    box.appendChild(b);
+  });
+}
+function buildFoodGrid(){
+  var box = $("#fmgrid");
+  if (!box) return;
+  var cat = FOODCATS[activeFood];
+  box.innerHTML = cat.items.map(function(it,k){
+    return '<article class="zcard fcard" style="--i:' + k + '">' +
+      '<span class="bar"></span>' +
+      '<div class="zin">' +
+        '<div class="ztop"><h3>' + t(it) + '</h3><span class="lbl">' + t(cat) + '</span></div>' +
+        '<div class="zbot">' +
+          '<p>' + t(it.d) + '</p>' +
+          '<span class="zprice"><b>&euro;' + it.p + '</b></span>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+  box.classList.add("in");
+}
+buildFoodTabs();
+buildFoodGrid();
 
 /* ── specs ──────────────────────────────────────────────────────────────── */
 var active = 0, tabs = $("#sptabs"), rowsBox = $("#sprows"), media = $$(".spmedia > *");
@@ -1186,25 +1293,6 @@ function clock(){
   box.setAttribute("data-state", state === "off" ? "off" : state);
   $("#nowTxt").textContent = t(state === "peak" ? NOW.peak : state === "off" ? NOW.off : NOW.shut);
 }
-
-/* ── cursor ─────────────────────────────────────────────────────────────── */
-(function(){
-  if (!window.matchMedia("(pointer:fine)").matches) return;
-  var c = $("#cur"), dt = $("#curd"), cx = 0, cy = 0, tx = 0, ty = 0;
-  addEventListener("pointermove", function(e){
-    tx = e.clientX; ty = e.clientY;
-    dt.style.transform = "translate(" + tx + "px," + ty + "px)";
-    document.body.classList.add("hascur");
-  }, {passive:true});
-  addEventListener("pointerover", function(e){
-    document.body.classList.toggle("hot", !!(e.target.closest && e.target.closest("a,button")));
-  }, {passive:true});
-  (function loop(){
-    cx += (tx - cx) * .16; cy += (ty - cy) * .16;
-    c.style.transform = "translate(" + cx + "px," + cy + "px)";
-    requestAnimationFrame(loop);
-  })();
-})();
 
 /* ── hero shader ────────────────────────────────────────────────────────── */
 function shader(){
