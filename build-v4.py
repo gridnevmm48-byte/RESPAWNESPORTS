@@ -176,6 +176,7 @@ def build() -> None:
     # The Pages copy is a full document, same wrapper the Artifact host applies,
     # plus the metadata a real site needs and an artifact does not.
     PAGES.parent.mkdir(exist_ok=True)
+    (PAGES.parent / "og.svg").write_bytes((ASSETS / "og.svg").read_bytes())
     PAGES.write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -186,6 +187,15 @@ def build() -> None:
         '<meta property="og:description" content="Four gaming zones, a big PC and PS5 library, '
         'and a 130-inch private PS5 room in central Limassol.">'
         '<meta property="og:type" content="website">'
+        '<meta property="og:url" content="https://respawnesports.xyz">'
+        '<meta property="og:image" content="https://respawnesports.xyz/og.svg">'
+        '<meta property="og:image:width" content="1200">'
+        '<meta property="og:image:height" content="630">'
+        '<meta name="twitter:card" content="summary_large_image">'
+        '<meta name="twitter:title" content="RESPAWN ESPORTS - Limassol">'
+        '<meta name="twitter:description" content="Four gaming zones, a big PC and PS5 library, '
+        'and a 130-inch private PS5 room in central Limassol.">'
+        '<meta name="twitter:image" content="https://respawnesports.xyz/og.svg">'
         '<link rel="icon" href="data:image/svg+xml,'
         '%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E'
         '%3Crect width=%22100%22 height=%22100%22 fill=%22%23070709%22/%3E'

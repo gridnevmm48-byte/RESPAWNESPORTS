@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="82%" cy="12%" r="65%">
+      <stop offset="0%" stop-color="#E4321A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#E4321A" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#E4E2DD" fill-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#070709"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <circle cx="1000" cy="120" r="90" fill="#E4321A"/>
+  <circle cx="1000" cy="120" r="90" fill="none" stroke="#E4E2DD" stroke-opacity="0.25" stroke-width="1"/>
+
+  <text x="80" y="330" font-family="Arial, Helvetica, sans-serif" font-size="104" font-weight="800" fill="#E4E2DD" letter-spacing="-2">RESPAWN</text>
+  <text x="80" y="390" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600" fill="#E4321A" letter-spacing="12">ESPORTS</text>
+
+  <text x="80" y="460" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#A9A6A0">Pick a game. Take a seat.</text>
+
+  <text x="80" y="560" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#6B6D72" letter-spacing="1">CENTRAL LIMASSOL &#183; RESPAWNESPORTS.XYZ</text>
+
+  <line x1="80" y1="500" x2="1120" y2="500" stroke="#E4E2DD" stroke-opacity="0.12" stroke-width="1"/>
+</svg>
