@@ -945,14 +945,21 @@ var NOTE = {
    external requests. */
 var CLIPS = {
   hero:     "{{CLIP:hero}}",
+  heroTall: "{{CLIP:hero-m}}",
   comfort:  "{{CLIP:zone-comfort}}",
   bootcamp: "{{CLIP:zone-bootcamp}}",
   vip:      "{{CLIP:zone-vip}}",
   ps5:      "{{CLIP:zone-ps5}}",
   cinema:   "{{CLIP:cinema}}"
 };
+/* The hero footage is shot 9:16. A phone held upright gets that frame whole
+   (heroTall); a landscape screen gets the 16:9 crop, which would otherwise
+   have to zoom three times into the middle of the tall frame. */
+var TALL = matchMedia("(max-aspect-ratio: 1/1)").matches;
 $$("video[data-clip]").forEach(function(v){
-  var src = CLIPS[v.getAttribute("data-clip")];
+  var key = v.getAttribute("data-clip");
+  if (key === "hero" && TALL) key = "heroTall";
+  var src = CLIPS[key];
   if (src) v.src = src;
 });
 
