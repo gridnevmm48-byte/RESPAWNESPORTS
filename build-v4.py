@@ -180,6 +180,11 @@ def build() -> None:
     PAGES.write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        # This build is the portfolio copy. The club's own site runs the same
+        # page on respawn.cy, and two identical sites compete in search, so
+        # keep this one out of the index and point crawlers at theirs.
+        '<meta name="robots" content="noindex, follow">'
+        '<link rel="canonical" href="https://respawn.cy">'
         '<meta name="description" content="RESPAWN ESPORTS - esports club in central Limassol. '
         'Four gaming zones, PC and PS5 game library, 130-inch private PS5 room. '
         'Agiou Andreou 160. Off-peak rates from 3 EUR/hour.">'
