@@ -3,7 +3,7 @@
 Премиальный киберспорт-клуб в Лимасоле. Здесь лежат исходники сайта, исходные видео
 и сборщики самодостаточных страниц.
 
-**Клуб:** Agiou Andreou 160, Limassol 3036, Cyprus · ежедневно 13:00 — 03:00
+**Клуб:** Agiou Andreou 160, Limassol 3036, Cyprus · Пн-Пт 13:00 — 03:00, Сб-Вс 10:00 — 03:00
 **Связь:** [+357 97 762727](tel:+35797762727) · [WhatsApp](https://wa.me/35797762727) · [Telegram](https://t.me/respawnesportscy) · [@respawn.cy](https://instagram.com/respawn.cy) · [Карты](https://maps.app.goo.gl/wj9MvFQksBnJhiSk8)
 
 ---
