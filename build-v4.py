@@ -17,6 +17,7 @@ control, so this script:
 Writes dist/respawn-v4.html. Publish that file with the Artifact tool.
 """
 import base64
+import hashlib
 import pathlib
 import re
 import sys
@@ -135,7 +136,9 @@ def render(template: str, fonts_css: str, seen: dict, inline_clips: bool,
         for d in clip_out_dirs:
             d.mkdir(parents=True, exist_ok=True)
             (d / f"{name}.mp4").write_bytes(f.read_bytes())
-        return f"clips/{name}.mp4"
+        # Clips keep their names across re-cuts and may be cached as immutable,
+        # so the URL carries a fingerprint of the bytes: a new cut is a new URL.
+        return f"clips/{name}.mp4?v={hashlib.sha256(f.read_bytes()).hexdigest()[:10]}"
 
     out, n = TOKEN.subn(swap, template)
     if n == 0:
