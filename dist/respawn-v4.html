@@ -130,6 +130,15 @@ p{font-size:var(--fs-body);line-height:1.6;color:var(--smoke);margin:0;max-width
 /* &#x2500;&#x2500; header &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
 header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-blend-mode:difference}
 .hdr{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+
+/* On phones and tablets the page text scrolls under the bar. A difference-blended
+   transparent header turns that into a pile of overlapping letters, so here it gets
+   the site background and a hairline instead. */
+@media(max-width:1023px){
+  header{mix-blend-mode:normal;background:var(--ink);border-bottom:1px solid var(--line);transition:background-color .35s,border-color .35s}
+  .is-open header{background:transparent;border-bottom-color:transparent}
+  .sec{scroll-margin-top:5rem}
+}
 .mark{font-weight:600;letter-spacing:.3em;font-size:0.875rem;line-height:1;color:#fff}
 .mark small{display:block;font-family:var(--mono);font-size:0.75rem;letter-spacing:.52em;opacity:.6;margin-top:.42em}
 .hdr-r{display:flex;align-items:center;gap:0.5rem}
