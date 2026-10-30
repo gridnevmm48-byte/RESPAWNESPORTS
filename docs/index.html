@@ -425,6 +425,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding-block:1rem;mix-bl
 .score b{font-size:var(--t-score);font-weight:200;letter-spacing:-.06em;line-height:.8}
 .stars{display:flex;gap:0.25rem;margin-top:0.875rem}
 .stars svg{width:1rem;height:1rem;fill:var(--hot)}
+.stars svg.dim{opacity:.22}
 .notes{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
 @media(min-width:760px){.notes{grid-template-columns:repeat(3,1fr)}}
 .notes blockquote{background:var(--ink);margin:0;padding:1.25rem 1.25rem;display:grid;gap:0.875rem}
@@ -775,9 +776,9 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
         </div>
       </div>
       <div class="up est" style="animation-delay:1.2s">
-        <div><b>5.0</b><span class="lbl">Google</span></div>
+        <div><b data-live="rating">5.0</b><span class="lbl">Google</span></div>
         <div>
-          <span class="lbl" data-en="77+ reviews" data-ru="77+ &#x43E;&#x442;&#x437;&#x44B;&#x432;&#x43E;&#x432;">77+ reviews</span>
+          <span class="lbl" data-live="count-short" data-en="77+ reviews" data-ru="77+ &#x43E;&#x442;&#x437;&#x44B;&#x432;&#x43E;&#x432;">77+ reviews</span>
           <span class="lbl">Agiou Andreou 160</span>
         </div>
       </div>
@@ -821,7 +822,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
           <div class="zhz"><b class="cnt" data-count="165">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5060 &middot; i7-14700K &middot; BenQ 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="2" data-peak="4">&euro;2</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
         <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="&#x421;&#x43C;&#x43E;&#x442;&#x440;&#x435;&#x442;&#x44C; &#x442;&#x430;&#x440;&#x438;&#x444;">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
@@ -835,7 +836,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
           <div class="zhz"><b class="cnt" data-count="360">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 Ti &middot; i7-14700K &middot; Alienware 27&quot;</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="4" data-peak="6">&euro;4</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
         <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="&#x421;&#x43C;&#x43E;&#x442;&#x440;&#x435;&#x442;&#x44C; &#x442;&#x430;&#x440;&#x438;&#x444;">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
@@ -849,7 +850,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
           <div class="zhz"><b class="cnt" data-count="260">0</b><span class="lbl">Hz</span></div>
           <div class="zbot">
             <p>RTX 5070 &middot; i9-14900K &middot; ASUS TUF 27&quot; 2K</p>
-            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="6" data-peak="8">&euro;6</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
+            <span class="zprice"><span class="lbl" data-en="from" data-ru="&#x43E;&#x442;">from</span><b class="zp" data-off="8" data-peak="10">&euro;8</b><span class="lbl" data-en="/ hour" data-ru="/ &#x447;&#x430;&#x441;">/ hour</span></span>
           </div>
         </div>
         <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="&#x421;&#x43C;&#x43E;&#x442;&#x440;&#x435;&#x442;&#x44C; &#x442;&#x430;&#x440;&#x438;&#x444;">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
@@ -1017,7 +1018,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
   <div class="wrap">
     <div class="rate rv">
       <div>
-        <div class="score"><b class="num cnt" data-count="5.0" data-dec="1">0</b><span class="lbl">/ 5</span></div>
+        <div class="score"><b class="num cnt" data-live="rating" data-count="5.0" data-dec="1">0</b><span class="lbl">/ 5</span></div>
         <div class="stars" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
           <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
@@ -1025,7 +1026,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
           <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
           <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21l1.4-7L2 9.4l7-.8z"></path></svg>
         </div>
-        <span class="lbl" style="display:block;margin-top:.9rem" data-en="Over 77 Google reviews" data-ru="&#x411;&#x43E;&#x43B;&#x435;&#x435; 77 &#x43E;&#x442;&#x437;&#x44B;&#x432;&#x43E;&#x432; &#x432; Google">Over 77 Google reviews</span>
+        <span class="lbl" style="display:block;margin-top:.9rem" data-live="count-long" data-en="Over 77 Google reviews" data-ru="&#x411;&#x43E;&#x43B;&#x435;&#x435; 77 &#x43E;&#x442;&#x437;&#x44B;&#x432;&#x43E;&#x432; &#x432; Google">Over 77 Google reviews</span>
       </div>
       <div class="notes">
         <blockquote>
@@ -1471,6 +1472,7 @@ function countUp(el){
   (function step(now){
     var p = Math.min(1, (now - t0) / dur);
     var e = 1 - Math.pow(1 - p, 3);
+    target = parseFloat(el.getAttribute("data-count"));   /* the live rating may land mid-count */
     el.textContent = (target * e).toFixed(dec);
     if (p < 1) requestAnimationFrame(step);
   })(t0);
@@ -1888,6 +1890,50 @@ pager($(".notes"), $(".rate"));
   }, {rootMargin:"-45% 0px -50% 0px"});
   order.forEach(function(id){ var s = document.getElementById(id); if (s) tio.observe(s); });
   set("home");
+})();
+
+/* \u2500\u2500 live Google rating \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+   /api/rating answers from the club's Google profile (cached server-side for
+   six hours). The HTML carries the last known figures, so a missing key, a
+   blocked request or the inlined Artifact build all leave the page as it is. */
+function ruPlural(n, one, few, many){
+  var a = n % 10, b = n % 100;
+  return (a === 1 && b !== 11) ? one : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? few : many;
+}
+function applyRating(d){
+  var r = (Math.round(d.rating * 10) / 10).toFixed(1), n = d.count;
+  var word = ruPlural(n, "\u043e\u0442\u0437\u044b\u0432", "\u043e\u0442\u0437\u044b\u0432\u0430", "\u043e\u0442\u0437\u044b\u0432\u043e\u0432");
+  var text = {
+    "count-short": {en: n + (n === 1 ? " review" : " reviews"), ru: n + " " + word},
+    "count-long":  {en: n + " Google " + (n === 1 ? "review" : "reviews"), ru: n + " " + word + " \u0432 Google"}
+  };
+  $$("[data-live]").forEach(function(el){
+    var k = el.getAttribute("data-live");
+    if (k === "rating"){
+      if (el.hasAttribute("data-count")){
+        el.setAttribute("data-count", r);
+        if (el.textContent !== "0") el.textContent = r;   /* already counted up */
+      } else el.textContent = r;
+    } else if (text[k]){
+      el.setAttribute("data-en", text[k].en);
+      el.setAttribute("data-ru", text[k].ru);
+      el.textContent = text[k][lang];
+    }
+  });
+  var full = Math.round(d.rating);
+  $$(".stars svg").forEach(function(s, i){ s.classList.toggle("dim", i >= full); });
+}
+(function(){
+  if (!/^https?:$/.test(location.protocol) || !window.fetch) return;
+  var ctl = window.AbortController ? new AbortController() : null;
+  var timer = ctl ? setTimeout(function(){ ctl.abort(); }, 6000) : 0;
+  fetch("/api/rating", ctl ? {signal: ctl.signal} : {})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (d && typeof d.rating === "number" && d.rating >= 1 && d.rating <= 5 && d.count === Math.floor(d.count) && d.count > 0) applyRating(d);
+    })
+    .catch(function(){})
+    .then(function(){ clearTimeout(timer); });
 })();
 
 /* \u2500\u2500 boot \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
