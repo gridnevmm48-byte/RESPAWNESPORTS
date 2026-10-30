@@ -468,6 +468,223 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.in{opacity:1;transform:none}
 
+/* ── mobile layer ─────────────────────────────────────────────────────────
+   Phones and tablets get the geometry of the portfolio's mobile system:
+   16 px fields, a 4/8 step, 44 px touch targets, 52/44 buttons at radius 14,
+   300 px carousel cards 12 apart, a floating 64 px tab bar. Palette and type
+   families stay the site's. Everything here is layered over the same nodes
+   and data the desktop uses, so the two languages and both layouts never
+   drift apart. */
+.mcar,.pcnt,.tabbar,.fmh,.ps5m,.zgo{display:none}
+@media(max-width:1023px){
+  :root{--m-s1:#131418;--m-s2:#1C1D22;--m-s3:#2A2B31;--m-paper:#D8D5CE}
+  body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+
+  /* header: 56 px bar; the tab bar takes over the menu */
+  header{padding-block:6px}
+  .burger,.menu{display:none!important}
+  .hdr-r .pill{min-height:44px;border-radius:14px;padding:10px 16px;font-size:13px;line-height:18px;letter-spacing:.1em}
+  .hdr-r a.pill{background:var(--ember);border-color:var(--ember);color:#fff}
+
+  /* type: system sizes, site families */
+  .h1,.h2{font-size:32px;line-height:38px;letter-spacing:-.03em}
+  .lbl{font-size:12px;line-height:16px;letter-spacing:.05em}
+  p{font-size:15px;line-height:22px}
+  .sec{padding-block:32px;scroll-margin-top:56px}
+  .mark{min-height:44px;display:flex;flex-direction:column;justify-content:center}
+  .head{gap:8px;margin-bottom:24px}
+  .head p{margin-top:8px!important}
+
+  /* buttons: L 52, radius 14 */
+  .cta{justify-content:center;min-height:52px;border-radius:14px;padding:14px 24px;font-size:14px;line-height:20px;letter-spacing:.1em}
+  .cta.ghost{background:var(--m-s2);border-color:transparent}
+  .mbtn,.zgo{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;font-family:var(--mono);text-transform:uppercase}
+  .mbtn svg,.zgo svg{width:12px;height:11px;fill:currentColor;flex:none}
+
+  /* carousels */
+  .mcar{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .mcar::-webkit-scrollbar{display:none}
+  .mcar>*{flex:0 0 300px;scroll-snap-align:start}
+  .pcnt{display:flex;align-items:center;gap:10px;margin-top:12px}
+  .zwrap>.pcnt{padding-inline:16px}
+  .pcnt .dots{display:flex;align-items:center;gap:4px}
+  .pcnt .dots i{width:4px;height:4px;border-radius:2px;background:var(--line);transition:width .3s var(--ease),background .3s}
+  .pcnt .dots i.on{width:16px;background:var(--bone)}
+
+  /* hero: title, copy, footage card, actions, two stats */
+  #hero{min-height:0;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;padding:68px 16px 8px;overflow:visible}
+  #hero::after{display:none}
+  #hero .wrap,#hero .hero-b,#hero .hero-b>.up:first-child{display:contents}
+  #hero .h1{grid-row:1;margin-bottom:8px}
+  #hero .hero-b p{grid-row:2;max-width:none}
+  #gl,#heroVid{grid-row:3;grid-column:1;position:relative;inset:auto;width:100%;height:auto;aspect-ratio:4/5;border-radius:20px;margin-top:24px}
+  #heroVid{object-fit:cover;opacity:1;filter:none}
+  #hero.gl #heroVid{opacity:0}
+  #hero .acts{grid-row:4;display:grid;gap:10px;margin-top:24px!important}
+  #hero .est{grid-row:5;grid-column:1;margin-top:12px}
+  #hero .cue{display:none}
+  /* a 4:5 card outgrows the screen once it is tablet-wide */
+  @media(min-width:640px){#gl,#heroVid{aspect-ratio:16/10}}
+  .est{display:grid;grid-template-columns:1fr 1fr;gap:12px;border:0;border-radius:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;max-width:none;overflow:visible}
+  .est>div{background:var(--m-s1);border-radius:16px;padding:16px;gap:4px;justify-content:flex-start}
+  .est>div:first-child{border-right:0;min-width:0;align-items:flex-start;text-align:left}
+  .est b{font-size:32px;line-height:38px;letter-spacing:-.03em}
+  .est>div:last-child .lbl:first-child{font:600 17px/24px var(--disp);letter-spacing:0;text-transform:none;color:var(--bone)}
+
+  /* manifesto */
+  .mani{font-size:20px;line-height:26px;letter-spacing:-.02em;max-width:none}
+  #about .div{padding-block:24px}
+
+  /* zones: segmented rate switch + "All rates" */
+  #zones{padding-top:32px!important}
+  .seg{position:relative;display:flex;align-items:center;gap:4px;margin-top:16px;flex-wrap:nowrap}
+  .seg::before{content:"";position:absolute;left:0;top:0;width:248px;height:44px;border-radius:14px;background:var(--m-s1)}
+  /* 44 px to tap, a 36 px pill to see: the fill stops at the content box */
+  .segb{position:relative;width:118px;height:44px;min-height:0;justify-content:center;border:0;border-radius:14px;padding:4px 0;background-clip:content-box;font-size:13px;line-height:18px;letter-spacing:.1em}
+  .segb:first-of-type{margin-left:4px}
+  .segb:hover{border-color:transparent}
+  .segb[aria-pressed="true"]{background:var(--m-s2);color:var(--bone)}
+  .segl{margin-left:auto;gap:4px;min-height:44px;padding:0;font:400 15px/22px var(--disp);letter-spacing:0;text-transform:none}
+  @media(max-width:359px){.seg{flex-wrap:wrap}.segl{margin-left:0}}
+  .segl::after{content:"";width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E") center/16px no-repeat;opacity:.7}
+
+  /* zone cards: square footage, copy underneath, a button */
+  #zlist{gap:12px;padding-inline:16px;scroll-padding-inline:16px;overscroll-behavior-x:contain}
+  #zlist .zcard{flex:0 0 300px;width:300px;max-width:none;min-height:0;scroll-snap-align:start;border:0;border-radius:0;background:none;overflow:visible;display:flex;flex-direction:column}
+  #zlist .zcard::after,#zlist .zcard .bar{display:none}
+  #zlist .zcard .bg{position:relative;inset:auto;width:300px;height:300px;border-radius:16px;opacity:1;transform:none;filter:none}
+  #zlist .zin{height:auto;padding:14px 0 0;display:grid;grid-template-columns:1fr auto;grid-template-areas:"tag hz" "name name" "spec spec" "price price";gap:4px 8px;align-items:center}
+  #zlist .ztop,#zlist .zbot{display:contents}
+  #zlist .zcard h3{grid-area:name;font-size:20px;line-height:26px;letter-spacing:-.02em}
+  #zlist .ztop .lbl{grid-area:tag}
+  #zlist .zhz{grid-area:hz;justify-self:end;align-items:center;background:var(--m-s2);border-radius:8px;padding:4px 10px;gap:4px}
+  #zlist .zhz b{font:400 12px/16px var(--mono);letter-spacing:.05em;color:var(--bone)}
+  #zlist .zhz .lbl{color:var(--bone)}
+  #zlist .zbot p{grid-area:spec;font-size:13px;line-height:18px;color:var(--smoke)}
+  #zlist .zprice{grid-area:price;border-top:0;padding-top:0;gap:6px}
+  #zlist .zprice b{font-size:20px;line-height:26px}
+  #zlist .zgo{min-height:52px;margin-top:14px;background:var(--m-s2);color:var(--bone);font-size:14px;line-height:20px;letter-spacing:.1em}
+
+  /* hardware: one card per room, side by side */
+  #specs .sptabs,#specs .sp{display:none}
+  .spc{background:var(--m-s1);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px}
+  .spc h3{font:600 20px/26px var(--disp);letter-spacing:-.02em;margin:0}
+  .spc-rows>div{display:grid;gap:2px;padding-block:8px;border-bottom:1px solid var(--line)}
+  .spc-rows>div:last-child{border-bottom:0}
+  .spc-rows .v{font-size:15px;line-height:22px}
+  .spc .mbtn{min-height:44px;margin-top:auto;border:1px solid var(--line);font-size:13px;line-height:18px;letter-spacing:.1em}
+
+  /* PS5 room: eyebrow, title, footage, copy, list, food */
+  #cinema .cin{display:grid;gap:0}
+  #cinema .cin>.rv:not(.cinbox){display:contents}
+  #cinema .cin>.rv>.lbl:first-child{order:1}
+  #cinema .cin .h2{order:2;margin-top:8px!important}
+  #cinema .cinbox{order:3;margin-top:24px;border:0;border-radius:16px}
+  #cinema .cin>.rv>p:not(.lbl){order:4;margin-top:24px!important;font-size:16px;line-height:24px;color:var(--bone);max-width:none}
+  #cinema .rows{order:5;margin-top:24px!important}
+  .rows div{grid-template-columns:40px 1fr;gap:14px;align-items:center;padding:12px 4px 12px 0;border-top:0;border-bottom:1px solid var(--line)}
+  .rows div:last-child{border-bottom:1px solid var(--line)}
+  .rows .n{width:40px;height:40px;border-radius:12px;background:var(--m-s2);display:grid;place-items:center;font-size:12px;letter-spacing:.05em}
+  .rows p{font:600 16px/24px var(--disp);color:var(--bone);letter-spacing:-.01em}
+  .fmh{display:block;order:6;margin:32px 0 0;font:600 20px/26px var(--disp);letter-spacing:-.02em}
+  #cinema .fmnote{order:7;margin-top:12px!important;opacity:1!important;background:var(--m-s1);border-radius:20px;padding:16px 20px;font:400 15px/22px var(--disp);letter-spacing:0;text-transform:none;color:var(--bone);max-width:none}
+  #cinema>.wrap[style]{margin-top:16px!important}
+  .fmtabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding-inline:16px;gap:8px;scrollbar-width:none}
+  .fmtabs::-webkit-scrollbar{display:none}
+  .sptab{flex:none;min-height:44px;border:0;border-radius:14px;padding:12px 16px;background:var(--m-s1);font-size:13px;line-height:18px;letter-spacing:.1em}
+  .sptab:hover{border-color:transparent}
+  .sptab[aria-selected="true"]{background:var(--bone);color:var(--ink)}
+  #cinema .zwrap{margin-top:16px}
+  .fmgrid{flex-wrap:nowrap;gap:12px;padding-inline:16px;scroll-padding-inline:16px;overscroll-behavior-x:contain}
+  .fmgrid .fcard{flex:0 0 300px;width:300px;max-width:none;min-height:212px;scroll-snap-align:start;background:var(--m-s1);border:0;border-radius:20px}
+  .fmgrid .fcard::after,.fmgrid .fcard .bar{display:none}
+  .fmgrid .fcard .zin{padding:20px;gap:8px;justify-content:flex-start}
+  .fmgrid .fcard .ztop{flex-direction:column-reverse;align-items:flex-start;gap:8px}
+  .fmgrid .fcard h3{text-transform:none;font-size:17px;line-height:24px;letter-spacing:-.01em}
+  .fmgrid .fcard .zbot{display:contents}
+  .fmgrid .fcard .zbot p{font-size:13px;line-height:18px;color:var(--smoke)}
+  .fmgrid .fcard .zprice{margin-top:auto;border-top:1px solid var(--line);padding-top:12px}
+  .fmgrid .fcard .zprice b{font-size:20px;line-height:26px}
+
+  /* prices: no wipe, cards instead of wide tables */
+  .wipe{display:none}
+  #pricesHead{opacity:1!important;transform:none!important}
+  .now{margin-bottom:8px;padding:8px 12px;font-size:12px;letter-spacing:.05em}
+  .keys{gap:12px;background:none;border:0;border-radius:0;overflow:visible;margin-bottom:32px}
+  .keys div{background:var(--m-paper);border-radius:20px;padding:20px;gap:8px}
+  .keys b{font-size:17px;line-height:24px}
+  .keys span{font-size:13px;line-height:20px}
+  .tbl{overflow:visible}
+  .tbl table{min-width:0;display:block}
+  .tbl caption{display:block;padding-bottom:12px}
+  #tblPc thead{display:none}
+  #tblPc tbody{display:grid;gap:12px}
+  #tblPc tr{display:grid;grid-template-columns:1fr 1fr;gap:16px 8px;background:var(--m-paper);border-radius:20px;padding:20px}
+  #tblPc tr.vip{background:var(--m-paper);box-shadow:inset 0 0 0 1px rgba(228,50,26,.35)}
+  #tblPc th,#tblPc td{display:block;text-align:left;padding:0;border:0}
+  #tblPc tbody th{grid-column:1/-1;font-size:17px;line-height:24px}
+  #tblPc td{font:600 20px/26px var(--disp);letter-spacing:-.02em}
+  #tblPc td::before{content:attr(data-label);display:block;margin-bottom:2px;font:400 12px/16px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:#5A5D64}
+  #tblPs5{margin-top:32px!important}
+  #tblPs5 thead,#tblPs5 tbody{display:none}
+  .ps5m{display:block;background:var(--m-paper);border-radius:20px;padding:8px 20px}
+  .ps5m .r{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;padding-block:12px;border-bottom:1px solid var(--line-d)}
+  .ps5m .r:last-child{border-bottom:0}
+  .ps5m .r>:not(:first-child){text-align:right}
+  .ps5m .h span{font:400 12px/16px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:#5A5D64}
+  .ps5m span{font-size:15px;line-height:22px}
+  .ps5m b{font-size:17px;line-height:24px;font-weight:600}
+  #prices .rv[style]{margin-top:32px!important}
+  .bonus{gap:8px;margin-top:12px}
+  .bonus span{border:0;background:var(--m-paper);border-radius:8px;padding:4px 10px;font-size:12px;line-height:16px}
+
+  /* reviews: two tiles, then the quotes as a carousel */
+  .rate{gap:24px}
+  .rate>div:first-child{display:grid;grid-template-columns:1fr 1fr;column-gap:12px}
+  .rate>div:first-child::before{content:"";grid-column:2;grid-row:1/3;background:var(--m-s1);border-radius:16px}
+  .score{grid-column:1;grid-row:1/3;background:var(--m-s1);border-radius:16px;padding:16px;flex-direction:column;align-items:flex-start;gap:4px}
+  .score b{font-size:32px;line-height:38px;font-weight:600;letter-spacing:-.03em}
+  .stars{grid-column:2;grid-row:1;margin:0;padding:16px 16px 0;align-self:start}
+  .stars svg{width:18px;height:18px}
+  .rate>div:first-child>.lbl{grid-column:2;grid-row:2;margin:0!important;padding:8px 16px 16px}
+  .notes{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;background:none;border:0;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .notes::-webkit-scrollbar{display:none}
+  .notes blockquote{flex:0 0 300px;scroll-snap-align:start;background:var(--m-s1);border-radius:20px;padding:20px;gap:12px}
+  .notes p{font-size:15px;line-height:22px}
+  .notes cite{font-size:12px;letter-spacing:.05em}
+
+  /* contact: stacked buttons, list cells with icon chips */
+  .ct{gap:24px}
+  #contact .h2{margin-top:8px!important}
+  #contact .ct .rv>p{margin-top:8px!important}
+  #contact .acts{display:grid;gap:10px;margin-top:24px}
+  .info a,.info>div{grid-template-columns:40px minmax(0,1fr) 20px;grid-template-areas:"ic t ar" "ic v ar";column-gap:14px;row-gap:0;align-items:center;min-height:66px;padding:12px 4px 12px 0;border-top:0;border-bottom:1px solid var(--line)}
+  .info>*::before{content:"";grid-area:ic;width:40px;height:40px;border-radius:12px;background:var(--m-s2) var(--ic) center/20px no-repeat}
+  .info a::after{content:"";grid-area:ar;width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10'/%3E%3Cpath d='M7 17 17 7'/%3E%3C/svg%3E") center/20px no-repeat;opacity:.55}
+  .info .lbl{grid-area:t;font:600 16px/24px var(--disp);letter-spacing:0;text-transform:none;color:var(--bone)}
+  .info .v{grid-area:v;font-size:13px;line-height:18px;color:var(--smoke)}
+  .info>:nth-child(1){--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z'/%3E%3C/svg%3E")}
+  .info>:nth-child(2){--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m22 2-7 20-4-9-9-4z'/%3E%3Cpath d='M22 2 11 13'/%3E%3C/svg%3E")}
+  .info>:nth-child(3){--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='20' height='20' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M17.5 6.5h.01'/%3E%3C/svg%3E")}
+  .info>:nth-child(4){--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E")}
+  .info>:nth-child(5){--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E4E2DD' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E")}
+
+  /* map: schematic card, caption underneath */
+  .mapwrap{border:0;border-radius:0;background:none;overflow:visible}
+  .mapwrap svg{border-radius:16px}
+  .mapwrap .ovl{position:static;background:none;padding:12px 0 0;flex-wrap:nowrap;align-items:flex-start}
+  .mapwrap .ovl .lbl{white-space:normal}
+
+  footer{padding-block:32px}
+
+  /* floating tab bar */
+  .tabbar{position:fixed;left:50%;bottom:calc(8px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:95;display:grid;grid-template-columns:repeat(5,1fr);width:calc(100% - 32px);max-width:420px;height:64px;padding:4px;border-radius:32px;background:rgba(28,29,34,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.45)}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:28px;color:var(--smoke);font:600 11px/14px var(--disp);transition:background .25s,color .25s}
+  .tabbar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;opacity:.55;transition:opacity .25s}
+  .tabbar a[aria-current="true"]{background:var(--m-s3);color:var(--bone)}
+  .tabbar a[aria-current="true"] svg{opacity:1}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
@@ -606,6 +823,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
             <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="2" data-peak="4">&euro;2</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
           </div>
         </div>
+        <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="Смотреть тариф">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
       </article>
 
       <article class="zcard" style="--i:1">
@@ -619,6 +837,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
             <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="3" data-peak="5">&euro;3</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
           </div>
         </div>
+        <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="Смотреть тариф">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
       </article>
 
       <article class="zcard" style="--i:2">
@@ -632,6 +851,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
             <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="6" data-peak="8">&euro;6</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
           </div>
         </div>
+        <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="Смотреть тариф">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
       </article>
 
       <article class="zcard" style="--i:3">
@@ -645,6 +865,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
             <span class="zprice"><span class="lbl" data-en="from" data-ru="от">from</span><b class="zp" data-off="7" data-peak="15">&euro;7</b><span class="lbl" data-en="/ hour" data-ru="/ час">/ hour</span></span>
           </div>
         </div>
+        <a class="zgo" href="#prices" data-scroll><span data-en="See the rate" data-ru="Смотреть тариф">See the rate</span><svg viewBox="0 0 10 9" aria-hidden="true"><path d="M5.47 8.65v-2.1l2.86-2.8v1.15l-2.86-2.8V0L9.32 3.84v.98L5.47 8.65ZM0 5.11V3.54h8.61V5.11H0Z"/></svg></a>
       </article>
     </div>
   </div>
@@ -684,6 +905,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
         </div>
       </div>
     </div>
+    <div class="mcar" id="spcards"></div>
   </div>
 </section>
 
@@ -705,7 +927,8 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
           <div><span class="n">02</span><p data-en="Hookah on request, plus drinks and snacks at the bar." data-ru="Кальян по запросу, напитки и снеки на баре.">Hookah on request</p></div>
           <div><span class="n">03</span><p data-en="Birthdays and team bootcamps — the room books whole." data-ru="Дни рождения и командные буткемпы — зал бронируется целиком.">Whole-room booking</p></div>
         </div>
-        <p class="lbl" style="margin-top:1.4rem;opacity:.6" data-en="Food from a partner restaurant is available too — ask the club administrator to order." data-ru="Можно заказать еду из ресторана-партнёра — уточняйте у администратора клуба.">Food from a partner restaurant — ask the administrator.</p>
+        <h3 class="fmh" data-en="Food" data-ru="Еда">Food</h3>
+        <p class="lbl fmnote" style="margin-top:1.4rem;opacity:.6" data-en="Food from a partner restaurant is available too — ask the club administrator to order." data-ru="Можно заказать еду из ресторана-партнёра — уточняйте у администратора клуба.">Food from a partner restaurant — ask the administrator.</p>
       </div>
     </div>
   </div>
@@ -745,7 +968,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
       </div>
     </div>
 
-    <div class="tbl rv">
+    <div class="tbl rv" id="tblPc">
       <table>
         <caption class="lbl" data-en="PC zones" data-ru="Компьютерные залы">PC zones</caption>
         <thead><tr>
@@ -763,7 +986,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
       </table>
     </div>
 
-    <div class="tbl rv" style="margin-top:2.8rem">
+    <div class="tbl rv" id="tblPs5" style="margin-top:2.8rem">
       <table>
         <caption class="lbl" data-en="PS5 Premium — per hour for the whole room" data-ru="PS5 Premium — за час на весь зал">PS5 Premium</caption>
         <thead><tr>
@@ -775,6 +998,7 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
         </tbody>
       </table>
     </div>
+    <div class="ps5m" id="ps5m"></div>
 
     <div class="rv" style="margin-top:2.8rem">
       <span class="lbl" data-en="Top up &amp; get bonus — added instantly, for in-club use" data-ru="Пополни и получи бонус — начисляется сразу, тратится в клубе">Top up &amp; get bonus</span>
@@ -904,6 +1128,14 @@ footer{border-top:1px solid var(--line);padding-block:2.5rem 2.75rem}
   </div>
 </footer>
 
+<nav class="tabbar" id="tabbar" aria-label="Sections">
+  <a href="#hero" data-scroll data-tab="home" aria-current="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg><span data-en="Home" data-ru="Главная">Home</span></a>
+  <a href="#zones" data-scroll data-tab="zones" aria-current="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg><span data-en="Zones" data-ru="Залы">Zones</span></a>
+  <a href="#cinema" data-scroll data-tab="ps5" aria-current="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 11h4"/><path d="M8 9v4"/><path d="M15 12h.01"/><path d="M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59l-.6 5.38A3 3 0 0 0 5.08 17.3c.98 0 1.9-.48 2.46-1.29L8.7 14.5h6.6l1.16 1.51a3 3 0 0 0 2.46 1.29 3 3 0 0 0 2.98-3.33l-.6-5.38A4 4 0 0 0 17.32 5z"/></svg><span data-en="PS5" data-ru="PS5">PS5</span></a>
+  <a href="#prices" data-scroll data-tab="prices" aria-current="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span data-en="Prices" data-ru="Цены">Prices</span></a>
+  <a href="#contact" data-scroll data-tab="contact" aria-current="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg><span data-en="Contact" data-ru="Контакты">Contact</span></a>
+</nav>
+
 
 <script>
 (function(){
@@ -1023,6 +1255,8 @@ function applyLang(){
   buildFoodTabs();
   buildFoodGrid();
   clock();
+  labelTables();
+  buildPs5m();
 }
 $("#lang").addEventListener("click", function(){
   lang = lang === "en" ? "ru" : "en";
@@ -1172,6 +1406,8 @@ function buildFoodGrid(){
     '</article>';
   }).join("");
   box.classList.add("in");
+  box.scrollLeft = 0;
+  if (box._pg) box._pg();
 }
 buildFoodTabs();
 buildFoodGrid();
@@ -1206,6 +1442,7 @@ function buildSpecs(i, animate){
     m.classList.toggle("on", on);
     if (m.tagName === "VIDEO"){ if (on) m.play().catch(function(){}); else m.pause(); }
   });
+  buildSpecCards();
 }
 
 /* ── peak / off-peak switch ─────────────────────────────────────────────── */
@@ -1567,6 +1804,90 @@ function intro(){
     setTimeout(function(){ pl.classList.add("done"); }, 1500);
   }, 2700);
 }
+
+/* ── mobile layer: cards, counters, tab bar ─────────────────────────────── */
+function esc(v){ return String(v).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+function cellText(el){ return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
+/* the wide price table becomes one card per room on phones; each cell
+   carries its column header so the card can label itself */
+function labelTables(){
+  var pc = $("#tblPc"); if (!pc) return;
+  var hs = $$("thead th", pc);
+  $$("tbody tr", pc).forEach(function(tr){
+    $$("td", tr).forEach(function(td,i){ td.setAttribute("data-label", cellText(hs[i + 1])); });
+  });
+}
+/* the PS5 table runs people across; a phone reads it down */
+function buildPs5m(){
+  var box = $("#ps5m"), src = $("#tblPs5"); if (!box || !src) return;
+  var hs = $$("thead th", src), rows = $$("tbody tr", src);
+  if (rows.length < 2) return;
+  var peak = $$("td", rows[0]), off = $$("td", rows[1]);
+  var h = '<div class="r h"><span>' + esc(cellText(hs[0])) + '</span><span>' + esc(cellText($("th", rows[0]))) + '</span><span>' + esc(cellText($("th", rows[1]))) + '</span></div>';
+  for (var i = 1; i < hs.length; i++){
+    h += '<div class="r"><span>' + esc(cellText(hs[i])) + '</span><b>' + esc(cellText(peak[i - 1])) + '</b><b class="off">' + esc(cellText(off[i - 1])) + '</b></div>';
+  }
+  box.innerHTML = h;
+}
+function buildSpecCards(){
+  var box = $("#spcards"); if (!box) return;
+  var see = {en:"See the rate", ru:"Смотреть тариф"};
+  box.innerHTML = ZONES.map(function(z){
+    return '<article class="spc"><h3>' + esc(z.n) + '</h3><div class="spc-rows">' +
+      z.rows.map(function(r){ return '<div><span class="lbl">' + esc(t(KEY[r[0]])) + '</span><span class="v">' + esc(t(r[1])) + '</span></div>'; }).join("") +
+      '</div><span class="lbl">' + esc(t(NOTE[rate]).replace("%s", z.price[rate]) + (z.per ? t(z.per) : "")) + '</span>' +
+      '<a class="mbtn" href="#prices"><span>' + esc(t(see)) + '</span>' + ARROW + '</a></article>';
+  }).join("");
+  if (box._pg) box._pg();
+}
+/* dots + "2 / 4" under a horizontal track, following the scroll */
+/* `host` is where the counter goes after; it defaults to the track itself, but
+   a track that is a grid's last child must not get a new sibling inside that
+   grid, or the desktop :last-child placement lands on the counter */
+function pager(track, host){
+  if (!track || track._pg) return;
+  host = host || track;
+  var bar = document.createElement("div");
+  bar.className = "pcnt";
+  bar.innerHTML = '<span class="dots" aria-hidden="true"></span><span class="lbl"></span>';
+  host.parentNode.insertBefore(bar, host.nextSibling);
+  var dots = bar.firstChild, lab = bar.lastChild, pending = 0;
+  function update(){
+    pending = 0;
+    var items = track.children, n = items.length;
+    bar.hidden = n < 2;
+    if (!n) return;
+    var step = n > 1 ? (items[1].offsetLeft - items[0].offsetLeft) : 1;
+    var max = track.scrollWidth - track.clientWidth;
+    var i = (max > 0 && track.scrollLeft >= max - 4) ? n - 1 : Math.round(track.scrollLeft / (step || 1));
+    i = Math.max(0, Math.min(n - 1, i));
+    if (dots.children.length !== n) dots.innerHTML = new Array(n + 1).join("<i></i>");
+    for (var k = 0; k < n; k++) dots.children[k].classList.toggle("on", k === i);
+    lab.textContent = (i + 1) + " / " + n;
+  }
+  track.addEventListener("scroll", function(){ if (!pending) pending = requestAnimationFrame(update); }, {passive:true});
+  addEventListener("resize", update);
+  track._pg = update;
+  update();
+}
+pager($("#zlist"));
+pager($("#spcards"));
+pager($("#fmgrid"));
+pager($(".notes"), $(".rate"));
+/* the tab bar follows the section in the middle of the screen */
+(function(){
+  var bar = $("#tabbar"); if (!bar) return;
+  var owner = {hero:"home", about:"home", zones:"zones", specs:"zones", cinema:"ps5", prices:"prices", reviews:"contact", contact:"contact", map:"contact"};
+  var order = ["hero","about","zones","specs","cinema","prices","reviews","contact","map"];
+  var links = $$("a", bar), seen = {};
+  function set(k){ links.forEach(function(a){ a.setAttribute("aria-current", a.getAttribute("data-tab") === k ? "true" : "false"); }); }
+  var tio = new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id] = e.isIntersecting; });
+    for (var i = 0; i < order.length; i++) if (seen[order[i]]) { set(owner[order[i]]); return; }
+  }, {rootMargin:"-45% 0px -50% 0px"});
+  order.forEach(function(id){ var s = document.getElementById(id); if (s) tio.observe(s); });
+  set("home");
+})();
 
 /* ── boot ───────────────────────────────────────────────────────────────── */
 applyLang();
